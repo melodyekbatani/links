@@ -4,7 +4,6 @@
 /*--------------STYLES------------.*/
 :root {
 
-
   /*delete these and use the ones bellow*/
   --base-color: rgb(119, 221, 255);
   --base-variant: rgb(157, 230, 255);
@@ -25,7 +24,7 @@
   --type-header: "parabolica", sans-serif;
   --type-header-weight: 600;
   --type-header-style: normal;
-  --heading-size: calc(var(--body-size) * 25);
+  --heading-size: calc(var(--body-size) * 10);
 
   /*subheader fonts*/
   --subheading-size: calc(var(--body-size) * 1.25);
@@ -310,7 +309,7 @@ h1 {
   font-family: var(--type-header);
   font-style: var(--type-header-style);
   font-weight: var(--type-header-weight);
-  font-size: var(--heading-size);
+  font-size: calc(var(--body-size) * 25);
   color: var(--blue);
   padding-block-start: 15rem;
   margin: 0;
