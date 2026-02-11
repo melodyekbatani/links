@@ -1,87 +1,128 @@
+/*If you make use of other tools explain why you used them, what you referenced, and your overall understanding of how it works.*/
+
+
+/*--------------STYLES------------.*/
 :root {
-  --base-color: rgb(255, 255, 255);
-  --base-variant: rgb(255, 255, 255);
-  --text-color: rgb(0, 0, 0);
-  --primary-color: rgb(0, 0, 0);
-  --secondary-text: rgb(0, 0, 0);
+
+
+  /*delete these and use the ones bellow*/
+  --base-color: rgb(119, 221, 255);
+  --base-variant: rgb(157, 230, 255);
+  --text-color: rgb(255, 255, 255);
+  --primary-color: rgb(255, 255, 255);
+  --secondary-text: rgb(255, 255, 255);
+
+  --white: #fff;
+  --purple:#5a2d82;
+  --blue:#b8E7FF;
 
   /*padding variables*/
   --gutter: 2rem;
   --vertical: 1rem;
   --corners: 1rem;
 
-
   /*header fonts*/
   --type-header: "parabolica", sans-serif;
-  --type-header-weight: 100;
+  --type-header-weight: 600;
   --type-header-style: normal;
-  --heading-size: calc(var(--body-size) * 6);
+  --heading-size: calc(var(--body-size) * 25);
 
   /*subheader fonts*/
-  --subheading-size: calc(var(--body-size) * 2);
+  --subheading-size: calc(var(--body-size) * 1.5);
 
   /*body fonts*/
   --type-body: "parabolica", sans-serif;
   --type-body-style: normal;
-  --type-body-weight: 400;
+  --type-body-weight: 600;
   --body-size: 1.5rem;
 
   /*root styling*/
-  padding: var(--gutter);
-  background-color: var(--base-color);
+  padding: var(--vertical);
+  background-color: var(--white);
+}
+/*---------BORDER---------.*/
+body {
+  border-radius: var(--corners);
+  background-color: var(--blue);
+  filter: drop-shadow(3px 1px 4px hsl(0, 0%, 73%));
 
 }
-/* hoping that this could somehow become my navigation  */
-.navigation {
-   width: 10%; 
-  height: auto;
+/* I was trying to add a shadow effect to an element using the CSS filter property so the shadow follows the actual shape of the element rather than its rectangular box.I used the MDN article on CSS drop-shadow() filter function:
+https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/filter-function/drop-shadow.I learned that drop-shadow() the first value moves the shadow to the right, the second value moves it down, the third value controls the blur softness, and the fourth value sets the shadow color. */
+
+
+
+.header-container {
+  background-color: var(--purple);
+  z-index: 1000;
+  padding: 0;
+  padding-block: var(--gutter)/2;
+  padding-inline: calc(var(--gutter) *2);
+
 }
-hgroup {
-  padding-inline: var(--gutter);
-  background-color: var(--base-variant);
-  border-radius: var(--corners);
+/*---------NAV---------.*/
+/* hoping that this could somehow become my navigation NEEDS TO BE ATTRIBUTED */
+/* I was trying to make my menu be spaced properly and couldn't figure out why the grid wasn't working, i wanted it to be left justified with the middle one falling, was thinking to animate this somehow*/
+/* I used chatgpt to help clarify */
+/* I learnt that my padding was causing the issue with the grid layout and i had repeats in my code blocking this from working*/
+.menu li a {
+    padding-block: 14px;
+    padding-inline: 24px;
+    background: var(--white);
+    color:var(--purple);
+    text-decoration: none;
+    font-family: var(--type-body);
+    font-style: var(--type-body-style);
+    font-weight: var(--type-body-weight);
+    font-size: var(--body-size);
+    border-radius: 999px;
+    
 }
+.menu {
+    display: grid;
+    grid-template-columns: repeat(3, auto); /* 3 columns */
+    gap: calc(var(--gutter) / 6);
+    justify-content: end; 
+    white-space: nowrap;
+    padding: var(--gutter);
+
+}
+
+.menu li {
+    display: inline-block;
+}
+
+/* rotating the playlist */
+.item2  {
+    transform: rotate(-12deg);
+}
+
+
 
 h1 {
   font-family: var(--type-header);
   font-style: var(--type-header-style);
   font-weight: var(--type-header-weight);
   font-size: var(--heading-size);
-  color: var(--secondary-text);
-  padding-block-start: 6rem;
+  color: var(--blue);
+  padding-block-start: 20rem;
+  margin: 0;
+/* Temporary fix I want the purple to stop at the bottom of the words r&b */
+  line-height: 0.7;
 }
-
-h2 {
-  font-family: var(--type-body);
-  font-size: var(--subheading-size);
+.introduction {
+  font-family: var(--type-header);
+  font-style: var(--type-header-style);
   font-weight: var(--type-header-weight);
-  margin-block-start: -5rem;
-  max-width: 60%;
-  color: var(--text-color);
-
+  font-size: var(--subheading-size);
+  color: var(--purple);
+  padding-block: calc(var(--gutter)*3);
+  padding-inline: var(--gutter);
+  margin-left: 60rem;
 }
 
-p {
-  padding-block: var(--gutter);
-  font-family: var(--type-body);
-  font-size: var(--body-size);
-  line-height: 130%;
-  max-width: 80%;
-}
 
-ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-block-start: var(--vertical);
-  padding-inline: var(--vertical);
-  top: 0;
-  right: 0;
-  z-index: 1000;
 
-  li {
-    margin-inline-start: var(--gutter);
-  }
 
   a {
     font-weight: var(--type-body-weight);
@@ -92,13 +133,8 @@ ul {
     max-width: 80%;
     color: var(--primary-color);
   }
-}
 
 
-body {
-  overflow-x: clip !important;
-  color: var(--primary-color);
-}
 
 article {
   padding-block-start: 10rem;
@@ -113,12 +149,27 @@ div {
   object-fit: cover;
   justify-content: center;
   border-radius: var(--corners);
-
+}
   img {
-    width: 100%;
+    width: 50%;
     height: 100%;
     object-fit: cover;
     object-position: center;
     display: block;
   }
+
+
+/*are.na block styling*/
+ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing);
+  width:100%;
+  padding-block-start: var(--vertical);
+  padding-inline: var(--vertical);
+  top: 0;
+  right: 0;
+  z-index: 1000;
+
 }
+
