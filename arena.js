@@ -31,17 +31,17 @@ let renderBlock = (blockData) => {
 		let linkItem =
 			`
 			<li>
-				<p><em>Link</em></p>
 				<figure>
 					<picture>
 						<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
 						<source media="(width < 1000px)" srcset="${ blockData.image.medium.src_2x }">
 						<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 					</picture>
+					
 					<figcaption>
 						<h3>${ blockData.title }</h3>
 						${ blockData.description.html }
-					</figcaption>
+					</figcaption> -->
 				</figure>
 				<p><a href="${ blockData.source.url }">See the original ↗</a></p>
 			</li>
@@ -61,13 +61,8 @@ let renderBlock = (blockData) => {
 		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
         `
         <li>
-            <p><em>Image</em></p>
             <figure>
                 <img alt="${blockData.image.alt_text}" src="${blockData.image.large.src_2x}">
-                <figcaption>
-                    <h3>${blockData.title || 'Untitled'}</h3>
-                    ${blockData.description?.html || ''}
-                </figcaption>
             </figure>
         </li>
      `
@@ -79,7 +74,6 @@ let renderBlock = (blockData) => {
 		 let textItem =
         `
         <li>
-            <p><em>Text</em></p>
             <h3>${blockData.title || 'Untitled'}</h3>
             ${blockData.content.html}
         </li>
@@ -94,11 +88,14 @@ let renderBlock = (blockData) => {
 		// Uploaded videos!
 		if (contentType.includes('video')) {
 			// …still up to you, but we’ll give you the `video` element:
+			// my code tutor taught me to use the div class to attempt to round the corners of the video, but I couldn't get it to work. I think it has to do with how youtube is embedding the video, but I could be wrong. I also tried to add the border-radius to the video element itself, but that didn't work either. any suggestions you have would be much appreciated!
 			let videoItem =
 				`
 				<li>
-					<p><em>Video</em></p>
+				
+				<div class="embedded-video">
 					<video controls src="${ blockData.attachment.url }"></video>
+				</div>
 				</li>
 				`
 
@@ -113,8 +110,9 @@ let renderBlock = (blockData) => {
 			 let pdfItem =
         `
         <li>
-        <p><em>PDF</em></p>
+		<div class="embedded">
     	<embed src="${blockData.attachment.url}" type="application/pdf" width="100%" height="600px">
+		</div>
     	<p><a href="${blockData.attachment.url}" download>Download PDF ↗</a></p>
         </li>
         `
@@ -128,7 +126,6 @@ let renderBlock = (blockData) => {
 			let audioItem =
 				`
 				<li>
-					<p><em>Audio</em></p>
 					<audio controls src="${ blockData.attachment.url }"></video>
 				</li>
 				`
@@ -150,7 +147,6 @@ let renderBlock = (blockData) => {
 			let linkedVideoItem =
 				`
 				<li>
-					<p><em>Linked Video</em></p>
 					${ blockData.embed.html }
 				</li>
 				`
