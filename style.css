@@ -41,7 +41,7 @@
   background-color: var(--white);
 }
 
-@media screen and (min-width: 430px) and (max-width: 760px) {
+@media screen and (min-width: 300px) and (max-width: 760px) {
 
 /*---------BORDER---------.*/
 body {
