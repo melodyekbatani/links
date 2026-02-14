@@ -27,7 +27,7 @@
 
   /*header fonts*/
   --header-font: "parabolica", sans-serif;
-  --header-weight: 200;
+  --header-weight: 500;
   --header-size: calc(var(--body-size) * 9);
 
   /*subheader fonts*/
@@ -132,24 +132,35 @@ a {
 }
 
 /*-------------- TEXT ------------*/
+header {
+  display: flex;
+  align-items: flex-end;
+}
+
 h1 {
-  padding-block-start: 30rem; /* QUESTION: I want this to stick to the bottom of the purple header box, how can I make that happen?*/
   margin: 0;
   line-height: 0.8;
-}
-
-.title {
   position: relative;
-  display: inline-block;
-  line-height: 0.8;
+  width: fit-content;
 }
 
-.R .B {
+.R {
   display: block;
+  font-size: calc(var(--header-size) * 1.25);
 }
+
 .and {
-  top: 55%;
-  transform: rotate(-50deg);
+  position: absolute;
+  font-size: var(--subheader-size);
+  right: -0.8em; /* Positions it to the right */
+  top: 45%; /* Adjust to center between R and B */
+  transform: rotate(5deg);
+}
+
+.B {
+  display: block;
+  font-size: calc(var(--header-size) * 1.25);
+  padding-inline-start: calc(var(--large-gutter)*1.5);
 }
 
 .introduction {
