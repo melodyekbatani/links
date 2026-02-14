@@ -1,0 +1,39 @@
+/*....ATTRIBUTION....*/
+/* GOAL: what I was trying to do */
+/* RESOURCE: MDN Web Docs — text-align and justify-content through co-pilot what is the resource I used */
+/* LEARNING: what I learned from it */
+
+/* SMALL ATTRIBUTION: if we learnt it in class but I forgot remember */
+/* QUESTION: for Michael, Eric and code tutors */
+
+/*--------------STYLES------------.*/
+:root {
+
+  /*color variables*/
+  --white: #fff;
+  --black: #000;
+  --main-color:#5a2d82;
+  --accent-color:#b8E7FF;
+
+  /*padding variables*/
+  --large-gutter: 2rem;
+  --small-gutter: 1rem;
+  --corner-rounded: 1rem;
+  --corner-pill: 50em;
+  --corner-circle: 100%;
+
+  /*header fonts*/
+  --header-font: "strelka", sans-serif;
+  --header-weight: 600;
+  --header-size: calc(var(--body-size) * 7);
+
+  /*subheader fonts*/
+  --subheader-font: "parabolica", sans-serif;
+  --subheader-weight: 400;
+  --subheader-size: calc(var(--body-size) * 1.25);
+
+  /*body fonts*/
+  --body-font: "parabolica", sans-serif;
+  --body-weight: 400;
+  --body-size: 1rem;
+}

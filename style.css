@@ -1,497 +1,171 @@
-/*If you make use of other tools explain why you used them, what you referenced, and your overall understanding of how it works.*/
+/*....ATTRIBUTION....*/
+/* what I was trying to do */
+/* what is the resource I used */
+/* what I learned from it */
+
+
+/* SMALL ATTRIBUTION: if we learnt it in class but I forgot remember */
+
+/*--------------FONT IMPORT------------.*/
+@import url("https://use.typekit.net/kfz2rir.css");
 
 
 /*--------------STYLES------------.*/
 :root {
-
-  /*delete these and use the ones bellow*/
-  --base-color: rgb(119, 221, 255);
-  --base-variant: rgb(157, 230, 255);
-  --text-color: rgb(255, 255, 255);
-  --primary-color: rgb(255, 255, 255);
-  --secondary-text: rgb(255, 255, 255);
-
+  /*color variables*/
   --white: #fff;
-  --purple:#5a2d82;
-  --blue:#b8E7FF;
+  --black: #000;
+  --main-color:#b0005e;
+  --accent-color:#c5ecff;
 
   /*padding variables*/
-  --gutter: 2rem;
-  --vertical: 1rem;
-  --corners: 1rem;
+  --large-gutter: 2rem;
+  --small-gutter: 1rem;
+  --corner-rounded: 1rem;
+  --corner-pill: 50em;
+  --corner-circle: 100%;
 
   /*header fonts*/
-  --type-header: "parabolica", sans-serif;
-  --type-header-weight: 600;
-  --type-header-style: normal;
-  --heading-size: calc(var(--body-size) * 10);
+  --header-font: "parabolica", sans-serif;
+  --header-weight: 200;
+  --header-size: calc(var(--body-size) * 9);
 
   /*subheader fonts*/
-  --subheading-size: calc(var(--body-size) * 1.25);
+  --subheader-font: "parabolica", sans-serif;
+  --subheader-weight: 400;
+  --subheader-size: calc(var(--body-size) * 4);
 
   /*body fonts*/
-  --type-body: "parabolica", sans-serif;
-  --type-body-style: normal;
-  --type-body-weight: 200;
-  --body-size: 1rem;
-
-  /*root styling*/
-  padding: calc(var(--vertical)/4);
-  background-color: var(--white);
+  --body-font: "parabolica", sans-serif;
+  --body-weight: 400;
+  --body-size: 1.25rem;
 }
 
+/*--------------GLOBAL------------.*/
 
-/*---------BORDER---------.*/
-/*--------------STYLES------------.*/
-:root {
-overflow-x:hidden;
-  /*delete these and use the ones bellow*/
-  --base-color: rgb(119, 221, 255);
-  --base-variant: rgb(157, 230, 255);
-  --text-color: rgb(255, 255, 255);
-  --primary-color: rgb(255, 255, 255);
-  --secondary-text: rgb(255, 255, 255);
-
-  --white: #fff;
-  --purple:#5a2d82;
-  --blue:#b8E7FF;
-
-  /*padding variables*/
-  --gutter: 2rem;
-  --vertical: 1rem;
-  --corners: 1rem;
-
-  /*header fonts*/
-  --type-header: "parabolica", sans-serif;
-  --type-header-weight: 600;
-  --type-header-style: normal;
-  --heading-size: calc(var(--body-size) * 10);
-
-  /*subheader fonts*/
-  --subheading-size: calc(var(--body-size) * 1.25);
-
-  /*body fonts*/
-  --type-body: "parabolica", sans-serif;
-  --type-body-style: normal;
-  --type-body-weight: 500;
-  --body-size: 1rem;
-
-  /*root styling*/
-  padding: calc(var(--vertical)/4);
-  background-color: var(--white);
+h1,h4 {
+  font-family: var(--header-font);
+  font-weight: var(--header-weight);
+  font-size: var(--header-size);
+  color: var(--accent-color);
 }
 
-
-/*---------BORDER---------.*/
-body {
-  border-radius: var(--corners);
-  background-color: var(--blue);
-  filter: drop-shadow(3px 1px 4px hsl(0, 0%, 73%));
+h2,h3 {
+  font-family: var(--subheader-font);
+  font-weight: var(--subheader-weight);
+  font-size: var(--subheader-size);
+  color: var(--main-color);
 }
-/* I was trying to add a shadow effect to an element using the CSS filter property so the shadow follows the actual shape of the element rather than its rectangular box.I used the MDN article on CSS drop-shadow() filter function:
-https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/filter-function/drop-shadow.I learned that drop-shadow() the first value moves the shadow to the right, the second value moves it down, the third value controls the blur softness, and the fourth value sets the shadow color. */
 
+p {
+  font-family: var(--body-font);
+  font-weight: var(--body-weight);
+  font-size: var(--body-size);
+  color: var(--main-color);
+  line-height: 1.6rem;
+}
 
+a {
+  font-family: var(--body-font);
+  font-weight: var(--body-weight);
+  font-size: var(--body-size);
+  color: var(--main-color);
+  line-height: 1.4rem;
+  text-decoration:underline;
+}
+/*--------------MOBILE-FIRST DEFAULT------------*/
+ html, body {
+  overflow-x: hidden;
+  background-color: var(--accent-color);
+  margin: 0;
+  padding:0;
+/*....ATTRIBUTION....*/
+/* GOAL: I wanted to make the header extend to the edge of the screen, this provides a reset/
+/* RESOURCE: Co-pilot, GPT-5.
+/* LEARNING: this resets spacing along the edges so the background can fill the screen */
+}
 
 .header-container {
-  background-color: var(--purple);
+/*....ATTRIBUTION....*/
+/* GOAL: I want to make this header all right justified and, I think it would give it a cool look and help show the reflective nature of R&B. I was struggling with the right synthex to make this happen */
+/* RESOURCE: MDN Web Docs through Co-pilot: text-align and justify-content. 
+/* LEARNING: text-align: right; aligns text inside a block element. justify-content only works in flex or grid containers */
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  margin-block-start: calc(var(--large-gutter)*-1);
+  background-color: var(--main-color);
+  align-content:center;
+  text-align: center;
   z-index: 1000;
-  padding-block: var(--vertical);
-  padding-inline: var(--vertical);
 
-}
-/*---------NAV---------.*/
-/* hoping that this could somehow become my navigation NEEDS TO BE ATTRIBUTED */
-/* I was trying to make my menu be spaced properly and couldn't figure out why the grid wasn't working, i wanted it to be left justified with the middle one falling, was thinking to animate this somehow*/
-/* I used chatgpt to help clarify */
-/* I learnt that my padding was causing the issue with the grid layout and i had repeats in my code blocking this from working*/
-.menu li a {
-    padding-block: 14px;
-    padding-inline: 24px;
-    background: var(--white);
-    color:var(--purple);
-    text-decoration: none;
-    font-family: var(--type-body);
-    font-style: var(--type-body-style);
-    font-weight: var(--type-body-weight);
-    font-size: var(--body-size);
-    border-radius: 999px;
-    
-}
 .menu {
+    list-style: none; /* I think I learnt this in class or from a code tutor, turning off bullet points */
     display: grid;
-    grid-template-columns: repeat(3, auto); /* 3 columns */
+    grid-template-columns: repeat(3, auto); /* 3 columns, auto makes the makes a column size itself to fit its content */
     gap: calc(var(--gutter) / 6);
-    justify-content: end; 
-    white-space: nowrap;
-    padding: var(--gutter);
-    margin-block-start: 1rem;
-    margin-inline-start: 1rem;
-
+    justify-content: end; /* aligns the whole grid to the right */ 
+    white-space: nowrap; /* prevents text from wrapping to next line - stay on one line */
+    padding-block-start: calc(var(--large-gutter)*2);
+    margin: var(--small-gutter);
 }
 
-.menu li {
-    display: inline-block;
+.menu li a {
+    padding: var(--small-gutter);
+    background: var(--accent-color);
+    border-radius: 50em;
 }
 
-/* rotating the playlist */
 .item2  {
-    transform: rotate(-12deg);
+    transform: rotate(-12deg); /* rotating the playlist button*/
+}
 }
 
 h1 {
-  font-family: var(--type-header);
-  font-style: var(--type-header-style);
-  font-weight: var(--type-header-weight);
-  font-size: var(--heading-size);
-  color: var(--blue);
-  padding-block-start: 15rem;
+  padding-block-start: 30rem; /* QUESTION: I want this to stick to the bottom of the purple header box, how can I make that happen?*/
   margin: 0;
-/* Temporary fix I want the purple to stop at the bottom of the words r&b */
-  line-height: 0.5;
+  line-height: 0.8;
 }
+
 .introduction {
-  font-family: var(--type-header);
-  font-style: var(--type-header-style);
-  font-weight: var(--type-body-weight);
-  font-size: var(--subheading-size);
-  color: var(--purple);
-  padding-block-start: calc(var(--gutter)*2);
-  padding-block-end: calc(var(--gutter)/3);
-  padding-inline: calc(var(--gutter)*0.5);
+  padding-block-start: calc(var(--large-gutter)*1);
+  padding-block-end: calc(var(--small-gutter)/3);
+  margin:calc(var(--large-gutter)*0.3);
 }
+
 h2 {
-  font-family: var(--type-header);
-  font-style: var(--type-header-style);
-  font-weight: var(--type-body-weight);
-  font-size: calc(var(--heading-size) / 4);
-  text-align: center; 
-  align-items: center;
-  color: var(--purple);
-  padding-block-start: 8rem;
-  margin: 0;
-/* Temporary fix I want the purple to stop at the bottom of the words r&b */
-  line-height: 0.7;
+  text-align: right;
+  padding: var(--small-gutter);
 }
 
+ .channel-blocks {
 
-
-  a {
-    font-weight: var(--type-body-weight);
-    font-family: var(--type-body);
-    text-transform: none;
-    font-size: var(--body-size);
-    line-height: 130%;
-    max-width: 80%;
-    color: var(--purple);
+  ul {
+    list-style: none; 
   }
-
-
-article {
-  padding-block-start: 10rem;
   display: grid;
-  grid-template-columns: 2fr 1fr 2fr 1fr;
-  gap: 2rem;
-  margin-inline: var(--gutter);
-}
-
-div {
   overflow: hidden;
-  object-fit: cover;
-  justify-content: center;
-  border-radius: var(--corners);
+  grid-template-columns: 1fr;
+
 }
-  img {
-    width: 100%;
-    height: 100%;
+img {
+    width: 50%;
+    height: 50%;
     object-fit: cover;
     object-position: center;
     display: block;
     border-radius: var(--corners);
   }
 
+/*--------------IPAD------------.*/
+@media (width > 640px) { }
 
-/*are.na block styling*/
-ul {
-  display: grid;
-  overflow: hidden;
-/* Prevent the channel grid from overflowing horizontally by allowing columns to shrink */
-/* copilot, then looked it up on MDN — Grid layout: track sizing functions / minmax (https://developer.mozilla.org/en-US/docs/Web/CSS/minmax) */
-/* Use `grid-template-columns: repeat(3, minmax(0, 1fr))` and `min-width: 0` on grid children so columns can shrink and long content doesn't force the grid wider, althought it's not working for my videos, so i gotta continue working on this */
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: var(--spacing);
-  box-sizing: border-box;
-  padding-block: 3rem;
-  padding-inline: 1rem;
-  z-index: 1000;
-  list-style: none;
-  margin-block: 1rem;
-  align-items: start;
-  /*ATTRIBUTION - removing bullet points*/
+/*--------------LAPTOP------------.*/
+@media (width > 1024px) { }
 
-  p{
-    font-weight: var(--type-body-weight);
-    font-family: var(--type-body);
-    text-transform: none;
-    font-size: var(--body-size);
-    line-height: 130%;
-    max-width: 80%;
-    color: var(--purple);
-  }
-  h3 {
-    font-weight: var(--type-body-weight);
-    font-family: var(--type-body);
-    text-transform: none;
-    font-size: var(--body-size);
-    line-height: 130%;
-    max-width: 80%;
-    color: var(--purple);
-  }
-}
-.embedded {
-  margin-block: 1rem;
-  border-radius: var(--corners);
-  width: 100%;
-}
-.embedded-video{
-  width: 30%;
-  border-radius: var(--corners);
-}
+/*--------------DESKTOP------------.*/
+@media (width > 1280px) { }
 
+/*--------------LARGE DESKTOP------------.*/
+@media (width > 1280px) { }
 
-
-footer {
-  background-color: var(--purple);
-  z-index: 1000;
-  padding: 0;
-  padding-inline:var(--gutter);
-  padding-block-start: 0;
-  border-bottom-left-radius: var(--corners);
-  border-bottom-right-radius: var(--corners);
-  /* Prevent the h4's top margin from pushing the footer container down, so the purple background stops exactly at the top of the text */
-  /* MDN and copilot (https://developer.mozilla.org/en-US/docs/Web/CSS/display) */
-  /*  display: flow-root creates a new block formatting context that contains child margins and floats, preventing them from collapsing cthe parent container */
-  display: flow-root;
-}
-h4 {
-  font-family: var(--type-header);
-  font-style: var(--type-header-style);
-  font-weight: var(--type-header-weight);
-  font-size: var(--heading-size);
-  color: var(--blue);
-  margin-block-start: -3rem;
-  margin-block-end: 0rem;
-  padding-block-start: 0;
-  line-height: 1;
-}
-
-
-@media screen and (min-width: 900px) {
-  root {
-    padding: calc(var(--vertical)/4);
-  }
-
-/*---------BORDER---------.*/
-body {
-  border-radius: var(--corners);
-  background-color: var(--blue);
-  filter: drop-shadow(3px 1px 4px hsl(0, 0%, 73%));
-}
-/* I was trying to add a shadow effect to an element using the CSS filter property so the shadow follows the actual shape of the element rather than its rectangular box.I used the MDN article on CSS drop-shadow() filter function:
-https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/filter-function/drop-shadow.I learned that drop-shadow() the first value moves the shadow to the right, the second value moves it down, the third value controls the blur softness, and the fourth value sets the shadow color. */
-
-
-
-.header-container {
-  background-color: var(--purple);
-  z-index: 1000;
-  padding-block: var(--vertical);
-  padding-inline: var(--vertical);
-
-}
-/*---------NAV---------.*/
-/* hoping that this could somehow become my navigation NEEDS TO BE ATTRIBUTED */
-/* I was trying to make my menu be spaced properly and couldn't figure out why the grid wasn't working, i wanted it to be left justified with the middle one falling, was thinking to animate this somehow*/
-/* I used chatgpt to help clarify */
-/* I learnt that my padding was causing the issue with the grid layout and i had repeats in my code blocking this from working*/
-.menu li a {
-    padding-block: 14px;
-    padding-inline: 24px;
-    background: var(--white);
-    color:var(--purple);
-    text-decoration: none;
-    font-family: var(--type-body);
-    font-style: var(--type-body-style);
-    font-weight: var(--type-body-weight);
-    font-size: var(--body-size);
-    border-radius: 999px;
-    
-}
-.menu {
-    display: grid;
-    grid-template-columns: repeat(3, auto); /* 3 columns */
-    gap: calc(var(--gutter) / 6);
-    justify-content: end; 
-    white-space: nowrap;
-    padding: var(--gutter);
-    margin-block-start: 1rem;
-    margin-inline-start: 1rem;
-
-}
-
-.menu li {
-    display: inline-block;
-}
-
-/* rotating the playlist */
-.item2  {
-    transform: rotate(-12deg);
-}
-
-h1 {
-  font-family: var(--type-header);
-  font-style: var(--type-header-style);
-  font-weight: var(--type-header-weight);
-  font-size: calc(var(--body-size) * 30);
-  color: var(--blue);
-  padding-block-start: 10rem;
-  margin: 0;
-/* Temporary fix I want the purple to stop at the bottom of the words r&b */
-  line-height: 0.7;
-}
-.introduction {
-  font-family: var(--type-header);
-  font-style: var(--type-header-style);
-  font-weight: var(--type-body-weight);
-  font-size: var(--subheading-size);
-  color: var(--purple);
-  padding-block-start: calc(var(--gutter)*2);
-  padding-block-end: calc(var(--gutter)/3);
-  padding-inline: calc(var(--gutter)*3);
-  margin-inline-start: 40rem;
-}
-h2 {
-  font-family: var(--type-header);
-  font-style: var(--type-header-style);
-  font-weight: var(--type-body-weight);
-  font-size: calc(var(--heading-size) / 4);
-  text-align: center; 
-  align-items: center;
-  color: var(--purple);
-  padding-block-start: 8rem;
-  margin: 0;
-/* Temporary fix I want the purple to stop at the bottom of the words r&b */
-  line-height: 0.7;
-}
-
-
-
-  a {
-    font-weight: var(--type-body-weight);
-    font-family: var(--type-body);
-    text-transform: none;
-    font-size: var(--body-size);
-    line-height: 130%;
-    max-width: 80%;
-    color: var(--purple);
-  }
-
-
-article {
-  padding-block-start: 10rem;
-  display: grid;
-  grid-template-columns: 2fr 1fr 2fr 1fr;
-  gap: 2rem;
-  margin-inline: var(--gutter);
-}
-
-div {
-  overflow: hidden;
-  object-fit: cover;
-  justify-content: center;
-  border-radius: var(--corners);
-}
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    border-radius: var(--corners);
-  }
-
-
-/*are.na block styling*/
-ul {
-  display: grid;
-  overflow: hidden;
-/* Prevent the channel grid from overflowing horizontally by allowing columns to shrink */
-/* copilot, then looked it up on MDN — Grid layout: track sizing functions / minmax (https://developer.mozilla.org/en-US/docs/Web/CSS/minmax) */
-/* Use `grid-template-columns: repeat(3, minmax(0, 1fr))` and `min-width: 0` on grid children so columns can shrink and long content doesn't force the grid wider, althought it's not working for my videos, so i gotta continue working on this */
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--spacing);
-  box-sizing: border-box;
-  padding-block: 3rem;
-  padding-inline: 3rem;
-  z-index: 1000;
-  list-style: none;
-  margin-block: 1rem;
-  align-items: start;
-  /*ATTRIBUTION - removing bullet points*/
-
-  p{
-    font-weight: var(--type-body-weight);
-    font-family: var(--type-body);
-    text-transform: none;
-    font-size: var(--body-size);
-    line-height: 130%;
-    max-width: 80%;
-    color: var(--purple);
-  }
-  h3 {
-    font-weight: var(--type-body-weight);
-    font-family: var(--type-body);
-    text-transform: none;
-    font-size: var(--body-size);
-    line-height: 130%;
-    max-width: 80%;
-    color: var(--purple);
-  }
-}
-.embedded {
-  margin-block: 1rem;
-  border-radius: var(--corners);
-  width: 100%;
-}
-.embedded-video{
-  width: 30%;
-  border-radius: var(--corners);
-}
-
-
-
-footer {
-  background-color: var(--purple);
-  z-index: 1000;
-  padding: 0;
-  padding-inline:var(--gutter);
-  padding-block-start: 0;
-  border-bottom-left-radius: var(--corners);
-  border-bottom-right-radius: var(--corners);
-  /* Prevent the h4's top margin from pushing the footer container down, so the purple background stops exactly at the top of the text */
-  /* MDN and copilot (https://developer.mozilla.org/en-US/docs/Web/CSS/display) */
-  /*  display: flow-root creates a new block formatting context that contains child margins and floats, preventing them from collapsing cthe parent container */
-  display: flow-root;
-}
-h4 {
-  font-family: var(--type-header);
-  font-style: var(--type-header-style);
-  font-weight: var(--type-header-weight);
-  font-size: calc(var(--body-size) * 25);
-  color: var(--blue);
-  margin-block-start: -7rem;
-  margin-block-end: 0rem;
-  padding-block-start: 0;
-  line-height: 1;
-}
-}
