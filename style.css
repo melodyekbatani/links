@@ -178,15 +178,83 @@ h2 {
   border-radius: var(--corner-rounded);
 }
 
+/*-------------- OUR PLAYLISTS ------------*/
+.notes {
+  width: 100%;
+  padding: var(--small-gutter);
+  box-sizing: border-box;
+}
+
+.notes ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* two equal columns */
+  gap: var(--small-gutter);
+}
+
+.notes li {
+  background: var(--white);
+  padding: var(--small-gutter);
+  border-radius: var(--corner-rounded);
+  box-sizing: border-box;
+}
+.item4 {
+  transform: rotate(-12deg);
+} 
 
 /*--------------IPAD------------.*/
-@media (width > 640px) { }
+@media (width > 640px) {
+  h1,h4 {
+  font-size: calc(var(--header-size) * 2);
+}
+h1 {
+  padding-block-start: 15rem; 
+}
+.introduction {
+  padding-block-start: calc(var(--large-gutter)*2);
+  margin-block-end: -4rem;
+  padding-inline: calc(var(--large-gutter)*3);
+  text-align: left;
+  max-width: 50%;
+}
+h2 {
+  padding-inline: calc(var(--large-gutter)*3);
+}
+#channel-blocks {
+  display: grid;
+  overflow: hidden;
+/* Prevent the channel grid from overflowing horizontally by allowing columns to shrink */
+/* copilot, then looked it up on MDN — Grid layout: track sizing functions / minmax (https://developer.mozilla.org/en-US/docs/Web/CSS/minmax) */
+/* Use `grid-template-columns: repeat(3, minmax(0, 1fr))` and `min-width: 0` on grid children so columns can shrink and long content doesn't force the grid wider, althought it's not working for my videos, so i gotta continue working on this */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--spacing);
+  box-sizing: border-box;
+  padding-block: 3rem;
+  padding-inline: 3rem;
+  z-index: 1000;
+  list-style: none;
+  margin-block: 1rem;
+  align-items: start;
+  /*ATTRIBUTION - removing bullet points*/
+}
+ }
 
 /*--------------LAPTOP------------.*/
-@media (width > 1024px) { }
+@media (width > 1024px) { 
+    h1,h4 {
+  font-size: calc(var(--header-size) * 2);
+}
+}
 
 /*--------------DESKTOP------------.*/
-@media (width > 1280px) { }
+@media (width > 1280px) { 
+      h1,h4 {
+  font-size: calc(var(--header-size) * 2.5);
+}
+  
+}
 
 /*--------------LARGE DESKTOP------------.*/
 @media (width > 1280px) { }
