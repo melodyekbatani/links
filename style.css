@@ -225,9 +225,11 @@ h2 {
 #channel-blocks {
   display: grid;
   overflow: hidden;
-/* Prevent the channel grid from overflowing horizontally by allowing columns to shrink */
-/* copilot, then looked it up on MDN — Grid layout: track sizing functions / minmax (https://developer.mozilla.org/en-US/docs/Web/CSS/minmax) */
-/* Use `grid-template-columns: repeat(3, minmax(0, 1fr))` and `min-width: 0` on grid children so columns can shrink and long content doesn't force the grid wider, althought it's not working for my videos, so i gotta continue working on this */
+
+  /*....ATTRIBUTION....*/
+/* GOAL: Prevent the channel grid from overflowing horizontally by allowing columns to shrink */
+/* RESOURCE: copilot, then looked it up on MDN — Grid layout: track sizing functions / minmax (https://developer.mozilla.org/en-US/docs/Web/CSS/minmax) */
+/* LEARNING: Use `grid-template-columns: repeat(3, minmax(0, 1fr))` and `min-width: 0` on grid children so columns can shrink and long content doesn't force the grid wider*/
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--spacing);
   box-sizing: border-box;
@@ -237,7 +239,6 @@ h2 {
   list-style: none;
   margin-block: 1rem;
   align-items: start;
-  /*ATTRIBUTION - removing bullet points*/
 }
  }
 
