@@ -146,13 +146,14 @@ h1 {
 
 .R {
   display: block;
+  transform: rotate(-15deg);
   font-size: calc(var(--header-size) * 1.25);
 }
 
 .and {
   position: absolute;
   font-size: var(--subheader-size);
-  right: -0.8em; /* Positions it to the right */
+  right: -0.9em; /* Positions it to the right */
   top: 45%; /* Adjust to center between R and B */
   transform: rotate(5deg);
 }
@@ -160,7 +161,7 @@ h1 {
 .B {
   display: block;
   font-size: calc(var(--header-size) * 1.25);
-  padding-inline-start: calc(var(--large-gutter)*1.5);
+  padding-inline-start: calc(var(--large-gutter)*4);
 }
 
 .introduction {
