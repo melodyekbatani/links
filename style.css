@@ -50,11 +50,20 @@ h1,h4 {
   color: var(--accent-color);
 }
 
-h2,h3 {
+h2 {
   font-family: var(--subheader-font);
   font-weight: var(--subheader-weight);
   font-size: var(--subheader-size);
   color: var(--main-color);
+}
+
+
+h3 {
+  font-family: var(--body-font);
+  font-weight: 600;
+  font-size: calc(var(--body-size) * 1.5);
+  color: var(--main-color);
+  line-height: 1.6rem;
 }
 
 p {
@@ -98,7 +107,9 @@ a {
   align-content:center;
   text-align: center;
   z-index: 1000;
+}
 
+/*-------------- MENU ------------*/
 .menu {
     list-style: none; /* I think I learnt this in class or from a code tutor, turning off bullet points */
     display: grid;
@@ -119,8 +130,8 @@ a {
 .item2  {
     transform: rotate(-12deg); /* rotating the playlist button*/
 }
-}
 
+/*-------------- TEXT ------------*/
 h1 {
   padding-block-start: 30rem; /* QUESTION: I want this to stick to the bottom of the purple header box, how can I make that happen?*/
   margin: 0;
@@ -138,24 +149,34 @@ h2 {
   padding: var(--small-gutter);
 }
 
- .channel-blocks {
 
-  ul {
-    list-style: none; 
-  }
+/*-------------- ARE.NA ------------*/
+#channel-blocks {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--large-gutter);
+  box-sizing: border-box;
   display: grid;
-  overflow: hidden;
   grid-template-columns: 1fr;
-
+  gap: var(--small-gutter);
 }
-img {
-    width: 50%;
-    height: 50%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    border-radius: var(--corners);
-  }
+
+#channel-blocks > li {
+  list-style: none;
+  margin: 0;
+  overflow: hidden;
+  min-width: 0;
+  border-radius: var(--corner-rounded);
+}
+
+#channel-blocks img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: var(--corner-rounded);
+}
+
 
 /*--------------IPAD------------.*/
 @media (width > 640px) { }

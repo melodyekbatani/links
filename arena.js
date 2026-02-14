@@ -41,7 +41,7 @@ let renderBlock = (blockData) => {
 					<figcaption>
 						<h3>${ blockData.title }</h3>
 						${ blockData.description.html }
-					</figcaption> -->
+					</figcaption> 
 				</figure>
 				<p><a href="${ blockData.source.url }">See the original ↗</a></p>
 			</li>
