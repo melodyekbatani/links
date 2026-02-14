@@ -138,6 +138,20 @@ h1 {
   line-height: 0.8;
 }
 
+.title {
+  position: relative;
+  display: inline-block;
+  line-height: 0.8;
+}
+
+.R .B {
+  display: block;
+}
+.and {
+  top: 55%;
+  transform: rotate(-50deg);
+}
+
 .introduction {
   padding-block-start: calc(var(--large-gutter)*1);
   padding-block-end: calc(var(--small-gutter)/3);
