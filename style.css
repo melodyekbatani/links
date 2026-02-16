@@ -169,6 +169,7 @@ h1 {
   padding-block-start: calc(var(--large-gutter)*1);
   padding-block-end: calc(var(--small-gutter)/3);
   margin:calc(var(--large-gutter)*0.3);
+  max-width: 100%;
 }
 
 h2 {
@@ -280,7 +281,6 @@ h2 {
     font-size: calc(var(--header-size) * 2.5);
     padding-inline-start: 0;
   }
-}
 .introduction {
   padding-block-start: calc(var(--large-gutter)*3);
   margin-block-end: -4rem;
@@ -288,7 +288,7 @@ h2 {
   text-align: left;
   max-width: 60%;
 }
-
+}
 /*--------------LAPTOP------------.*/
 @media (width > 1024px) { 
 
