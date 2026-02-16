@@ -27,7 +27,7 @@
 
   /*header fonts*/
   --header-font: "parabolica", sans-serif;
-  --header-weight: 500;
+  --header-weight: 700;
   --header-size: calc(var(--body-size) * 9);
 
   /*subheader fonts*/
@@ -77,10 +77,10 @@ p {
 a {
   font-family: var(--body-font);
   font-weight: var(--body-weight);
-  font-size: var(--body-size);
+  font-size: calc(var(--body-size) * 0.75);
   color: var(--main-color);
   line-height: 1.4rem;
-  text-decoration:underline;
+  text-decoration:none;
 }
 /*--------------MOBILE-FIRST DEFAULT------------*/
  html, body {
@@ -114,15 +114,15 @@ a {
     list-style: none; /* I think I learnt this in class or from a code tutor, turning off bullet points */
     display: grid;
     grid-template-columns: repeat(3, auto); /* 3 columns, auto makes the makes a column size itself to fit its content */
-    gap: calc(var(--gutter) / 6);
-    justify-content: end; /* aligns the whole grid to the right */ 
+    gap: calc(var(--gutter) / 4);
+    justify-content: center; /* aligns the whole grid to the right */ 
     white-space: nowrap; /* prevents text from wrapping to next line - stay on one line */
     padding-block-start: calc(var(--large-gutter)*2);
     margin: var(--small-gutter);
 }
 
 .menu li a {
-    padding: var(--small-gutter);
+    padding: calc(var(--small-gutter)*0.8);
     background: var(--accent-color);
     border-radius: 50em;
 }
@@ -135,6 +135,7 @@ a {
 header {
   display: flex;
   align-items: flex-end;
+  padding-block-start: calc(var(--large-gutter)*2.5);
 }
 
 h1 {
@@ -153,8 +154,8 @@ h1 {
 .and {
   position: absolute;
   font-size: var(--subheader-size);
-  right: -0.9em; /* Positions it to the right */
-  top: 45%; /* Adjust to center between R and B */
+  right: -0.4em; 
+  top: 35%; 
   transform: rotate(5deg);
 }
 
@@ -191,7 +192,7 @@ h2 {
 #channel-blocks > li {
   list-style: none;
   margin: 0;
-  overflow: hidden;
+  overflow-x: hidden;
   min-width: 0;
   border-radius: var(--corner-rounded);
 }
@@ -230,55 +231,68 @@ h2 {
   transform: rotate(-12deg);
 } 
 
+
 /*--------------IPAD------------.*/
 @media (width > 640px) {
-  h1,h4 {
-  font-size: calc(var(--header-size) * 2);
-}
-h1 {
-  padding-block-start: 15rem; 
-}
-.introduction {
-  padding-block-start: calc(var(--large-gutter)*2);
-  margin-block-end: -4rem;
-  padding-inline: calc(var(--large-gutter)*3);
-  text-align: left;
-  max-width: 50%;
-}
-h2 {
-  padding-inline: calc(var(--large-gutter)*3);
-}
-#channel-blocks {
-  display: grid;
-  overflow: hidden;
 
-  /*....ATTRIBUTION....*/
-/* GOAL: Prevent the channel grid from overflowing horizontally by allowing columns to shrink */
-/* RESOURCE: copilot, then looked it up on MDN — Grid layout: track sizing functions / minmax (https://developer.mozilla.org/en-US/docs/Web/CSS/minmax) */
-/* LEARNING: Use `grid-template-columns: repeat(3, minmax(0, 1fr))` and `min-width: 0` on grid children so columns can shrink and long content doesn't force the grid wider*/
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--spacing);
-  box-sizing: border-box;
-  padding-block: 3rem;
-  padding-inline: 3rem;
-  z-index: 1000;
-  list-style: none;
-  margin-block: 1rem;
-  align-items: start;
+/* /*....ATTRIBUTION....*/
+/* GOAL: I was having a lot of trouble getting the H1 "R&B" title to display horizontally in one line on larger screens, while keeping the stacked layout on mobile. The ampersand kept appearing in the wrong position (showing "RB&" instead of "R&B"). */
+
+/* RESOURCE: MDN Web Docs — CSS positioning (https://developer.mozilla.org/en-US/docs/Web/CSS/position), display property (https://developer.mozilla.org/en-US/docs/Web/CSS/display), and flexbox layout. Also used Claude for help with the synte for syntax clarification on overriding position in the media queries. */
+
+/* LEARNING: I know we learnt this in class but for some reason it wasn't fully working to me. I learnt that position - absolute takes an element out of the normal document flow, which is why the ampersand was appearing after "B" instead of between "R" and "B". To fix this in the iPad and laptop media query, I needed to reset the position to static and also reset the right and top values to auto. Using inline-block on all three spans (R, &, B) allows them to sit naturally in a row. The white-space: nowrap property on the parent h1 prevents any unwanted line breaks. */
+  
+  header {
+    padding-block-start: var(--large-gutter);
+    text-align: right;
+    justify-content: right;
+  }
+  
+  h1 {
+    align-items: flex-end;
+    padding-block:0;
+    line-height: 0.8;
+    width: fit-content;
+    white-space: nowrap;
+    position: relative;
+  }
+  
+  .R {
+    display: inline-block;
+    transform: rotate(0deg);
+    font-size: calc(var(--header-size) * 2.5);
+  }
+  
+  .and {
+    position: static;
+    display: inline-block;
+    font-size: calc(var(--header-size) * 2.5);
+    transform: rotate(5deg);
+    margin: 0;
+    padding: 0;
+    right: auto;
+    top: auto;
+  }
+  
+  .B {
+    display: inline-block;
+    font-size: calc(var(--header-size) * 2.5);
+    padding-inline-start: 0;
+  }
 }
- }
 
 /*--------------LAPTOP------------.*/
 @media (width > 1024px) { 
-    h1,h4 {
-  font-size: calc(var(--header-size) * 2);
+
+ 
 }
-}
+
 
 /*--------------DESKTOP------------.*/
 @media (width > 1280px) { 
-      h1,h4 {
-  font-size: calc(var(--header-size) * 2.5);
+      
+  h1,h4 {
+  font-size: calc(var(--header-size) * 3.5);
 }
   
 }
