@@ -12,10 +12,10 @@ let placeChannelInfo = (channelData) => {
 	let channelLink = document.querySelector('#channel-link')
 
 	// Then set their content/attributes to our data:
-	channelTitle.innerHTML = channelData.title
+	// channelTitle.innerHTML = channelData.title
 	channelDescription.innerHTML = channelData.description.html
 	channelCount.innerHTML = channelData.counts.blocks
-	channelLink.href = `https://www.are.na/channel/${channelSlug}`
+	// channelLink.href = `https://www.are.na/channel/${channelSlug}`
 }
 
 
@@ -201,15 +201,15 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}`, (json) => {
 	console.log(json) // Always good to check your response!
 
 	placeChannelInfo(json) // Pass all the data to the first function, above.
-	renderUser(json.owner) // Pass just the nested object `.owner`.
+	//renderUser(json.owner) // Pass just the nested object `.owner`.
 })
 
 // Get your info to put with the owner's:
-fetchJson(`https://api.are.na/v3/users/${myUsername}/`, (json) => {
-	console.log(json) // See what we get back.
+//fetchJson(`https://api.are.na/v3/users/${myUsername}/`, (json) => {
+	//console.log(json) // See what we get back.
 
-	renderUser(json) // Pass this to the same function, no nesting.
-})
+	//renderUser(json) // Pass this to the same function, no nesting.
+//})
 
 // And the data for the blocks:
 fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=position_desc`, (json) => {
