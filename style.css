@@ -71,7 +71,7 @@ p {
   font-weight: var(--body-weight);
   font-size: var(--body-size);
   color: var(--main-color);
-  line-height: 1.6rem;
+  line-height: 1.8rem;
 }
 
 a {
@@ -245,7 +245,8 @@ h2 {
   header {
     padding-block-start: var(--large-gutter);
     text-align: right;
-    justify-content: right;
+    justify-content: left;
+    padding-inline-start: calc(var(--large-gutter)*3);
   }
   
   h1 {
@@ -279,6 +280,13 @@ h2 {
     font-size: calc(var(--header-size) * 2.5);
     padding-inline-start: 0;
   }
+}
+.introduction {
+  padding-block-start: calc(var(--large-gutter)*3);
+  margin-block-end: -4rem;
+  padding-inline: calc(var(--large-gutter)*3);
+  text-align: left;
+  max-width: 60%;
 }
 
 /*--------------LAPTOP------------.*/
