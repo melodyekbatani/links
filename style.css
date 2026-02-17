@@ -121,14 +121,29 @@ a {
     margin: var(--small-gutter);
 }
 
-.menu li a {
+.menu li {
     padding: calc(var(--small-gutter)*0.8);
     background: var(--accent-color);
     border-radius: 50em;
 }
 
-.item2  {
-    transform: rotate(-12deg); /* rotating the playlist button*/
+/*-------------- ATTRIBUTION NEEDED CODE TUTOR/claud ------------*/
+
+.item1, .item2, .item3{
+  transition: transform 2.5s cubic-bezier(0.25, 0.1, 0.1, 1.0);
+}
+
+.item1:hover {
+  transform: rotate(-12deg);
+  transition: 2s;
+}
+.item2:hover {
+  transform: rotate(-12deg);
+  transition: 2s;
+}
+.item3:hover {
+  transform: rotate(-12deg);
+  transition: 2s;
 }
 
 /*-------------- TEXT ------------*/
@@ -225,7 +240,6 @@ audio {
   border-radius: var(--corner-rounded);
 
 }
-
 
 
 /*-------------- OUR PLAYLISTS ------------*/
@@ -378,6 +392,30 @@ h4 {
   margin-block: 1rem;
   align-items: start;
 }
+
+
+
+#channel-blocks li {
+  transform-origin: center;
+  border-radius: var(--corner-rounded);
+  transition: transform 2s ease-in-out, border-radius 2s ease-in-out;
+}
+
+/*....ATTRIBUTION....*/
+/* GOAL: To make each image/video/gif rotate spin into a perfect circle and fade out on exit except i cant figure out the fading out part of this */
+/* RESOURCE: Reviewed this with the coding tutor who taught me about the ease in and out and how to set this animation */
+/* LEARNING: This will eventually only target the image/video/gif blocks - firstly i'm moving the origin of the shape to match the original center point so that the circle doesn't move, setting the border radius to rounded all the way, per my variable and setting the transition. then I'm telling it that on hover to switch the corner radius to a full circle with a rotation. however, since my images are different aspect ratios I'm setting the fit to cover(so it doesn't crop) and setting the aspect ratio to 1 so it forms a perfect circle */
+
+#channel-blocks li:hover {
+  transform: rotate(-360deg);
+  border-radius: var(--corner-circle);
+}
+
+#channel-blocks li:hover img {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
 
 h2 {
   padding-inline: calc(var(--large-gutter)*3);
