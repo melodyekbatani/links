@@ -353,7 +353,7 @@ h2 {
   padding-inline: calc(var(--large-gutter)*3);
 }
 
- /* ATTRIBUTION NEEDED - USED SOME HELP FROM LLMS TO FIGURE OUT THIS GRID LAYOUT */
+ /* ATTRIBUTION NEEDED - USED SOME HELP FROM LLMS TO FIGURE OUT THIS GRID LAYOUT STILL NOT REALLY WORKING - Also going to talk to coding tutors about this */
 .notes ul {
   grid-template-columns: repeat(4, 1fr);
   align-items: start;
