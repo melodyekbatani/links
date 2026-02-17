@@ -277,15 +277,41 @@ audio {
   padding: var(--large-gutter);
 }
 
+footer {
+  background-color: var(--main-color);
+  z-index: 1000;
+  padding: 0;
+  padding-inline:var(--gutter);
+  padding-block-start: 0;
+  border-bottom-left-radius: var(--corners);
+  border-bottom-right-radius: var(--corners);
+  display: flow-root;
+
+/*....ATTRIBUTION....*/
+/* GOAL: Prevent the h4's top margin from pushing the footer container down, so the purple background stops exactly at the top of the text */ 
+/* RESOURCE: MDN and copilot (https://developer.mozilla.org/en-US/docs/Web/CSS/display) */
+/* LEARNING: display: flow-root creates a new block formatting context that contains child margins and floats, preventing them from collapsing cthe parent container  */
+
+
+h4 {
+  font-family: var(--header-font);
+  font-weight: var(--header-weight);
+  font-size: var(--header-size);
+  color: var(--accent-color);
+  margin-block-start: calc(var(--gutter) * 7);
+  margin-block-end: 0rem;
+  padding-block-start: 0;
+  line-height: 1;
+}
+}
+
 
 /*--------------IPAD------------.*/
 @media (width > 640px) {
 
 /* /*....ATTRIBUTION....*/
 /* GOAL: I was having a lot of trouble getting the H1 "R&B" title to display horizontally in one line on larger screens, while keeping the stacked layout on mobile. The ampersand kept appearing in the wrong position (showing "RB&" instead of "R&B"). */
-
 /* RESOURCE: MDN Web Docs — CSS positioning (https://developer.mozilla.org/en-US/docs/Web/CSS/position), display property (https://developer.mozilla.org/en-US/docs/Web/CSS/display), and flexbox layout. Also used Claude for help with the synte for syntax clarification on overriding position in the media queries. */
-
 /* LEARNING: I know we learnt this in class but for some reason it wasn't fully working to me. I learnt that position - absolute takes an element out of the normal document flow, which is why the ampersand was appearing after "B" instead of between "R" and "B". To fix this in the iPad and laptop media query, I needed to reset the position to static and also reset the right and top values to auto. Using inline-block on all three spans (R, &, B) allows them to sit naturally in a row. The white-space: nowrap property on the parent h1 prevents any unwanted line breaks. */
   
   header {
