@@ -4,7 +4,7 @@
 /* what I learned from it */
 
 
-/* SMALL ATTRIBUTION: if we learnt it in class but I forgot remember */
+/* SMALL ATTRIBUTION: if we learnt it in class but I forgot */
 
 /*--------------FONT IMPORT------------.*/
 @import url("https://use.typekit.net/kfz2rir.css");
@@ -229,7 +229,11 @@ audio {
 
 
 /*-------------- OUR PLAYLISTS ------------*/
-/*-------------- ATTRIBUTION NEEDED ------------*/
+/*-------------- ATTRIBUTION ------------*/
+/* GOAL: Center the playlist content both horizontally and vertically within their list items also needed help figuring out the best way to write this code and select the proper parts of the html to target*/
+/* RESOURCE: Claude, and some help from code tutors */
+/* LEARNING: Using display: flex with align-items: center and justify-content: center together centers content both vertically and horizontally; min-height is needed to give the container space for the centering to be visible */
+
 .notes {
   width: 100%;
   padding: var(--large-gutter);
@@ -353,11 +357,11 @@ h2 {
   padding-inline: calc(var(--large-gutter)*3);
 }
 
- /* ATTRIBUTION NEEDED - USED SOME HELP FROM LLMS TO FIGURE OUT THIS GRID LAYOUT STILL NOT REALLY WORKING - Also going to talk to coding tutors about this */
-.notes ul {
-  grid-template-columns: repeat(4, 1fr);
-  align-items: start;
-}
+/*....ATTRIBUTION....*/
+/* GOAL: Center the playlist link content both horizontally and vertically within their list items and change the grid to a bento box layout on iPad and larger screens */
+/* RESOURCE: MDN Web Docs — CSS Grid properties, claud and coding tutors */
+/* LEARNING: CSS Grid lets you place items into specific columns using grid-column with start / end line numbers; order can shift items visually without changing the HTML; still working through why the bento layout isn't behaving as expected and plan to follow up with coding tutors but something I forgot from last semester is the grid works with the grid lines not the spaces so to do this I needed to target the specific lines I wanted each section to target. Also was trying to nest this more, but it seemed to stop working when I nested it */
+
 .notes ul {
   grid-template-columns: repeat(4, 1fr);
   align-items: start;

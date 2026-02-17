@@ -129,7 +129,7 @@ let renderBlock = (blockData) => {
 			let audioItem =
 				`
 				<li>
-					<audio controls src="${ blockData.attachment.url }"></video>
+					<audio controls src="${ blockData.attachment.url }"></audio>
 				</li>
 				`
 
@@ -162,7 +162,19 @@ let renderBlock = (blockData) => {
 
 		// Linked audio!
 		else if (embedType.includes('rich')) {
-			// …up to you!
+			console.log("this is for embedded audio", blockData)
+			//ATTRIBUTION
+			// GOAL: my audio files weren't showing up, specifically embeddeds from spotify and soundcloud
+			// RESOURCE: Talked to a code tutor 
+			// LEARNING: We reviewed using the console.log to figure out which piece of data is needed to show the right file type, first trying to embed the url. I learnt that these programs have specific ways they want developpers to embed songs/materials and found the embed.html worked for this. Also generally reviewed how to find things in the consol and target specific areas of the channel block source. Also reviewed let statements together
+
+			let linkedAudioItem =
+			`
+			<li>
+					${ blockData.embed.html }
+			</li>
+			`
+			channelBlocks.insertAdjacentHTML('beforeend', linkedAudioItem)
 		}
 	}
 }
