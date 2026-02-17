@@ -37,11 +37,12 @@ let renderBlock = (blockData) => {
 						<source media="(width < 1000px)" srcset="${ blockData.image.medium.src_2x }">
 						<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 					</picture>
-					
+					<div class=text>
 					<figcaption>
 						<h3>${ blockData.title }</h3>
 						${ blockData.description.html }
 					</figcaption> 
+					</div>
 				</figure>
 				<p><a href="${ blockData.source.url }">See the original ↗</a></p>
 			</li>
@@ -74,8 +75,10 @@ let renderBlock = (blockData) => {
 		 let textItem =
         `
         <li>
+			<div class="text">
             <h3>${blockData.title || 'Untitled'}</h3>
-            ${blockData.content.html}
+            <p>${blockData.content.html}</p>
+			</div>
         </li>
         `
     channelBlocks.insertAdjacentHTML('beforeend', textItem)
