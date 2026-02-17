@@ -229,10 +229,16 @@ audio {
 
 
 /*-------------- OUR PLAYLISTS ------------*/
+/*-------------- ATTRIBUTION NEEDED ------------*/
 .notes {
   width: 100%;
-  padding: var(--small-gutter);
+  padding: var(--large-gutter);
   box-sizing: border-box;
+}
+
+.notes h2 {
+  padding-inline: 0;
+  margin-bottom: var(--large-gutter);
 }
 
 .notes ul {
@@ -240,19 +246,32 @@ audio {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr; /* two equal columns */
-  gap: var(--small-gutter);
+  gap: var(--large-gutter);
 }
 
 .notes li {
   background: var(--white);
-  padding: var(--small-gutter);
+  padding: var(--large-gutter);
   border-radius: var(--corner-rounded);
   box-sizing: border-box;
 }
-.item4 {
-  transform: rotate(-12deg);
-} 
+
+/* Playlist links - centered  */
+.trent-song, 
+.mel-song {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 10rem;
+  padding: var(--large-gutter);
+}
+.notes .mel-notes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 10rem;
+  padding: var(--large-gutter);
+}
 
 
 /*--------------IPAD------------.*/
@@ -330,11 +349,42 @@ audio {
   align-items: start;
 }
 
-
 h2 {
   padding-inline: calc(var(--large-gutter)*3);
 }
+
+ /* ATTRIBUTION NEEDED - USED SOME HELP FROM LLMS TO FIGURE OUT THIS GRID LAYOUT */
+.notes ul {
+  grid-template-columns: repeat(4, 1fr);
+  align-items: start;
 }
+.notes ul {
+  grid-template-columns: repeat(4, 1fr);
+  align-items: start;
+}
+
+.notes .Trent-notes {
+  grid-column: 1 / 4;
+}
+
+.notes .trent-song {
+  grid-column: 4;
+}
+
+.notes .mel-song {
+  order: 3;
+  grid-column: 1;
+  
+}
+
+.notes .mel-notes {
+  order: 4;
+  grid-column: 2 / 5;
+  display: block;
+}
+}
+
+
 /*--------------LAPTOP------------.*/
 @media (width > 1024px) { 
 
