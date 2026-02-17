@@ -1,0 +1,73 @@
+@import url("https://use.typekit.net/kfz2rir.css");
+
+
+/*--------------STYLES------------.*/
+:root {
+  /*color variables*/
+  --white: #fff;
+  --black: #000;
+  --main-color:#b0005e;
+  --accent-color:#dff4ff;
+
+  /*padding variables*/
+  --large-gutter: 2rem;
+  --small-gutter: 1rem;
+  --corner-rounded: 1rem;
+  --corner-pill: 50em;
+  --corner-circle: 100%;
+
+  /*header fonts*/
+  --header-font: "parabolica", sans-serif;
+  --header-weight: 100;
+  --header-size: calc(var(--body-size) * 1);
+
+  /*subheader fonts*/
+  --subheader-font: "parabolica", sans-serif;
+  --subheader-weight: 400;
+  --subheader-size: calc(var(--body-size) * 4);
+
+  /*body fonts*/
+  --body-font: "parabolica", sans-serif;
+  --body-weight: 400;
+  --body-size: 1.25rem;
+}
+
+/*--------------MOBILE-FIRST DEFAULT------------*/
+ html, body {
+  overflow-x: hidden;
+  background-color: var(--accent-color);
+  margin: 0;
+  padding:0;
+/*....ATTRIBUTION....*/
+/* GOAL: I wanted to make the header extend to the edge of the screen, this provides a reset/
+/* RESOURCE: Co-pilot, GPT-5.
+/* LEARNING: this resets spacing along the edges so the background can fill the screen */
+}
+
+.blocks {
+    width: 100%;
+    height: 100;
+    position: absolute;
+    justify-content: center;
+}
+#channel-blocks {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: var(--large-gutter);
+  box-sizing: border-box;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+  /* remove all the grid properties — no display:grid, no grid-template-columns, no gap */
+}
+
+#channel-blocks > li {
+  position: absolute;
+  width: 50%;  /* controls how big each card is */
+  background: var(--white);
+  aspect-ratio: 1;
+  border-radius: var(--corner-circle);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  overflow: hidden;
+}

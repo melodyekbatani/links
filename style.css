@@ -16,7 +16,7 @@
   --white: #fff;
   --black: #000;
   --main-color:#b0005e;
-  --accent-color:#c5ecff;
+  --accent-color:#dff4ff;
 
   /*padding variables*/
   --large-gutter: 2rem;
@@ -128,6 +128,9 @@ a {
 }
 
 /*-------------- ATTRIBUTION NEEDED CODE TUTOR/claud ------------*/
+/* GOAL: I wanted the nav menu buttons to rotate slightly on hover to give the site a playful feel, and ease back smoothly when the mouse leaves */ 
+/* RESOURCE: Code tutors and Claude */ 
+/* LEARNING: Putting the transition on the base element means it applies in both directions — hover in and mouse out. cubic-bezier lets you customize the easing curve beyond default options like ease or linear. I discovered the cubic-bezier as a way of describing how a transition accelerates and decelerates over time. The four numbers (x1, y1, x2, y2) control two handles that pull the speed curve into different shapes.  Writing it out manually lets you get more specific like for example (0.25, 0.1, 0.1, 1.0) starts with a little momentum then slows down gently at the end, which feels more natural than a straight linear transition, I wanted this to reflect the slower pace of r&b music */
 
 .item1, .item2, .item3{
   transition: transform 2.5s cubic-bezier(0.25, 0.1, 0.1, 1.0);
@@ -194,11 +197,13 @@ h2 {
 
 
 /*-------------- ARE.NA ------------*/
+
 /*....ATTRIBUTION....*/
 /* GOAL: I needed to create a responsive grid layout to display images from Are.na. The images needed to be displayed in a single column on mobile, and I wanted them to have rounded corners and proper spacing. I also needed to prevent horizontal overflow issues that were causing the page to scroll sideways. */
 /* RESOURCE: MDN - CSS Grid Layout (https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) and overflow properties (https://developer.mozilla.org/en-US/docs/Web/CSS/overflow). Class lectures on responsive grid systems. */
 /* LEARNING: I learned that setting overflow-x: hidden on grid items prevents content from breaking the layout when images are too wide. The min-width: 0 property on grid items is crucial because it allows grid children to shrink below their content size - without this, wide images could force the grid to overflow. I also learned that object-fit: cover maintains aspect ratio while filling the container, and border-radius works on images when they're set to display: block. Using box-sizing: border-box ensures padding is included in the total width calculation, preventing unexpected overflow. */
 #channel-blocks {
+  padding-block: var(--gutter);
   width: 100%;
   margin-inline: auto;
   padding-inline: var(--large-gutter);
@@ -207,6 +212,7 @@ h2 {
   grid-template-columns: 1fr;
   gap: var(--small-gutter);
 
+
   img {
   display: block;
   width: 100%;
@@ -214,6 +220,7 @@ h2 {
   object-fit: cover;
   border-radius: var(--corner-rounded);
 }
+
  /*....ATTRIBUTION....*/
 /* GOAL: I had long blocks of text in the Are.na channel blocks that were way too long and cluttering the layout. I wanted to truncate them to show only the first 10 lines with ... at the end, giving users a preview without overwhelming the page. */
 /* RESOURCE: Started by talking to Lucy and Maika to see how they handled text truncation in their projects - they showed me the line-clamp approach but only for single lines. I wanted multiple lines to show, so I searched MDN Web Docs for -webkit-line-clamp (https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-line-clamp) and CSS-Tricks for multi-line text truncation techniques. */
@@ -225,10 +232,26 @@ h2 {
   -webkit-line-clamp: 10;
   text-overflow: ellipsis;
 }
+/*....ATTRIBUTION....*/
+/* GOAL: My embedded YouTube iframes were overflowing and not fitting the grid columns, getting cut in weird ways, I tried a few techniques before asking claud, but it explained that there are specific fixed widths and heights injected by youtube or the other embed sources that I couldn't override with normal CSS */
+/* RESOURCE: Claude and code tutors */
+/* LEARNING: Are.na injects iframes with inline width and height attributes that override regular CSS, so !important is needed to force them to be overridden, apperently this is one of the valid uses of !important because it's fighting a g a third party's inline styles. I used the responsive iframe technique: setting height: 0 and padding-bottom: 60% on the container creates a 16:9 aspect ratio because percentage padding is calculated from the element's width. The iframe is then positioned absolutely to fill that space. I used :has(iframe) to target only li elements that contain an iframe so other block types like images and text are unaffected */
 
-audio {
-	block-size: revert;
-	inline-size: 100%;
+iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border: none;
+  border-radius: var(--corner-rounded);
+}
+
+li:has(iframe) {
+  position: relative;
+  padding-block-end: 60%;
+  height: 0;
+  overflow: hidden;
 }
 }
 
@@ -241,6 +264,26 @@ audio {
 
 }
 
+#channel-blocks li:has(img) {
+  transform-origin: center;
+  border-radius: var(--corner-rounded);
+  transition: transform 2s ease-in-out, border-radius 2s ease-in-out;
+}
+
+/*....ATTRIBUTION....*/
+/* GOAL: To make each image/video/gif rotate spin into a perfect circle and fade out on exit except i cant figure out the fading out part of this */
+/* RESOURCE: Reviewed this with the coding tutor who taught me about the ease in and out and how to set this animation */
+/* LEARNING: This will eventually only target the image/video/gif blocks - firstly i'm moving the origin of the shape to match the original center point so that the circle doesn't move, setting the border radius to rounded all the way, per my variable and setting the transition. then I'm telling it that on hover to switch the corner radius to a full circle with a rotation. however, since my images are different aspect ratios I'm setting the fit to cover(so it doesn't crop) and setting the aspect ratio to 1 so it forms a perfect circle */
+
+#channel-blocks li:has(img):hover {
+  transform: rotate(-360deg);
+  border-radius: var(--corner-circle);
+}
+
+#channel-blocks li:has(img):hover img {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
 
 /*-------------- OUR PLAYLISTS ------------*/
 /*-------------- ATTRIBUTION ------------*/
@@ -393,28 +436,6 @@ h4 {
   align-items: start;
 }
 
-
-
-#channel-blocks li {
-  transform-origin: center;
-  border-radius: var(--corner-rounded);
-  transition: transform 2s ease-in-out, border-radius 2s ease-in-out;
-}
-
-/*....ATTRIBUTION....*/
-/* GOAL: To make each image/video/gif rotate spin into a perfect circle and fade out on exit except i cant figure out the fading out part of this */
-/* RESOURCE: Reviewed this with the coding tutor who taught me about the ease in and out and how to set this animation */
-/* LEARNING: This will eventually only target the image/video/gif blocks - firstly i'm moving the origin of the shape to match the original center point so that the circle doesn't move, setting the border radius to rounded all the way, per my variable and setting the transition. then I'm telling it that on hover to switch the corner radius to a full circle with a rotation. however, since my images are different aspect ratios I'm setting the fit to cover(so it doesn't crop) and setting the aspect ratio to 1 so it forms a perfect circle */
-
-#channel-blocks li:hover {
-  transform: rotate(-360deg);
-  border-radius: var(--corner-circle);
-}
-
-#channel-blocks li:hover img {
-  aspect-ratio: 1;
-  object-fit: cover;
-}
 
 
 h2 {

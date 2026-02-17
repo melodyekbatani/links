@@ -1,445 +1,497 @@
-/*If you make use of other tools explain why you used them, what you referenced, and your overall understanding of how it works.*/
+/*....ATTRIBUTION....*/
+/* what I was trying to do */
+/* what is the resource I used */
+/* what I learned from it */
+
+
+/* SMALL ATTRIBUTION: if we learnt it in class but I forgot */
+
+/*--------------FONT IMPORT------------.*/
+@import url("https://use.typekit.net/kfz2rir.css");
 
 
 /*--------------STYLES------------.*/
 :root {
-
-  /*delete these and use the ones bellow*/
+  /*color variables*/
   --white: #fff;
-  --purple:#5a2d82;
-  --blue:#b8E7FF;
+  --black: #000;
+  --main-color:#b0005e;
+  --accent-color:#dff4ff;
 
   /*padding variables*/
-  --gutter: 2rem;
-  --vertical: 1rem;
-  --corners: 1rem;
+  --large-gutter: 2rem;
+  --small-gutter: 1rem;
+  --corner-rounded: 1rem;
+  --corner-pill: 50em;
+  --corner-circle: 100%;
 
   /*header fonts*/
-  --type-header: "parabolica", sans-serif;
-  --type-header-weight: 600;
-  --type-header-style: normal;
-  --heading-size: calc(var(--body-size) * 10);
+  --header-font: "parabolica", sans-serif;
+  --header-weight: 700;
+  --header-size: calc(var(--body-size) * 9);
 
   /*subheader fonts*/
-  --subheading-size: calc(var(--body-size) * 1.25);
+  --subheader-font: "parabolica", sans-serif;
+  --subheader-weight: 400;
+  --subheader-size: calc(var(--body-size) * 4);
 
   /*body fonts*/
-  --type-body: "parabolica", sans-serif;
-  --type-body-style: normal;
-  --type-body-weight: 200;
-  --body-size: 1rem;
+  --body-font: "parabolica", sans-serif;
+  --body-weight: 400;
+  --body-size: 1.25rem;
+}
 
-  /*root styling if needed*/
+/*--------------GLOBAL------------.*/
+
+h1,h4 {
+  font-family: var(--header-font);
+  font-weight: var(--header-weight);
+  font-size: var(--header-size);
+  color: var(--accent-color);
+}
+
+h2 {
+  font-family: var(--subheader-font);
+  font-weight: var(--header-weight);
+  font-size: var(--subheader-size);
+  color: var(--main-color);
 }
 
 
-/*---------BORDER---------.*/
-body {
-  border-radius: var(--corners);
-  background-color: var(--blue);
+h3 {
+  font-family: var(--body-font);
+  font-weight: 600;
+  font-size: calc(var(--body-size) * 1.25);
+  color: var(--main-color);
+  line-height: 2rem;
 }
-/* I was trying to add a shadow effect to an element using the CSS filter property so the shadow follows the actual shape of the element rather than its rectangular box.I used the MDN article on CSS drop-shadow() filter function:
-https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/filter-function/drop-shadow.I learned that drop-shadow() the first value moves the shadow to the right, the second value moves it down, the third value controls the blur softness, and the fourth value sets the shadow color. */
 
+p {
+  font-family: var(--body-font);
+  font-weight: var(--body-weight);
+  font-size: var(--body-size);
+  color: var(--main-color);
+  line-height: 1.8rem;
+}
 
+a {
+  font-family: var(--body-font);
+  font-weight: var(--body-weight);
+  font-size: calc(var(--body-size) * 0.75);
+  color: var(--main-color);
+  line-height: 1.4rem;
+  text-decoration:none;
+}
+/*--------------MOBILE-FIRST DEFAULT------------*/
+ html, body {
+  overflow-x: hidden;
+  background-color: var(--accent-color);
+  margin: 0;
+  padding:0;
+/*....ATTRIBUTION....*/
+/* GOAL: I wanted to make the header extend to the edge of the screen, this provides a reset/
+/* RESOURCE: Co-pilot, GPT-5.
+/* LEARNING: this resets spacing along the edges so the background can fill the screen */
+}
 
 .header-container {
-  background-color: var(--purple);
+/*....ATTRIBUTION....*/
+/* GOAL: I want to make this header all right justified and, I think it would give it a cool look and help show the reflective nature of R&B. I was struggling with the right synthex to make this happen */
+/* RESOURCE: MDN Web Docs through Co-pilot: text-align and justify-content. 
+/* LEARNING: text-align: right; aligns text inside a block element. justify-content only works in flex or grid containers */
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  margin-block-start: calc(var(--large-gutter)*-1);
+  background-color: var(--main-color);
+  align-content:center;
+  text-align: center;
   z-index: 1000;
-  padding-block: var(--vertical);
-  padding-inline: var(--vertical);
 }
 
-/*---------NAV---------.*/
-/* hoping that this could somehow become my navigation NEEDS TO BE ATTRIBUTED */
-/* I was trying to make my menu be spaced properly and couldn't figure out why the grid wasn't working, i wanted it to be left justified with the middle one falling, was thinking to animate this somehow*/
-/* I used chatgpt to help clarify */
-/* I learnt that my padding was causing the issue with the grid layout and i had repeats in my code blocking this from working*/
-.menu li a {
-    padding-block: 1rem;
-    padding-inline: 1rem;
-    background: var(--white);
-    color:var(--purple);
-    text-decoration: none;
-    font-family: var(--type-body);
-    font-style: var(--type-body-style);
-    font-weight: var(--type-body-weight);
-    font-size: var(--body-size);
-    border-radius: 50em;;
-    
-}
+/*-------------- MENU ------------*/
 .menu {
+    list-style: none; /* I think I learnt this in class or from a code tutor, turning off bullet points */
     display: grid;
-    grid-template-columns: repeat(3, auto); /* 3 columns */
-    gap: calc(var(--gutter) / 6);
-    justify-content: end; 
-    white-space: nowrap;
-    padding: var(--gutter);
-    margin-block-start: 1rem;
-    margin-inline-start: 1rem;
-
+    grid-template-columns: repeat(3, auto); /* 3 columns, auto makes the makes a column size itself to fit its content */
+    gap: calc(var(--gutter) / 4);
+    justify-content: center; /* aligns the whole grid to the right */ 
+    white-space: nowrap; /* prevents text from wrapping to next line - stay on one line */
+    padding-block-start: calc(var(--large-gutter)*2);
+    margin: var(--small-gutter);
 }
 
 .menu li {
-    display: inline-block;
+    padding: calc(var(--small-gutter)*0.8);
+    background: var(--accent-color);
+    border-radius: 50em;
 }
 
-/* rotating the playlist */
-.item2  {
-    transform: rotate(-12deg);
+/*-------------- ATTRIBUTION NEEDED CODE TUTOR/claud ------------*/
+/* GOAL: I wanted the nav menu buttons to rotate slightly on hover to give the site a playful feel, and ease back smoothly when the mouse leaves */ 
+/* RESOURCE: Code tutors and Claude */ 
+/* LEARNING: Putting the transition on the base element means it applies in both directions — hover in and mouse out. cubic-bezier lets you customize the easing curve beyond default options like ease or linear. I discovered the cubic-bezier as a way of describing how a transition accelerates and decelerates over time. The four numbers (x1, y1, x2, y2) control two handles that pull the speed curve into different shapes.  Writing it out manually lets you get more specific like for example (0.25, 0.1, 0.1, 1.0) starts with a little momentum then slows down gently at the end, which feels more natural than a straight linear transition, I wanted this to reflect the slower pace of r&b music */
+
+.item1, .item2, .item3{
+  transition: transform 2.5s cubic-bezier(0.25, 0.1, 0.1, 1.0);
+}
+
+.item1:hover {
+  transform: rotate(-12deg);
+  transition: 2s;
+}
+.item2:hover {
+  transform: rotate(-12deg);
+  transition: 2s;
+}
+.item3:hover {
+  transform: rotate(-12deg);
+  transition: 2s;
+}
+
+/*-------------- TEXT ------------*/
+header {
+  display: flex;
+  align-items: flex-end;
+  padding-block-start: calc(var(--large-gutter)*2.5);
 }
 
 h1 {
-  font-family: var(--type-header);
-  font-style: var(--type-header-style);
-  font-weight: var(--type-header-weight);
-  font-size: var(--heading-size);
-  color: var(--blue);
-  padding-block-start: 15rem;
   margin: 0;
-/* Temporary fix I want the purple to stop at the bottom of the words r&b */
-  line-height: 0.5;
+  line-height: 0.8;
+  position: relative;
+  width: fit-content;
 }
+
+.R {
+  display: block;
+  transform: rotate(-15deg);
+  font-size: calc(var(--header-size) * 1.25);
+}
+
+.and {
+  position: absolute;
+  font-size: var(--subheader-size);
+  right: -0.4em; 
+  top: 35%; 
+  transform: rotate(5deg);
+}
+
+.B {
+  display: block;
+  font-size: calc(var(--header-size) * 1.25);
+  padding-inline-start: calc(var(--large-gutter)*4);
+}
+
 .introduction {
-  font-family: var(--type-header);
-  font-style: var(--type-header-style);
-  font-weight: var(--type-body-weight);
-  font-size: var(--subheading-size);
-  color: var(--purple);
-  padding-block-start: calc(var(--gutter)*2);
-  padding-block-end: calc(var(--gutter)/3);
-  padding-inline: calc(var(--gutter)*0.5);
+  padding-block-start: calc(var(--large-gutter)*1);
+  padding-block-end: calc(var(--small-gutter)/3);
+  margin:calc(var(--large-gutter)*0.3);
+  max-width: 100%;
 }
+
 h2 {
-  font-family: var(--type-header);
-  font-style: var(--type-header-style);
-  font-weight: var(--type-body-weight);
-  font-size: calc(var(--heading-size) / 4);
-  text-align: center; 
-  align-items: center;
-  color: var(--purple);
-  padding-block-start: 8rem;
-  margin: 0;
-/* Temporary fix I want the purple to stop at the bottom of the words r&b */
-  line-height: 0.7;
+  text-align: right;
+  padding: var(--small-gutter);
 }
 
 
+/*-------------- ARE.NA ------------*/
 
-  a {
-    font-weight: var(--type-body-weight);
-    font-family: var(--type-body);
-    text-transform: none;
-    font-size: var(--body-size);
-    line-height: 130%;
-    max-width: 80%;
-    color: var(--purple);
-  }
-
-
-article {
-  padding-block-start: 10rem;
-  display: grid;
-  grid-template-columns: 2fr 1fr 2fr 1fr;
-  gap: 2rem;
-  margin-inline: var(--gutter);
-}
-
-div {
-  overflow: hidden;
-  object-fit: cover;
-  justify-content: center;
-  border-radius: var(--corners);
-}
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    border-radius: var(--corners);
-  }
-
-
-/*are.na block styling*/
-ul {
-  display: grid;
-  overflow: hidden;
-/* Prevent the channel grid from overflowing horizontally by allowing columns to shrink */
-/* copilot, then looked it up on MDN — Grid layout: track sizing functions / minmax (https://developer.mozilla.org/en-US/docs/Web/CSS/minmax) */
-/* Use `grid-template-columns: repeat(3, minmax(0, 1fr))` and `min-width: 0` on grid children so columns can shrink and long content doesn't force the grid wider, althought it's not working for my videos, so i gotta continue working on this */
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: var(--spacing);
-  box-sizing: border-box;
-  padding-block: 3rem;
-  padding-inline: 1rem;
-  z-index: 1000;
-  list-style: none;
-  margin-block: 1rem;
-  align-items: start;
-  /*ATTRIBUTION - removing bullet points*/
-
-  p{
-    font-weight: var(--type-body-weight);
-    font-family: var(--type-body);
-    text-transform: none;
-    font-size: var(--body-size);
-    line-height: 130%;
-    max-width: 80%;
-    color: var(--purple);
-  }
-  h3 {
-    font-weight: var(--type-body-weight);
-    font-family: var(--type-body);
-    text-transform: none;
-    font-size: var(--body-size);
-    line-height: 130%;
-    max-width: 80%;
-    color: var(--purple);
-  }
-}
-.embedded {
-  margin-block: 1rem;
-  border-radius: var(--corners);
+/*....ATTRIBUTION....*/
+/* GOAL: I needed to create a responsive grid layout to display images from Are.na. The images needed to be displayed in a single column on mobile, and I wanted them to have rounded corners and proper spacing. I also needed to prevent horizontal overflow issues that were causing the page to scroll sideways. */
+/* RESOURCE: MDN - CSS Grid Layout (https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) and overflow properties (https://developer.mozilla.org/en-US/docs/Web/CSS/overflow). Class lectures on responsive grid systems. */
+/* LEARNING: I learned that setting overflow-x: hidden on grid items prevents content from breaking the layout when images are too wide. The min-width: 0 property on grid items is crucial because it allows grid children to shrink below their content size - without this, wide images could force the grid to overflow. I also learned that object-fit: cover maintains aspect ratio while filling the container, and border-radius works on images when they're set to display: block. Using box-sizing: border-box ensures padding is included in the total width calculation, preventing unexpected overflow. */
+#channel-blocks {
+  padding-block: var(--gutter);
   width: 100%;
-}
-.embedded-video{
-  width: 30%;
-  border-radius: var(--corners);
+  margin-inline: auto;
+  padding-inline: var(--large-gutter);
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--small-gutter);
+
+  img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: var(--corner-rounded);
 }
 
+ /*....ATTRIBUTION....*/
+/* GOAL: I had long blocks of text in the Are.na channel blocks that were way too long and cluttering the layout. I wanted to truncate them to show only the first 10 lines with ... at the end, giving users a preview without overwhelming the page. */
+/* RESOURCE: Started by talking to Lucy and Maika to see how they handled text truncation in their projects - they showed me the line-clamp approach but only for single lines. I wanted multiple lines to show, so I searched MDN Web Docs for -webkit-line-clamp (https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-line-clamp) and CSS-Tricks for multi-line text truncation techniques. */
+/* LEARNING: I learned that -webkit-line-clamp limits text to a specified number of lines when combined with display: -webkit-box and -webkit-box-orient: vertical, which tells the direction of the clamp to be horizontal. The overflow: hidden is the property that actually hide the excess text for a multi-line truncation. */
+.text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 10;
+  text-overflow: ellipsis;
+}
+/*....ATTRIBUTION....*/
+/* GOAL: My embedded YouTube iframes were overflowing and not fitting the grid columns, getting cut in weird ways, I tried a few techniques before asking claud, but it explained that there are specific fixed widths and heights injected by youtube or the other embed sources that I couldn't override with normal CSS */
+/* RESOURCE: Claude and code tutors */
+/* LEARNING: Are.na injects iframes with inline width and height attributes that override regular CSS, so !important is needed to force them to be overridden, apperently this is one of the valid uses of !important because it's fighting a g a third party's inline styles. I used the responsive iframe technique: setting height: 0 and padding-bottom: 60% on the container creates a 16:9 aspect ratio because percentage padding is calculated from the element's width. The iframe is then positioned absolutely to fill that space. I used :has(iframe) to target only li elements that contain an iframe so other block types like images and text are unaffected */
 
+iframe {
+  
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border: none;
+  border-radius: var(--corner-rounded);
+}
+
+li:has(iframe) {
+
+  padding-block-end: 60%;
+  height: 0;
+  overflow: hidden;
+}
+}
+
+#channel-blocks > li {
+  list-style: none;
+  margin: 0;
+  overflow-x: hidden;
+  min-width: 0;
+  border-radius: var(--corner-rounded);
+
+}
+
+#channel-blocks li:has(img) {
+  transform-origin: center;
+  border-radius: var(--corner-rounded);
+  transition: transform 2s ease-in-out, border-radius 2s ease-in-out;
+}
+
+/*....ATTRIBUTION....*/
+/* GOAL: To make each image/video/gif rotate spin into a perfect circle and fade out on exit except i cant figure out the fading out part of this */
+/* RESOURCE: Reviewed this with the coding tutor who taught me about the ease in and out and how to set this animation */
+/* LEARNING: This will eventually only target the image/video/gif blocks - firstly i'm moving the origin of the shape to match the original center point so that the circle doesn't move, setting the border radius to rounded all the way, per my variable and setting the transition. then I'm telling it that on hover to switch the corner radius to a full circle with a rotation. however, since my images are different aspect ratios I'm setting the fit to cover(so it doesn't crop) and setting the aspect ratio to 1 so it forms a perfect circle */
+
+#channel-blocks li:has(img):hover {
+  transform: rotate(-360deg);
+  border-radius: var(--corner-circle);
+}
+
+#channel-blocks li:has(img):hover img {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+/*-------------- OUR PLAYLISTS ------------*/
+/*-------------- ATTRIBUTION ------------*/
+/* GOAL: Center the playlist content both horizontally and vertically within their list items also needed help figuring out the best way to write this code and select the proper parts of the html to target*/
+/* RESOURCE: Claude, and some help from code tutors */
+/* LEARNING: Using display: flex with align-items: center and justify-content: center together centers content both vertically and horizontally; min-height is needed to give the container space for the centering to be visible */
+
+.notes {
+  width: 100%;
+  padding: var(--large-gutter);
+  box-sizing: border-box;
+}
+
+.notes h2 {
+  padding-inline: 0;
+  margin-bottom: var(--large-gutter);
+}
+
+.notes ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--large-gutter);
+}
+
+.notes li {
+  background: var(--white);
+  padding: var(--large-gutter);
+  border-radius: var(--corner-rounded);
+  box-sizing: border-box;
+}
+
+/* Playlist links - centered  */
+.trent-song, 
+.mel-song {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 10rem;
+  padding: var(--large-gutter);
+}
+.notes .mel-notes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 10rem;
+  padding: var(--large-gutter);
+}
 
 footer {
-  background-color: var(--purple);
+  background-color: var(--main-color);
   z-index: 1000;
   padding: 0;
   padding-inline:var(--gutter);
   padding-block-start: 0;
   border-bottom-left-radius: var(--corners);
   border-bottom-right-radius: var(--corners);
-  /* Prevent the h4's top margin from pushing the footer container down, so the purple background stops exactly at the top of the text */
-  /* MDN and copilot (https://developer.mozilla.org/en-US/docs/Web/CSS/display) */
-  /*  display: flow-root creates a new block formatting context that contains child margins and floats, preventing them from collapsing cthe parent container */
   display: flow-root;
-}
+
+/*....ATTRIBUTION....*/
+/* GOAL: Prevent the h4's top margin from pushing the footer container down, so the purple background stops exactly at the top of the text */ 
+/* RESOURCE: MDN and copilot (https://developer.mozilla.org/en-US/docs/Web/CSS/display) */
+/* LEARNING: display: flow-root creates a new block formatting context that contains child margins and floats, preventing them from collapsing cthe parent container  */
+
+
 h4 {
-  font-family: var(--type-header);
-  font-style: var(--type-header-style);
-  font-weight: var(--type-header-weight);
-  font-size: var(--heading-size);
-  color: var(--blue);
-  margin-block-start: -3rem;
+  font-family: var(--header-font);
+  font-weight: var(--header-weight);
+  font-size: var(--header-size);
+  color: var(--accent-color);
+  margin-block-start: calc(var(--gutter) * 7);
   margin-block-end: 0rem;
   padding-block-start: 0;
   line-height: 1;
 }
+}
 
 
-@media screen and (min-width: 900px) {
-  root {
-  padding: calc(var(--vertical)/4);
-  background-color: var(--white);
+/*--------------IPAD------------.*/
+@media (width > 640px) {
+
+/* /*....ATTRIBUTION....*/
+/* GOAL: I was having a lot of trouble getting the H1 "R&B" title to display horizontally in one line on larger screens, while keeping the stacked layout on mobile. The ampersand kept appearing in the wrong position (showing "RB&" instead of "R&B"). */
+/* RESOURCE: MDN Web Docs — CSS positioning (https://developer.mozilla.org/en-US/docs/Web/CSS/position), display property (https://developer.mozilla.org/en-US/docs/Web/CSS/display), and flexbox layout. Also used Claude for help with the synte for syntax clarification on overriding position in the media queries. */
+/* LEARNING: I know we learnt this in class but for some reason it wasn't fully working to me. I learnt that position - absolute takes an element out of the normal document flow, which is why the ampersand was appearing after "B" instead of between "R" and "B". To fix this in the iPad and laptop media query, I needed to reset the position to static and also reset the right and top values to auto. Using inline-block on all three spans (R, &, B) allows them to sit naturally in a row. The white-space: nowrap property on the parent h1 prevents any unwanted line breaks. */
+  
+  header {
+    padding-block-start: var(--large-gutter);
+    text-align: right;
+    justify-content: left;
+    padding-inline-start: calc(var(--large-gutter)*3);
   }
-
-/*---------BORDER---------.*/
-body {
-  border-radius: var(--corners);
-  background-color: var(--blue);
-  filter: drop-shadow(0.5rem 0.5rem 1rem hsl(0, 0%, 73%));
-}
-/* I was trying to add a shadow effect to an element using the CSS filter property so the shadow follows the actual shape of the element rather than its rectangular box.I used the MDN article on CSS drop-shadow() filter function:
-https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/filter-function/drop-shadow.I learned that drop-shadow() the first value moves the shadow to the right, the second value moves it down, the third value controls the blur softness, and the fourth value sets the shadow color. */
-
-
-
-.header-container {
-  background-color: var(--purple);
-  z-index: 1000;
-  padding-block: var(--vertical);
-  padding-inline: var(--vertical);
-
-}
-/*---------NAV---------.*/
-/* hoping that this could somehow become my navigation NEEDS TO BE ATTRIBUTED */
-/* I was trying to make my menu be spaced properly and couldn't figure out why the grid wasn't working, i wanted it to be left justified with the middle one falling, was thinking to animate this somehow*/
-/* I used chatgpt to help clarify */
-/* I learnt that my padding was causing the issue with the grid layout and i had repeats in my code blocking this from working*/
-.menu li a {
-    background: var(--white);
-    color:var(--purple);
-    text-decoration: none;
-    font-family: var(--type-body);
-    font-style: var(--type-body-style);
-    font-weight: var(--type-body-weight);
-    font-size: var(--body-size);
-    
-}
-.menu {
-    display: grid;
-    grid-template-columns: repeat(3, auto); /* 3 columns */
-    gap: calc(var(--gutter) / 6);
-    justify-content: end; 
+  
+  h1 {
+    align-items: flex-end;
+    padding-block:0;
+    line-height: 0.8;
+    width: fit-content;
     white-space: nowrap;
-    padding: var(--gutter);
-    margin-block-start: 1rem;
-    margin-inline-start: 1rem;
-
-}
-
-.menu li {
+    position: relative;
+  }
+  
+  .R {
     display: inline-block;
-}
-
-/* rotating the playlist */
-.item2  {
-    transform: rotate(-12deg);
-}
-
-h1 {
-  font-family: var(--type-header);
-  font-style: var(--type-header-style);
-  font-weight: var(--type-header-weight);
-  font-size: calc(var(--body-size) * 30);
-  color: var(--blue);
-  padding-block-start: 10rem;
-  margin: 0;
-/* Temporary fix I want the purple to stop at the bottom of the words r&b */
-  line-height: 0.7;
-}
+    transform: rotate(0deg);
+    font-size: calc(var(--header-size) * 2.5);
+  }
+  
+  .and {
+    position: static;
+    display: inline-block;
+    font-size: calc(var(--header-size) * 2.5);
+    transform: rotate(5deg);
+    margin: 0;
+    padding: 0;
+    right: auto;
+    top: auto;
+  }
+  
+  .B {
+    display: inline-block;
+    font-size: calc(var(--header-size) * 2.5);
+    padding-inline-start: 0;
+  }
+ 
 .introduction {
-  font-family: var(--type-header);
-  font-style: var(--type-header-style);
-  font-weight: var(--type-body-weight);
-  font-size: var(--subheading-size);
-  color: var(--purple);
-  padding-block-start: calc(var(--gutter)*2);
-  padding-block-end: calc(var(--gutter)/3);
-  padding-inline: calc(var(--gutter)*3);
-  margin-inline-start: 40rem;
+  margin-block-start: var(--large-gutter);
+  padding-block: calc(var(--large-gutter)*3);
+  padding-inline-start: calc(var(--large-gutter)*3.6);
+  text-align: left;
+  max-width: 60%;
 }
-h2 {
-  font-family: var(--type-header);
-  font-style: var(--type-header-style);
-  font-weight: var(--type-body-weight);
-  font-size: calc(var(--heading-size) / 4);
-  text-align: center; 
-  align-items: center;
-  color: var(--purple);
-  padding-block-start: 8rem;
-  margin: 0;
-/* Temporary fix I want the purple to stop at the bottom of the words r&b */
-  line-height: 0.7;
-}
-
-
-
-  a {
-    font-weight: var(--type-body-weight);
-    font-family: var(--type-body);
-    text-transform: none;
-    font-size: var(--body-size);
-    line-height: 130%;
-    max-width: 80%;
-    color: var(--purple);
-  }
-
-
-article {
-  padding-block-start: 10rem;
-  display: grid;
-  grid-template-columns: 2fr 1fr 2fr 1fr;
-  gap: 2rem;
-  margin-inline: var(--gutter);
-}
-
-div {
-  overflow: hidden;
-  object-fit: cover;
-  justify-content: center;
-  border-radius: var(--corners);
-}
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    border-radius: var(--corners);
-  }
-
-
-/*are.na block styling*/
-ul {
-  display: grid;
-  overflow: hidden;
-/* Prevent the channel grid from overflowing horizontally by allowing columns to shrink */
-/* copilot, then looked it up on MDN — Grid layout: track sizing functions / minmax (https://developer.mozilla.org/en-US/docs/Web/CSS/minmax) */
-/* Use `grid-template-columns: repeat(3, minmax(0, 1fr))` and `min-width: 0` on grid children so columns can shrink and long content doesn't force the grid wider, althought it's not working for my videos, so i gotta continue working on this */
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--spacing);
-  box-sizing: border-box;
-  padding-block: 3rem;
-  padding-inline: 3rem;
-  z-index: 1000;
-  list-style: none;
-  margin-block: 1rem;
-  align-items: start;
-  /*ATTRIBUTION - removing bullet points*/
-
-  p{
-    font-weight: var(--type-body-weight);
-    font-family: var(--type-body);
-    text-transform: none;
-    font-size: var(--body-size);
-    line-height: 130%;
-    max-width: 80%;
-    color: var(--purple);
-  }
-  h3 {
-    font-weight: var(--type-body-weight);
-    font-family: var(--type-body);
-    text-transform: none;
-    font-size: var(--body-size);
-    line-height: 130%;
-    max-width: 80%;
-    color: var(--purple);
-  }
-}
-.embedded {
-  margin-block: 1rem;
-  border-radius: var(--corners);
+/*....ATTRIBUTION(BOX SIZING)....*/
+/* GOAL: Prevent the channel grid from overflowing horizontally by allowing columns to shrink */
+/* RESOURCE: copilot, then looked it up on MDN — Grid layout: track sizing functions / minmax (https://developer.mozilla.org/en-US/docs/Web/CSS/minmax) */
+/* LEARNING: Use `grid-template-columns: repeat(3, minmax(0, 1fr))` and `min-width: 0` on grid children so columns can shrink and long content doesn't force the grid wider*/
+#channel-blocks {
+  position: relative;
   width: 100%;
+  min-height: 80vh;
+  padding: var(--large-gutter);
+  box-sizing: border-box;
+  list-style: none;
 }
-.embedded-video{
-  width: 30%;
-  border-radius: var(--corners);
+
+#channel-blocks > li {
+  position: absolute;
+  width: 45%;
+  border-radius: var(--corner-rounded);
+  background: var(--white);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  overflow: hidden;
+  transition: transform 2s cubic-bezier(0.25, 0.1, 0.1, 1.0), z-index 0s;
 }
 
 
+h2 {
+  padding-inline: calc(var(--large-gutter)*3);
+}
 
-footer {
-  background-color: var(--purple);
-  z-index: 1000;
-  padding: 0;
-  padding-inline:var(--gutter);
-  padding-block-start: 0;
-  border-bottom-left-radius: var(--corners);
-  border-bottom-right-radius: var(--corners);
-  /* Prevent the h4's top margin from pushing the footer container down, so the purple background stops exactly at the top of the text */
-  /* MDN and copilot (https://developer.mozilla.org/en-US/docs/Web/CSS/display) */
-  /*  display: flow-root creates a new block formatting context that contains child margins and floats, preventing them from collapsing cthe parent container */
-  display: flow-root;
+/*....ATTRIBUTION....*/
+/* GOAL: Center the playlist link content both horizontally and vertically within their list items and change the grid to a bento box layout on iPad and larger screens */
+/* RESOURCE: MDN Web Docs — CSS Grid properties, claud and coding tutors */
+/* LEARNING: CSS Grid lets you place items into specific columns using grid-column with start / end line numbers; order can shift items visually without changing the HTML; still working through why the bento layout isn't behaving as expected and plan to follow up with coding tutors but something I forgot from last semester is the grid works with the grid lines not the spaces so to do this I needed to target the specific lines I wanted each section to target. Also was trying to nest this more, but it seemed to stop working when I nested it */
+
+.notes ul {
+  grid-template-columns: repeat(4, 1fr);
+  align-items: start;
 }
-h4 {
-  font-family: var(--type-header);
-  font-style: var(--type-header-style);
-  font-weight: var(--type-header-weight);
-  font-size: calc(var(--body-size) * 25);
-  color: var(--blue);
-  margin-block-start: -7rem;
-  margin-block-end: 0rem;
-  padding-block-start: 0;
-  line-height: 1;
+
+.notes .Trent-notes {
+  grid-column: 1 / 4;
+}
+
+.notes .trent-song {
+  grid-column: 4;
+}
+
+.notes .mel-song {
+  order: 3;
+  grid-column: 1;
+  
+}
+
+.notes .mel-notes {
+  order: 4;
+  grid-column: 2 / 5;
+  display: block;
 }
 }
+
+
+/*--------------LAPTOP------------.*/
+@media (width > 1024px) { 
+
+ 
+}
+
+
+/*--------------DESKTOP------------.*/
+@media (width > 1280px) { 
+      
+  h1,h4 {
+  font-size: calc(var(--header-size) * 3.5);
+}
+  
+}
+
+/*--------------LARGE DESKTOP------------.*/
+@media (width > 1280px) { }
+

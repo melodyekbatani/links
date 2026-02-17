@@ -6,10 +6,10 @@ let myUsername = 'melody-ekbatani' // For linking to your profile.
 // First, let’s lay out some *functions*, starting with our basic metadata:
 let placeChannelInfo = (channelData) => {
 	// Target some elements in your HTML:
-	let channelTitle = document.querySelector('#channel-title')
-	let channelDescription = document.querySelector('#channel-description')
-	let channelCount = document.querySelector('#channel-count')
-	let channelLink = document.querySelector('#channel-link')
+	// let channelTitle = document.querySelector('#channel-title')
+	// let channelDescription = document.querySelector('#channel-description')
+	// let channelCount = document.querySelector('#channel-count')
+	// let channelLink = document.querySelector('#channel-link')
 
 	// Then set their content/attributes to our data:
 	// channelTitle.innerHTML = channelData.title
