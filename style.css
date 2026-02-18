@@ -38,7 +38,7 @@
   /*body fonts*/
   --body-font: "parabolica", sans-serif;
   --body-weight: 400;
-  --body-size: 1.25rem;
+  --body-size: 1rem;
 }
 
 /*--------------GLOBAL------------.*/
@@ -57,11 +57,10 @@ h2 {
   color: var(--main-color);
 }
 
-
 h3 {
   font-family: var(--body-font);
   font-weight: 600;
-  font-size: calc(var(--body-size) * 1.25);
+  font-size: calc(var(--body-size) * 1.15);
   color: var(--main-color);
   line-height: 2rem;
 }
@@ -71,7 +70,7 @@ p {
   font-weight: var(--body-weight);
   font-size: var(--body-size);
   color: var(--main-color);
-  line-height: 1.8rem;
+  line-height: 1.5rem;
 }
 
 a {
@@ -111,22 +110,40 @@ a {
 
 /*-------------- MENU ------------*/
 .menu {
-    list-style: none; /* I think I learnt this in class or from a code tutor, turning off bullet points */
-    display: grid;
-    grid-template-columns: repeat(3, auto); /* 3 columns, auto makes the makes a column size itself to fit its content */
-    gap: calc(var(--gutter) / 4);
-    justify-content: center; /* aligns the whole grid to the right */ 
-    white-space: nowrap; /* prevents text from wrapping to next line - stay on one line */
-    padding-block-start: calc(var(--large-gutter)*2);
-    margin: var(--small-gutter);
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: var(--small-gutter);
+  justify-content: center;
+  align-items: center;
+  padding: var(--large-gutter);
+  margin: var(--large-gutter);
+  justify-content: center;
 }
 
 .menu li {
-    padding: calc(var(--small-gutter)*0.8);
-    background: var(--accent-color);
-    border-radius: 50em;
+  padding-block: calc(var(--small-gutter) * 0.6);
+  padding-inline: var(--large-gutter);
+  background: transparent;
+  border: 1.5px solid var(--accent-color);
+  border-radius: var(--corner-pill);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
+.menu li:hover {
+  background: var(--accent-color);
+}
+
+.menu li a {
+  color: var(--accent-color);
+  font-size: calc(var(--body-size) * 0.85);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.menu li:hover a {
+  color: var(--main-color);
+}
 /*-------------- ATTRIBUTION NEEDED CODE TUTOR/claud ------------*/
 /* GOAL: I wanted the nav menu buttons to rotate slightly on hover to give the site a playful feel, and ease back smoothly when the mouse leaves */ 
 /* RESOURCE: Code tutors and Claude */ 
@@ -390,13 +407,13 @@ h4 {
   .R {
     display: inline-block;
     transform: rotate(0deg);
-    font-size: calc(var(--header-size) * 2.5);
+    font-size: calc(var(--header-size) * 2);
   }
   
   .and {
     position: static;
     display: inline-block;
-    font-size: calc(var(--header-size) * 2.5);
+    font-size: calc(var(--header-size) * 2);
     transform: rotate(5deg);
     margin: 0;
     padding: 0;
@@ -406,7 +423,7 @@ h4 {
   
   .B {
     display: inline-block;
-    font-size: calc(var(--header-size) * 2.5);
+    font-size: calc(var(--header-size) * 2);
     padding-inline-start: 0;
   }
  
@@ -428,8 +445,8 @@ h4 {
   gap: var(--spacing);
   box-sizing: border-box;
   gap: calc(var(--large-gutter)*3);
-  padding-block: 3rem;
-  padding-inline: 3rem;
+  padding-block:(var(--large-gutter)*3);
+  padding-inline: calc(var(--large-gutter)*3);
   z-index: 1000;
   list-style: none;
   margin-block: 1rem;
@@ -472,6 +489,7 @@ h2 {
   display: block;
 }
 }
+
 
 
 /*--------------LAPTOP------------.*/
