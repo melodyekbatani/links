@@ -629,7 +629,7 @@ h3 {
 /* LEARNING: CSS Grid lets you place items into specific columns using grid-column with start / end line numbers; order can shift items visually without changing the HTML; still working through why the bento layout isn't behaving as expected and plan to follow up with coding tutors but something I forgot from last semester is the grid works with the grid lines not the spaces so to do this I needed to target the specific lines I wanted each section to target. Also was trying to nest this more, but it seemed to stop working when I nested it */
 max-width: 70%;
 justify-content: center;
-margin-inline: auto;
+margin-inline:
 }
 .trent-notes {
   padding-inline-start: 10rem;
@@ -650,8 +650,18 @@ footer {
   display: flow-root;
   overflow: hidden;
 
-  
-
+  h4 {
+  font-size: calc(var(--body-size) * 12);
+  color: var(--accent-color);
+  text-align: right;
+  margin-block-start: calc(var(--large-gutter) * 7);
+  margin-block-end: -3rem;
+  padding-block-start: 0;
+  padding-inline-end: 0.5rem;
+  line-height: 1;
+}
+}
+}
 
 /*--------------LAPTOP------------.*/
 @media (width > 1024px) { 
@@ -666,3 +676,4 @@ footer {
 
 /*--------------LARGE DESKTOP------------.*/
 @media (width > 1280px) { }
+
