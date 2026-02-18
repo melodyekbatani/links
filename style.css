@@ -87,7 +87,7 @@ a {
   text-decoration:none;
 }
 body {
-background-image: url("./Illustrations/illustrations.png");
+background-image: url("Illustrations/illustrations.png");
   background-size: 100%;
   background-position: top;
   background-repeat: repeat;
