@@ -116,7 +116,7 @@ let renderBlock = (blockData) => {
 		<div class="embedded">
     	<embed src="${blockData.attachment.url}" type="application/pdf" width="100%" height="600px">
 		</div>
-    	<p><a href="${blockData.attachment.url}" download>Download PDF ↗</a></p>
+    	<p><a href="${blockData.attachment.url}" download>Download PDF↗</a></p>
         </li>
         `
 
