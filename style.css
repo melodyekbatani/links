@@ -15,8 +15,9 @@
   /*color variables*/
   --white: #fff;
   --black: #000;
-  --main-color:#b0005e;
+  --main-color:#D80174;
   --accent-color:#ffffff;
+  --medium-color:#F7D4E7;
 
   /*padding variables*/
   --large-gutter: 2rem;
@@ -27,27 +28,27 @@
 
   /*header fonts*/
   --header-font: "parabolica", sans-serif;
-  --header-weight: 700;
-  --header-size: calc(var(--body-size) * 12);
+  --header-weight: 500;
+  --header-size: calc(var(--body-size) * 8);
 
   /*subheader fonts*/
   --subheader-font: "parabolica", sans-serif;
-  --subheader-weight: 400;
-  --subheader-size: calc(var(--body-size) * 4);
+  --subheader-weight: 600;
+  --subheader-size: calc(var(--body-size) * 1.5);
 
   /*body fonts*/
   --body-font: "parabolica", sans-serif;
-  --body-weight: 400;
+  --body-weight: 500;
   --body-size: 1rem;
 }
 
 /*--------------GLOBAL------------.*/
 
-h1,h4 {
+h1 {
   font-family: var(--header-font);
   font-weight: var(--header-weight);
   font-size: var(--header-size);
-  color: var(--accent-color);
+  color: var(--main-color);
 }
 
 h2 {
@@ -59,10 +60,14 @@ h2 {
 
 h3 {
   font-family: var(--body-font);
-  font-weight: 600;
+  font-weight: 700;
   font-size: calc(var(--body-size) * 1.15);
-  color: var(--main-color);
   line-height: 2rem;
+}
+
+h4 {
+  font-family: var(--header-font);
+  font-weight: var(--header-weight);
 }
 
 p {
@@ -102,10 +107,16 @@ a {
   box-sizing: border-box;
   margin: 0;
   margin-block-start: calc(var(--large-gutter)*-1);
-  background-color: var(--main-color);
+  background-color: var(--accent-color);
   align-content:center;
   text-align: center;
   z-index: 1000;
+
+  /*-------------- ATTRIBUTION NEEDED!!!! ------------*/
+  background-image: url("Illustrations/Headphones.png");
+  background-size: 80%;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 /*-------------- MENU ------------*/
@@ -113,7 +124,7 @@ a {
   list-style: none;
   display: flex;
   flex-direction: row;
-  gap: var(--small-gutter);
+  gap: calc(var(--small-gutter) * 0.4);
   justify-content: center;
   align-items: center;
   padding: var(--large-gutter);
@@ -122,12 +133,10 @@ a {
 }
 
 .menu li {
-  padding-block: calc(var(--small-gutter) * 0.6);
+  padding-block: calc(var(--small-gutter) * 0.4);
   padding-inline: var(--small-gutter);
-  background: transparent;
-  border: 1.5px solid var(--accent-color);
+  background: var(--main-color);
   border-radius: var(--corner-pill);
-  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .menu li:hover {
@@ -137,8 +146,7 @@ a {
 .menu li a {
   color: var(--accent-color);
   font-size: calc(var(--body-size) * 0.85);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: 0.07em;
 }
 
 .menu li:hover a {
@@ -166,141 +174,255 @@ a {
   transition: 2s;
 }
 
-/*-------------- TEXT ------------*/
+/*-------------- HEADER TEXT ------------*/
 header {
-  display: flex;
-  align-items: flex-end;
   padding-block-start: calc(var(--large-gutter)*2.5);
+  text-align: center;
+  margin-inline: 0;
+  justify-content: center;
+  align-items: center;
+  
 }
 
 h1 {
   margin: 0;
   line-height: 0.8;
+  text-align: center;
   position: relative;
-  width: fit-content;
 }
-
-.R {
-  display: block;
-  transform: rotate(-15deg);
-  font-size: calc(var(--header-size) * 1.25);
-}
-
-.and {
-  position: absolute;
-  font-size: var(--subheader-size);
-  right: -0.4em; 
-  top: 35%; 
-  transform: rotate(5deg);
-}
-
-.B {
-  display: block;
-  font-size: calc(var(--header-size) * 1.25);
-  padding-inline-start: calc(var(--large-gutter)*4);
-}
-
-.introduction {
-  padding-block-start: calc(var(--large-gutter)*1);
-  padding-block-end: calc(var(--small-gutter)/3);
-  margin:calc(var(--large-gutter)*0.3);
-  max-width: 100%;
-}
-
 h2 {
-  text-align: right;
+  text-align: center;
   padding: var(--small-gutter);
 }
+.introduction {
+  margin-block-start: calc(var(--large-gutter)*6);
+  padding-block-end: calc(var(--small-gutter)/3);
+  margin-inline:calc(var(--large-gutter)*0.3);
+  max-width: 100%;
+  text-align: left;
+  background-color: white;
+}
 
-
-/*-------------- ARE.NA ------------*/
-
+/*-------------- Animation ------------*/
 /*....ATTRIBUTION....*/
-/* GOAL: I needed to create a responsive grid layout to display images from Are.na. The images needed to be displayed in a single column on mobile, and I wanted them to have rounded corners and proper spacing. I also needed to prevent horizontal overflow issues that were causing the page to scroll sideways. */
+ /*...GOAL: I wanted each Are.na block to animate in when the page loads, but ideally this would be when the section appears on the page as you scroll
+ with a drop and bounce effect, a continuous gentle shake to make the page feel and a slow spin on the circular image blocks */
+/* RESOURCE: MDN Web Docs — @keyframes (https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes), CSS individual transform properties rotate/translate/scale (https://developer.mozilla.org/en-US/docs/Web/CSS/rotate), and claude help me to impliment it better  */
+/* LEARNING: You can run multiple animations on the same element by separating them. The key thing I learned is that using the  individual CSS properties rotate, translate, and scale instead of the shorthand transform means animations using translate don't conflict with rotate values set directly on the element so its more independent. animation-duration and animation-fill-mode: forwards keeps the element in its final state after dropIn finishes so it doesn't snap back to invisible */
+
+/*....This one makes the images rotate....*/
+@keyframes spin {
+  to { rotate: 360deg; }
+}
+
+/*....The original drop in animation, learnt that you can kind of nest the x and y translate...*/
+@keyframes dropIn {
+  0%   { opacity: 0; translate: -4rem; }
+  70%  { opacity: 1; translate: 0 2rem; }
+  80%  { translate: 0 -0.5rem; }
+  100% { opacity: 1; translate: 0 0; }
+}
+
+/*....Back and forth shaking effect on all the blocks to give it more movement...*/
+@keyframes shake {
+  0%   { rotate: -3deg; }
+  25%  { rotate: 3deg; }
+  50%  { rotate: -3deg; }
+  75%  { rotate: 3deg; }
+  100% { rotate: -3deg; }
+}
+
+/*....ATTRIBUTION (BOX-SIZING)....*/
+/* GOAL: I needed to prevent horizontal overflow issues that were causing the page to scroll sideways. */
 /* RESOURCE: MDN - CSS Grid Layout (https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) and overflow properties (https://developer.mozilla.org/en-US/docs/Web/CSS/overflow). Class lectures on responsive grid systems. */
-/* LEARNING: I learned that setting overflow-x: hidden on grid items prevents content from breaking the layout when images are too wide. The min-width: 0 property on grid items is crucial because it allows grid children to shrink below their content size - without this, wide images could force the grid to overflow. I also learned that object-fit: cover maintains aspect ratio while filling the container, and border-radius works on images when they're set to display: block. Using box-sizing: border-box ensures padding is included in the total width calculation, preventing unexpected overflow. */
-#channel-blocks {
-  padding-block: calc(var(--large-gutter)*3);
-  width: 100%;
-  margin-inline: auto;
+/* LEARNING: I learned that setting overflow-x: hidden on grid items prevents content from breaking the layout when images are too wide. Using box-sizing: border-box ensures padding is included in the total width calculation, preventing unexpected overflow. */
+
+/*-------------- ARE.NA BLOCK STYLING ------------*/
+.blocks {
+  padding-block: calc(var(--large-gutter) * 1);
   padding-inline: var(--large-gutter);
+  box-sizing: border-box; /* box-sizing: border-box — padding is included in the width calculation, so padding won't make the grid wider than the screen */
+
+  h3 {
+    background-color: var(--medium-color);
+    color: var(--main-color);
+    border-radius: var(--corner-pill);
+    text-align: center;
+    margin-inline: calc(var(--large-gutter) * 0.5);
+    padding-block: calc(var(--large-gutter) * 0.5);
+  }
+}
+
+#channel-blocks {
+  width: 100%;
   box-sizing: border-box;
+  padding: var(--large-gutter); /* needed so things don't get cut off */
   display: grid;
   grid-template-columns: 1fr;
-  gap: calc(var(--large-gutter)*2);
-
-
-  img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: var(--corner-rounded);
-}
-
- /*....ATTRIBUTION....*/
-/* GOAL: I had long blocks of text in the Are.na channel blocks that were way too long and cluttering the layout. I wanted to truncate them to show only the first 10 lines with ... at the end, giving users a preview without overwhelming the page. */
-/* RESOURCE: Started by talking to Lucy and Maika to see how they handled text truncation in their projects - they showed me the line-clamp approach but only for single lines. I wanted multiple lines to show, so I searched MDN Web Docs for -webkit-line-clamp (https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-line-clamp) and CSS-Tricks for multi-line text truncation techniques. */
-/* LEARNING: I learned that -webkit-line-clamp limits text to a specified number of lines when combined with display: -webkit-box and -webkit-box-orient: vertical, which tells the direction of the clamp to be horizontal. The overflow: hidden is the property that actually hide the excess text for a multi-line truncation. */
-.text {
+  gap: var(--small-gutter); /* controles vertical spacing on mobile since i used a grid as the base */
   overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 10;
-  text-overflow: ellipsis;
-}
-/*....ATTRIBUTION....*/
-/* GOAL: My embedded YouTube iframes were overflowing and not fitting the grid columns, getting cut in weird ways, I tried a few techniques before asking claud, but it explained that there are specific fixed widths and heights injected by youtube or the other embed sources that I couldn't override with normal CSS */
-/* RESOURCE: Claude and code tutors */
-/* LEARNING: Are.na injects iframes with inline width and height attributes that override regular CSS, so !important is needed to force them to be overridden, apperently this is one of the valid uses of !important because it's fighting a g a third party's inline styles. I used the responsive iframe technique: setting height: 0 and padding-bottom: 60% on the container creates a 16:9 aspect ratio because percentage padding is calculated from the element's width. The iframe is then positioned absolutely to fill that space. I used :has(iframe) to target only li elements that contain an iframe so other block types like images and text are unaffected */
 
-iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
-  border: none;
-  border-radius: var(--corner-rounded);
+  & > li {
+    list-style: none;
+    width: 80%;
+    position: relative;
+    animation: dropIn 0.7s ease;
+    transition: rotate 0.3s ease, scale 0.3s ease;
+  }
+
+/*....ATTRIBUTION ....*/
+/* GOAL: I wanted the spacing to appear kind of randomly but still controllable, used a 5th item selector and staggered the effect */
+/* RESOURCE: Claud */
+/* LEARNING: two values, first is for dropIn, second is for shake, so the wobble is out of sync, justify self variations allows for it to be more staggered */
+
+  & > li:nth-child(5n+1) {
+    animation-delay: 0.05s;
+    animation-duration: 0.7s, 1.8s;
+    justify-self: start;
+  }
+  & > li:nth-child(5n+2) {
+    animation-delay: 0.15s, 0s;
+    animation-duration: 0.7s, 2.2s;
+    justify-self: end;
+  }
+  & > li:nth-child(5n+3) {
+    animation-delay: 0.25s, 0s;
+    animation-duration: 0.7s, 1.6s;
+    justify-self: start;
+    margin-inline-start: var(--large-gutter);
+  }
+  & > li:nth-child(5n+4) {
+    animation-delay: 0.35s, 0s;
+    animation-duration: 0.7s, 2.4s;
+    justify-self: end;
+    margin-inline-end: var(--large-gutter);
+  }
+  & > li:nth-child(5n) {
+    animation-delay: 0.45s, 0s;
+    animation-duration: 0.7s, 2.0s;
+    justify-self: start;
+  }
+
+  /*....ATTRIBUTION ....*/
+/* GOAL: When hovering, I want the blocks to scale up slightly and rotate a bit */
+/* RESOURCE: Claud */
+/* LEARNING: learned that by reusing the same structural selectors (& > li:nth-child from earlier in my CSS, I could apply hover effects in a consistent and controlled way. Instead of targeting elements randomly, using nth-child() let me systematically vary the rotation for every fifth item, creating a repeating pattern. I also learned that separating rotate and scale transforms on hover makes the interaction feel more dynamic while keeping the layout stable. */
+  & > li:nth-child(5n+1):hover { rotate: -20deg; scale: 1.05; }
+  & > li:nth-child(5n+2):hover { rotate: 22deg;  scale: 1.05; }
+  & > li:nth-child(5n+3):hover { rotate: -15deg; scale: 1.05; }
+  & > li:nth-child(5n+4):hover { rotate: 18deg;  scale: 1.05; }
+  & > li:nth-child(5n):hover   { rotate: -24deg; scale: 1.05; }
+
+  /* ---- IMAGES ---- */
+  & li:has(img):not(:has(a)) {
+    width: 60%;
+    outline: 1px solid var(--main-color);
+    border-radius: var(--corner-circle);
+
+    & figure {
+      margin: 0;
+      border-radius: var(--corner-circle);
+      overflow: hidden;
+      aspect-ratio: 1;
+    }
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: spin 8s linear infinite;
+    }
+  }
+
+  /* ---- EMBEDS ---- */
+  & li:has(iframe) {
+    border-radius: var(--corner-rounded);
+    outline: 1px solid var(--main-color);
+    animation: shake 2s ease-in-out infinite;
+
+    & iframe {
+      position: relative;
+      width: 100% !important;
+      height: 100% !important;
+
+      border-radius: var(--corner-rounded);
+    outline: 1px solid var(--main-color);
+    }
+  }
+
+  /* ---- TEXT ---- */
+  & li:has(.text) {
+  padding-inline: var(--small-gutter);
+  width: 100%; /* wider so text has more room */
+
+  & h3 { display: none; } /* hides large titles */
+
+  & .text {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6; /* more lines */
+    
+
+    /* remove default p margins that cause weird gaps */
+    & p {
+      margin: 0;
+      padding: 0;
+      
+    }
+  }
 }
 
-li:has(iframe) {
-  position: relative;
-  padding-block-end: 60%;
-  height: 0;
-  overflow: hidden;
-}
-}
+  /* ---- LINK BLOCKS ---- */
+  & li:has(figure):has(a) {
+    animation: shake 2s ease-in-out infinite;
+    outline: 2px solid var(--main-color);
+    border-radius: var(--corner-rounded);
+    overflow: hidden;
+    padding-block: calc(var(--small-gutter) * 0.4);
 
-#channel-blocks > li {
-  list-style: none;
-  margin: 0;
-  overflow-x: hidden;
-  min-width: 0;
-  border-radius: var(--corner-rounded);
+    & figure { margin: 0; }
+    & img { width: 100%; height: auto; display: block; }
 
-}
+    & p {
+      text-align: right;
+      padding: var(--small-gutter);
+      margin: 0;
+    }
 
-#channel-blocks li:has(img) {
-  transform-origin: center;
-  border-radius: var(--corner-rounded);
-  transition: transform 2s ease-in-out, border-radius 2s ease-in-out;
-}
+    & a {
+      display: inline-block;
+      white-space: nowrap;
+      background-color: var(--main-color);
+      color: var(--accent-color);
+      border-radius: var(--corner-pill);
+      padding-block: calc(var(--small-gutter) * 0.1);
+      padding-inline: var(--small-gutter);
+      font-size: calc(var(--body-size) * 0.8);
+      transition: rotate 0.3s ease;
 
-/*....ATTRIBUTION....*/
-/* GOAL: To make each image/video/gif rotate spin into a perfect circle and fade out on exit except i cant figure out the fading out part of this */
-/* RESOURCE: Reviewed this with the coding tutor who taught me about the ease in and out and how to set this animation */
-/* LEARNING: This will eventually only target the image/video/gif blocks - firstly i'm moving the origin of the shape to match the original center point so that the circle doesn't move, setting the border radius to rounded all the way, per my variable and setting the transition. then I'm telling it that on hover to switch the corner radius to a full circle with a rotation. however, since my images are different aspect ratios I'm setting the fit to cover(so it doesn't crop) and setting the aspect ratio to 1 so it forms a perfect circle */
+      &:hover { rotate: -8deg; scale: 1.05; }
+    }
+  }
+  }
 
-#channel-blocks li:has(img):hover {
-  transform: rotate(-360deg);
-  border-radius: var(--corner-circle);
-}
+  /* ---- PDFS ---- */
+  & li:has(embed) {
+    outline: 2px solid var(--main-color);
+    border-radius: var(--corner-rounded);
+    overflow: hidden;
 
-#channel-blocks li:has(img):hover img {
-  aspect-ratio: 1;
-  object-fit: cover;
-}
+    & embed { display: block; width: 100%; height: 30vh; }
+  }
+
+  /* ---- AUDIO ---- */
+  & li:has(audio) {
+    border-radius: var(--corner-pill);
+
+    & audio { width: 100%; }
+  }
+
+
 
 /*-------------- OUR PLAYLISTS ------------*/
 /*-------------- ATTRIBUTION ------------*/
@@ -309,11 +431,38 @@ li:has(iframe) {
 /* LEARNING: Using display: flex with align-items: center and justify-content: center together centers content both vertically and horizontally; min-height is needed to give the container space for the centering to be visible */
 
 .notes {
+  padding-block-start: calc(var(--large-gutter) * 2.5);
   width: 100%;
-  padding: var(--large-gutter);
   box-sizing: border-box;
+
+h2 {
+  padding-inline: calc(var(--large-gutter)*3);
 }
 
+em {
+  font-family: var(--body-font);
+  font-weight: var(--body-weight);
+  font-size: var(--body-size);
+  color: var(--main-color);
+  line-height: 1.5rem;
+  padding-inline: var(--small-gutter);
+}
+h3 {
+    width: fit-content;
+    border-radius: var(--corner-pill);
+    padding-inline: var(--small-gutter);
+    background-color: var(--main-color);
+    color: var(--white);
+    text-align: left;
+    margin-block: calc(var(--large-gutter) * 0.1);
+    padding-block: calc(var(--large-gutter) * 0.1);
+  }
+}
+
+p {
+  padding-block-start:var(--large-gutter);
+  padding-inline: var(--small-gutter);
+}
 .notes h2 {
   padding-inline: 0;
   margin-bottom: var(--large-gutter);
@@ -333,7 +482,6 @@ li:has(iframe) {
   border-radius: var(--corner-rounded);
   box-sizing: border-box;
 }
-
 /* Playlist links - centered  */
 .trent-song, 
 .mel-song {
@@ -343,23 +491,21 @@ li:has(iframe) {
   min-height: 10rem;
   padding: var(--large-gutter);
 }
-.notes .mel-notes {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 10rem;
-  padding: var(--large-gutter);
-}
 
 footer {
+  /*-------------- ATTRIBUTION NEEDED!!!! ------------*/
+  background-image: url("Illustrations/ipod-hd.png");
+  background-size: 60%;
+  background-position: left top;
+  background-repeat: no-repeat;
   background-color: var(--main-color);
   z-index: 1000;
   padding: 0;
-  padding-inline:var(--gutter);
   padding-block-start: 0;
   border-bottom-left-radius: var(--corners);
   border-bottom-right-radius: var(--corners);
   display: flow-root;
+  overflow: hidden;
 
 /*....ATTRIBUTION....*/
 /* GOAL: Prevent the h4's top margin from pushing the footer container down, so the purple background stops exactly at the top of the text */ 
@@ -368,17 +514,23 @@ footer {
 
 
 h4 {
-  font-family: var(--header-font);
-  font-weight: var(--header-weight);
-  font-size: var(--header-size);
+  font-size: calc(var(--body-size) * 6);
   color: var(--accent-color);
-  margin-block-start: calc(var(--gutter) * 7);
-  margin-block-end: 0rem;
+  text-align: right;
+  margin-block-start: calc(var(--large-gutter) * 7);
+  margin-block-end: -3rem;
   padding-block-start: 0;
+  padding-inline-end: 0.5rem;
   line-height: 1;
 }
+p{
+  margin-inline-start: 0.5rem;
+  padding-block: 0.1rem;
+  text-align: left;
+  justify-content: left;
+  color: var(--white);
 }
-
+}
 
 /*--------------IPAD------------.*/
 @media (width > 640px) {
@@ -388,52 +540,7 @@ h4 {
 /* RESOURCE: MDN Web Docs — CSS positioning (https://developer.mozilla.org/en-US/docs/Web/CSS/position), display property (https://developer.mozilla.org/en-US/docs/Web/CSS/display), and flexbox layout. Also used Claude for help with the synte for syntax clarification on overriding position in the media queries. */
 /* LEARNING: I know we learnt this in class but for some reason it wasn't fully working to me. I learnt that position - absolute takes an element out of the normal document flow, which is why the ampersand was appearing after "B" instead of between "R" and "B". To fix this in the iPad and laptop media query, I needed to reset the position to static and also reset the right and top values to auto. Using inline-block on all three spans (R, &, B) allows them to sit naturally in a row. The white-space: nowrap property on the parent h1 prevents any unwanted line breaks. */
   
-  header {
-    padding-block-start: var(--large-gutter);
-    text-align: right;
-    justify-content: left;
-    padding-inline-start: calc(var(--large-gutter)*3);
-  }
-  
-  h1 {
-    align-items: flex-end;
-    padding-block:0;
-    line-height: 0.8;
-    width: fit-content;
-    white-space: nowrap;
-    position: relative;
-  }
-  
-  .R {
-    display: inline-block;
-    transform: rotate(0deg);
-    font-size: calc(var(--header-size) * 2);
-  }
-  
-  .and {
-    position: static;
-    display: inline-block;
-    font-size: calc(var(--header-size) * 2);
-    transform: rotate(5deg);
-    margin: 0;
-    padding: 0;
-    right: auto;
-    top: auto;
-  }
-  
-  .B {
-    display: inline-block;
-    font-size: calc(var(--header-size) * 2);
-    padding-inline-start: 0;
-  }
- 
-.introduction {
-  margin-block-start: var(--large-gutter);
-  padding-block: calc(var(--large-gutter)*3);
-  padding-inline-start: calc(var(--large-gutter)*3.6);
-  text-align: left;
-  max-width: 60%;
-}
+
 /*....ATTRIBUTION(BOX SIZING)....*/
 /* GOAL: Prevent the channel grid from overflowing horizontally by allowing columns to shrink */
 /* RESOURCE: copilot, then looked it up on MDN — Grid layout: track sizing functions / minmax (https://developer.mozilla.org/en-US/docs/Web/CSS/minmax) */
@@ -454,9 +561,15 @@ h4 {
 }
 
 
-
+.notes {
 h2 {
   padding-inline: calc(var(--large-gutter)*3);
+}
+
+h3 {
+  border-radius: var(--corner-pill);
+  background-color: var(--main-color);
+  color: var(--white);
 }
 
 /*....ATTRIBUTION....*/
@@ -489,16 +602,13 @@ h2 {
   display: block;
 }
 }
-
+}
 
 
 /*--------------LAPTOP------------.*/
 @media (width > 1024px) { 
 
- 
 }
-
-
 /*--------------DESKTOP------------.*/
 @media (width > 1280px) { 
       
