@@ -86,6 +86,12 @@ a {
   line-height: 1.4rem;
   text-decoration:none;
 }
+body {
+background-image: url("/Illustrations/illustrations.png");
+  background-size: 100%;
+  background-position: top;
+  background-repeat: repeat;
+  }
 /*--------------MOBILE-FIRST DEFAULT------------*/
  html, body {
   overflow-x: hidden;
@@ -107,7 +113,6 @@ a {
   box-sizing: border-box;
   margin: 0;
   margin-block-start: calc(var(--large-gutter)*-1);
-  background-color: var(--accent-color);
   align-content:center;
   text-align: center;
   z-index: 1000;
@@ -344,9 +349,6 @@ h2 {
       position: relative;
       width: 100% !important;
       height: 100% !important;
-
-      border-radius: var(--corner-rounded);
-    outline: 1px solid var(--main-color);
     }
   }
 
@@ -393,7 +395,6 @@ h2 {
     & a {
       display: inline-block;
       white-space: nowrap;
-      background-color: var(--main-color);
       color: var(--accent-color);
       border-radius: var(--corner-pill);
       padding-block: calc(var(--small-gutter) * 0.1);
@@ -477,7 +478,6 @@ p {
 }
 
 .notes li {
-  background: var(--white);
   padding: var(--large-gutter);
   border-radius: var(--corner-rounded);
   box-sizing: border-box;
@@ -535,6 +535,57 @@ p{
 /*--------------IPAD------------.*/
 @media (width > 640px) {
 
+h1,h4 {
+  font-size: calc(var(--header-size) * 2.5);
+}
+p {
+  font-family: var(--body-font);
+  font-weight: 600;
+  font-size: var(--body-size);
+  color: var(--main-color);
+  line-height: 1.5rem;
+}
+.header-container {
+ background-image: url("Illustrations/Headphones.png");
+  background-size: 30%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.introduction {
+  margin-block-start: calc(var(--large-gutter) * 6);
+  padding-block-end: calc(var(--small-gutter) / 3);
+  max-width: 50%;
+  text-align: left;      /* keeps text left aligned */
+  margin-inline: auto; 
+}
+/*-------------- ARE.NA------------*/
+.blocks {
+h3 {
+    background-color: var(--medium-color);
+    color: var(--main-color);
+    border-radius: var(--corner-pill);
+    text-align: center;
+    padding-block: calc(var(--large-gutter) * 0.5);
+    margin-inline: 35rem;
+    margin-block: calc(var(--large-gutter) * 4);
+  }
+}
+#channel-blocks {
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--large-gutter); /* needed so things don't get cut off */
+  gap: var(--small-gutter); /* controles vertical spacing on mobile since i used a grid as the base */
+  overflow: hidden;
+
+  & > li {
+    list-style: none;
+    width: 90%;
+    position: relative;
+    animation: dropIn 0.7s ease;
+    transition: rotate 0.3s ease, scale 0.3s ease;
+  }
+}
+
 /* /*....ATTRIBUTION....*/
 /* GOAL: I was having a lot of trouble getting the H1 "R&B" title to display horizontally in one line on larger screens, while keeping the stacked layout on mobile. The ampersand kept appearing in the wrong position (showing "RB&" instead of "R&B"). */
 /* RESOURCE: MDN Web Docs — CSS positioning (https://developer.mozilla.org/en-US/docs/Web/CSS/position), display property (https://developer.mozilla.org/en-US/docs/Web/CSS/display), and flexbox layout. Also used Claude for help with the synte for syntax clarification on overriding position in the media queries. */
@@ -551,7 +602,7 @@ p{
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--spacing);
   box-sizing: border-box;
-  gap: calc(var(--large-gutter)*3);
+  gap: calc(var(--large-gutter)*0.5);
   padding-block:(var(--large-gutter)*3);
   padding-inline: calc(var(--large-gutter)*3);
   z-index: 1000;
@@ -602,7 +653,22 @@ h3 {
   display: block;
 }
 }
+footer {
+  /*-------------- ATTRIBUTION NEEDED!!!! ------------*/
+  background-image: url("Illustrations/ipod-hd.png");
+  background-size: 20%;
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-color: var(--main-color);
+  z-index: 1000;
+  padding: 0;
+  padding-block-start: 0;
+  border-bottom-left-radius: var(--corners);
+  border-bottom-right-radius: var(--corners);
+  display: flow-root;
+  overflow: hidden;
 }
+
 
 
 /*--------------LAPTOP------------.*/
@@ -612,9 +678,7 @@ h3 {
 /*--------------DESKTOP------------.*/
 @media (width > 1280px) { 
       
-  h1,h4 {
-  font-size: calc(var(--header-size) * 3.5);
-}
+
   
 }
 
