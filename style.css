@@ -650,18 +650,7 @@ footer {
   display: flow-root;
   overflow: hidden;
 
-  h4 {
-  font-size: calc(var(--body-size) * 12);
-  color: var(--accent-color);
-  text-align: right;
-  margin-block-start: calc(var(--large-gutter) * 7);
-  margin-block-end: -3rem;
-  padding-block-start: 0;
-  padding-inline-end: 0.5rem;
-  line-height: 1;
-}
-}
-}
+  
 
 
 /*--------------LAPTOP------------.*/
