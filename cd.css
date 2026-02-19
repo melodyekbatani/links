@@ -194,17 +194,23 @@ main {
 .film-wrapper #next {
     background-size: contain; /*  scales the background image to fit inside the button while keeping its full aspect ratio.*/
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center center;
     border: none;
     width: 3rem;
     height: 3rem;
-    margin-inline-start: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
 }
 
  #prev {
+    top: 50%;
+    transform: translateY(-50%);
     background-image: url("Illustrations/left back.png");
 }
 
 #next {
+    top: 50%;
+    transform: translateY(-50%);
     background-image: url("Illustrations/right back.png");
 }
