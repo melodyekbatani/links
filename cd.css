@@ -89,6 +89,6 @@ main {
     transform: translate(-50%, -50%); /* Asked claude to help make this in the center of my circle - kept forgetting the synthx. moves - vertically then horizontally */
     /* FYI align-items: center; - you keep doing this! this ONLY APPLIES to FLEX/GRID...same with justify-content */
     }
-    
+
 
 
