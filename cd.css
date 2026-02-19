@@ -66,15 +66,23 @@ main {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    overflow: hidden;
     position: relative;
     border: 1rem solid var(--ring);
 }
 
 /* DISC FILL */
-#disc-image 
+#disc-image {
     width: 100%;
     height: 100%
+}
 
-    #disc-hole
+#disc-hole  {
+    position: absolute; 
+    color: red;
+    background-color: blue; 
+    width: 12%; 
+    height: 12%;
+    z-index: 1000;
+}
+
 
