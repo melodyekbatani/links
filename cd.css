@@ -7,8 +7,10 @@
   --font-weight: 400;
   --font-size: 1rem;
 }
+/*Locks frame in place*/
 html {
     overflow: hidden;
+    height: 100%;
 }
 
 h1 {
@@ -43,4 +45,11 @@ h1 {
 .menu a {
   text-decoration: none;
   color: black;
+}
+/* My film strip */
+main {
+    position:relative;
+    display: flex;
+    flex: 1;
+    justify-content 
 }
