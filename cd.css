@@ -83,6 +83,9 @@ main {
     width: 12%; 
     height: 12%;
     z-index: 1000;
+    border-radius: 50%;
+    align-items: center;
+
 }
 
 
