@@ -1,8 +1,10 @@
 @import url("https://use.typekit.net/kfz2rir.css");
 
 :root {
+    overflow-y: hidden;
+    height: 100vh;
     --font: "parabolica", sans-serif;
-    --disc-size: 60vh;
+    --disc-size: 40vh;
     --thumb-size: 5rem;
     --scrubber-dot: 1.4rem;
     --scrubber-square: 0.6rem;
@@ -110,4 +112,15 @@ background: var(--red);
     overflow-x: auto;
     gap: var(--gap-size); 
     flex: 1; 
+    min-height: var(--block-height)
+    padding:var(var(--gap-size));
+    list-style: none; 
+}
+/* containing the film strip in a block so i can do the overflow hidden on vertical scroll */ 
+.film-wrapper #channel-blocks li {
+    flex: 0 0 auto; 
+    width: var(--block-width);
+    height: var(--block-height);
+    background: var(--main);
+    border-radius: 0.5rem;
 }
