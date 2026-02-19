@@ -84,9 +84,11 @@ main {
     height: 12%;
     z-index: 1000;
     border-radius: 50%;
+    top: 50%;
+    left: 50%; /* tell it where to go — 50% from the top and 50% from the left */
+    transform: translate(-50%, -50%); /* Asked claude to help make this in the center of my circle - kept forgetting the synthx. moves - vertically then horizontally */
+    /* FYI align-items: center; - you keep doing this! this ONLY APPLIES to FLEX/GRID...same with justify-content */
+    }
     
-   /* FYI align-items: center; - you keep doing this! this ONLY APPLIES to FLEX/GRID...same with justify-content */
-
-}
 
 
