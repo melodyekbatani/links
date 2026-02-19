@@ -84,7 +84,8 @@ main {
     height: 12%;
     z-index: 1000;
     border-radius: 50%;
-    align-items: center;
+    
+   /* FYI align-items: center; - you keep doing this! this ONLY APPLIES to FLEX/GRID...same with justify-content */
 
 }
 
