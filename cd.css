@@ -90,5 +90,10 @@ main {
     /* FYI align-items: center; - you keep doing this! this ONLY APPLIES to FLEX/GRID...same with justify-content */
     }
 
+/* FILMSTRIP */
+#channel-blocks {
+    display: flex;  
+    overflow-x: auto; 
 
+}
 
