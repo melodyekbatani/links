@@ -2,10 +2,15 @@
 @import url("https://use.typekit.net/kfz2rir.css");
 
 :root {
-    /*base fonts*/
-  --base-font: "parabolica", sans-serif;
-  --font-weight: 400;
-  --font-size: 1rem;
+    /*base styles*/
+    --font: "parabolica", sans-serif;
+    --disc-size: 55vh;
+    --thumb-size: 5rem;
+    --scrubber-dot: 1.4rem;
+    --scrubber-square: 0.6rem;
+    --red: #c0392b;
+    --active: #4a90d9;
+    --ring: #ddd;
 }
 /*Locks frame in place*/
 html {
@@ -13,22 +18,19 @@ html {
     height: 100%;
 }
 
-h1 {
-    font-family: "parabolica", sans-serif;
-    font-weight: 400;
-    font-size: 1rem
-}
-.menu {
-    font-family: "parabolica", sans-serif;
-    font-weight: 400;
-    font-size: 1rem
-}
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.5rem;
+  padding-inline: 1rem 
+  padding-block: 1.5rem;
   z-index: 10000;
+
+  h1 {
+    font-family: "parabolica", sans-serif;
+    font-weight: 400;
+    font-size: 1rem
+}
 }
 
 .menu {
@@ -51,5 +53,6 @@ main {
     position:relative;
     display: flex;
     flex: 1;
-    justify-content 
+    justify-content:center;
+    align-items: center;
 }
