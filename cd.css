@@ -96,7 +96,7 @@ main {
     justify-content: center;
     align-items: center;
     position: relative;
-    border: 1rem solid var(--ring);
+    border: 0.6rem solid var(--ring);
     animation: spin 8s linear infinite;
     background-image: url("Illustrations/Disc.png");
 
@@ -127,10 +127,11 @@ main {
 #disc-hole  {
     position: absolute; 
     background-color: white; 
-    width: 12%; 
-    height: 12%;
+    width: 18%; 
+    height: 18%;
     z-index: 1000;
     border-radius: 50%;
+    border: 0.5rem solid var(--ring);
     top: 50%;
     left: 50%; /* tell it where to go — 50% from the top and 50% from the left */
     transform: translate(-50%, -50%); /* Asked claude to help make this in the center of my circle - kept forgetting the synthx. moves - vertically then horizontally */
