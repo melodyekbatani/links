@@ -7,14 +7,11 @@
 }
 
 :root {
-    overflow-y: hidden;
-    height: 100vh;
+    overflow-y: hidden; /* hiding vertical scroll */
+    height: 100vh; /* setting */
 
     --font: "parabolica", sans-serif;
     --disc-size: 45vh;
-    --thumb-size: 5rem;
-    --scrubber-dot: 1.4rem;
-    --scrubber-square: 0.6rem;
     --red: #c0392b;
     --active: #4a90d9;
     --ring: #ddd;
@@ -22,7 +19,7 @@
     --block-size: 16rem;
 
     /* Filmstrip variables */
-    --block-size: 12rem;
+    --block-size: 8rem;
     --gap-size: 1rem;
     --padding-size: 1.5rem;
     --border-radius: 10%;
@@ -116,6 +113,8 @@ main {
 
 /* FILMSTRIP */
 .film-wrapper {
+    margin-block-start: 6rem;
+    padding: 2rem;
     display: flex;
     align-items: center;
     gap: var(--gap-size);
@@ -127,6 +126,7 @@ main {
     overflow-x: auto;  /* horizontal scroll */
     gap: var(--gap-size);
     padding: var(--padding-size);
+    padding: 0;
     padding-block-end: calc(var(--padding-size) * 3);
     list-style: none;
     margin: 0;
@@ -161,11 +161,19 @@ main {
 }
 .film-wrapper #prev,
 .film-wrapper #next {
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
+    background-size: contain; /*  scales the background image to fit inside the button while keeping its full aspect ratio.*/
+    background-repeat: no-repeat;
+    background-position: center;
     border: none;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    margin-inline-start: 0.5rem;
+}
+
+ #prev {
+    background-image: url("Illustrations/left back.png");
+}
+
+#next {
+    background-image: url("Illustrations/right back.png");
 }
