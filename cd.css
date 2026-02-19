@@ -64,6 +64,13 @@ h1 {
     color: var(--main);
 }
 
+
+/*....This one makes the images rotate....*/
+@keyframes spin {
+  to { rotate: 360deg; }
+}
+
+
 /* MAIN  - flex is simplier for this since it I want to create a single column layout for the header for now */
 main {
     padding-block-start: 3rem;
@@ -84,20 +91,24 @@ main {
 #disc {
     width:  var(--disc-size);
     height: var(--disc-size);
-    border-radius: 50%;
+    border-radius: 50%; /* making the disc shape */
     overflow: hidden;
     justify-content: center;
     align-items: center;
     position: relative;
     border: 1rem solid var(--ring);
+     animation: spin 8s linear infinite;
 }
 
 /* DISC FILL */
 #disc-image {
-    width: var(--disc-size);
+    width: var(--disc-size); 
     height: var(--disc-size);
-    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;  /* making the content disc shaped */
     object-fit: cover;
+    
 }
 /* selecting all the content types and making them fit into the circle */
 #disc-image img,
