@@ -3,8 +3,9 @@
 :root {
     overflow-y: hidden;
     height: 100vh;
+
     --font: "parabolica", sans-serif;
-    --disc-size: 40vh;
+    --disc-size: 45vh;
     --thumb-size: 5rem;
     --scrubber-dot: 1.4rem;
     --scrubber-square: 0.6rem;
@@ -12,12 +13,14 @@
     --active: #4a90d9;
     --ring: #ddd;
     --main:rgb(0, 0, 0);
+    --block-size: 16rem;
 
     /* Filmstrip variables */
-    --block-width: 15rem;
-    --block-height: 5rem;
+    --block-width: 12rem;
+    --block-height: 12rem;
     --gap-size: 1rem;
     --padding-size: 1.5rem;
+    --border-radius: 10%;
 
 }
 
@@ -57,6 +60,7 @@ h1 {
 
 /* MAIN  - flex is simplier for this since it I want to create a single column layout for the header for now */
 main {
+    padding-block-start: 6rem;
     flex: 1;
     position: relative;
     display: flex;
@@ -100,37 +104,55 @@ main {
     }
 
 /* FILMSTRIP */
+
+/* FILMSTRIP */
 .film-wrapper {
-padding-block-start: 14rem;
-display:flex;
-align-items: center; 
-gap: var(-gap-size);
-padding: var (--padding-size);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding-block: 3rem;
+    background: white;
 }
 .film-wrapper #channel-blocks {
-    display: flex;
+    display: flex;  
     overflow-x: auto;
-    gap: var(--gap-size); 
-    flex: 1; 
+    gap: var(--gap-size);
+    flex: 1;
     min-height: var(--block-height);
-    padding: var(--gap-size);
-    list-style: none; 
+    padding: 0;
+    list-style: none;
+    scroll-behavior: smooth;
 }
-/* containing the film strip in a block so i can do the overflow hidden on vertical scroll */ 
+
+
+#channel-blocks {
+    display: flex;
+    gap: 0.4rem;
+    overflow-x: auto;
+    flex: 1;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
 .film-wrapper #channel-blocks li {
-    flex: 0 0 auto; 
     width: var(--block-width);
     height: var(--block-height);
-    background: var(--main);
+    flex-shrink: 0; /* image blocks are 12rem wide. If the container is smaller than needed for all blocks, normally flexbox would shrink them. But flex-shrink: 0; says "keep them 12rem, force horizontal scroll instead."*/
+    overflow: hidden;
+    position: relative;
 }
+
+
+
+#channel-blocks::-webkit-scrollbar {
+    display: none;
+}
+
+
 .film-wrapper #channel-blocks img {
-    width: 100%; 
-    height: auto; 
-    max-height: var(--block-height); 
-    object-fit: cover; 
-}
-.film-wrapper button {
-    background-color: var(--main);
-    color: white;
-    padding: calc(var(--gap-size) * 0.5) var(--gap-size);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
