@@ -1,5 +1,11 @@
 @import url("https://use.typekit.net/kfz2rir.css");
 
+@font-face {
+    font-family: "DT Nouveau";
+    src: url("FONTS/DTNouveau-Regular.otf") format("opentype");
+    font-weight: normal;
+}
+
 :root {
     overflow-y: hidden;
     height: 100vh;
@@ -24,6 +30,10 @@
 
 }
 
+h1, h2, h3 {
+    font-family: "DT Nouveau", sans-serif;
+}
+
 html, body {
     height: 100%;
     font-family: var(--font);
@@ -40,7 +50,7 @@ header .header-container {
 }
 
 h1 {
-    font-family: var(--font);
+    font-size: 3rem;
     color: var(--main);
 }
 
@@ -162,3 +172,15 @@ main {
     height: var(--block-size);
     object-fit: cover;
 }
+
+#channel-block li:has(iframe) {
+    width: var(--block-size);
+    height: var(--block-size);
+    object-fit: cover;
+}
+#channel-block li:has(.text) {
+    width: var(--block-size);
+    height: var(--block-size);
+    object-fit: cover;
+}
+
