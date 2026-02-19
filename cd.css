@@ -101,19 +101,19 @@ main {
 
 /* FILMSTRIP */
 .film-wrapper {
+padding-block-start: 14rem;
 display:flex;
 align-items: center; 
 gap: var(-gap-size);
 padding: var (--padding-size);
-background: var(--red);
 }
 .film-wrapper #channel-blocks {
     display: flex;
     overflow-x: auto;
     gap: var(--gap-size); 
     flex: 1; 
-    min-height: var(--block-height)
-    padding:var(var(--gap-size));
+    min-height: var(--block-height);
+    padding: var(--gap-size);
     list-style: none; 
 }
 /* containing the film strip in a block so i can do the overflow hidden on vertical scroll */ 
@@ -122,5 +122,15 @@ background: var(--red);
     width: var(--block-width);
     height: var(--block-height);
     background: var(--main);
-    border-radius: 0.5rem;
+}
+.film-wrapper #channel-blocks img {
+    width: 100%; 
+    height: auto; 
+    max-height: var(--block-height); 
+    object-fit: cover; 
+}
+.film-wrapper button {
+    background-color: var(--main);
+    color: white;
+    padding: calc(var(--gap-size) * 0.5) var(--gap-size);
 }
