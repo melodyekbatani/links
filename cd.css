@@ -82,18 +82,33 @@ main {
 }
 
 #disc {
-    width: 100%;
-    height: 100%;
+    width:  var(--disc-size);
+    height: var(--disc-size);
     border-radius: 50%;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
     position: relative;
     border: 1rem solid var(--ring);
 }
 
 /* DISC FILL */
 #disc-image {
-    width: 100%;
-    height: 100%
+    width: var(--disc-size);
+    height: var(--disc-size);
+    border-radius: 50%;
+    object-fit: cover;
 }
+/* selecting all the content types and making them fit into the circle */
+#disc-image img,
+#disc-image iframe,
+#disc-image video,
+#disc-image embed {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 
 #disc-hole  {
     position: absolute; 
