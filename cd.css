@@ -89,7 +89,7 @@ main {
 }
 
 #disc {
-    width:  var(--disc-size);
+    width: var(--disc-size);
     height: var(--disc-size);
     border-radius: 50%; /* making the disc shape */
     overflow: hidden;
@@ -97,7 +97,10 @@ main {
     align-items: center;
     position: relative;
     border: 1rem solid var(--ring);
-     animation: spin 8s linear infinite;
+    animation: spin 8s linear infinite;
+    background-image: url("Illustrations/Disc.png");
+
+    /* making the disc shape */
 }
 
 /* DISC FILL */
@@ -123,8 +126,7 @@ main {
 
 #disc-hole  {
     position: absolute; 
-    color: red;
-    background-color: blue; 
+    background-color: white; 
     width: 12%; 
     height: 12%;
     z-index: 1000;
