@@ -9,7 +9,9 @@
     --red: #c0392b;
     --active: #4a90d9;
     --ring: #ddd;
-    --main:rgb(255, 0, 217);
+    --main:rgb(0, 0, 0);
+
+
 }
 
 html, body {
@@ -91,9 +93,3 @@ main {
     }
 
 /* FILMSTRIP */
-#channel-blocks {
-    display: flex;  
-    overflow-x: auto; 
-
-}
-

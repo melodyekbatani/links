@@ -13,8 +13,8 @@ let placeChannelInfo = (channelData) => {
 
 	// Then set their content/attributes to our data:
 	// channelTitle.innerHTML = channelData.title
-	channelDescription.innerHTML = channelData.description.html
-	channelCount.innerHTML = channelData.counts.blocks
+	// channelDescription.innerHTML = channelData.description.html 
+	// channelCount.innerHTML = channelData.counts.blocks
 	// channelLink.href = `https://www.are.na/channel/${channelSlug}`
 }
 
@@ -220,14 +220,14 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}`, (json) => {
 	//renderUser(json) // Pass this to the same function, no nesting.
 //})
 
-// And the data for the blocks:
+// // And the data for the blocks:
 fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=position_desc`, (json) => {
-	console.log(json) // See what we get back.
+console.log(json) // See what we get back.
 
-	// Loop through the nested `.data` array (list).
-	json.data.forEach((blockData) => {
-		// console.log(blockData) // The data for a single block.
+// 	// Loop through the nested `.data` array (list).
+json.data.forEach((blockData) => {
+console.log(blockData) // The data for a single block.
 
-		renderBlock(blockData) // Pass the single block’s data to the render function.
-	})
-})
+renderBlock(blockData) // Pass the single block’s data to the render function.
+ 	})
+ })
