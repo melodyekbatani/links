@@ -1,58 +1,72 @@
-/*--------------FONT IMPORT------------.*/
 @import url("https://use.typekit.net/kfz2rir.css");
 
 :root {
-    /*base styles*/
     --font: "parabolica", sans-serif;
-    --disc-size: 55vh;
+    --disc-size: 60vh;
     --thumb-size: 5rem;
     --scrubber-dot: 1.4rem;
     --scrubber-square: 0.6rem;
     --red: #c0392b;
     --active: #4a90d9;
     --ring: #ddd;
+    --main:rgb(255, 0, 217);
 }
-/*Locks frame in place*/
-html {
-    overflow: hidden;
+
+html, body {
     height: 100%;
-}
-
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-inline: 1rem 
-  padding-block: 1.5rem;
-  z-index: 10000;
-
-  h1 {
-    font-family: "parabolica", sans-serif;
+    font-family: var(--font);
     font-weight: 400;
-    font-size: 1rem
+    font-size: 1rem;
 }
+/* HEADER - flex is simplier for this since it I want to create a single column layout for the header for now */
+header .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 1rem; 
+    padding-block: 1.5rem;
+}
+
+h1 {
+    font-family: var(--font);
+    color: var(--main);
 }
 
 .menu {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-family: "parabolica", sans-serif;
-  font-weight: 400;
- font-size: 1rem
+    font-family: var(--font);
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .menu a {
-  text-decoration: none;
-  color: black;
+    text-decoration: underline;
+    color: var(--main);
 }
-/* My film strip */
+
+/* MAIN  - flex is simplier for this since it I want to create a single column layout for the header for now */
 main {
-    position:relative;
-    display: flex;
     flex: 1;
-    justify-content:center;
+    position: relative;
+    display: flex;
+    justify-content: center;
     align-items: center;
+}
+/* DISC - setting up the sizing for the main circle*/
+#disc-container {
+    width: var(--disc-size);
+    height: var(--disc-size);
+    position: relative;
+    z-index: 1;
+}
+
+#disc {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    border: 1rem solid var(--ring);
 }
