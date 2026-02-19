@@ -17,9 +17,52 @@ let placeChannelInfo = (channelData) => {
 	// channelCount.innerHTML = channelData.counts.blocks
 	// channelLink.href = `https://www.are.na/channel/${channelSlug}`
 }
+// adding the interactivity here to make it so the content in the film strip goes into the disc player . I used copilot to help me out on this. 
 
 
 
+
+let displayOnDisc = (blockData, blockLi) => {  // this function takes in the block data and the link to the block that was clicked on.
+
+let discImage = document.querySelector('#disc-image') // this is the image element in the disc player where the content will be displayed. 
+// Checks what TYPE of block was clicked and displays it on the disc MORE ATTRIBUTIONS HERE!!
+    if (blockData.type == 'Image') {
+        // Finds the image tag inside the clicked block
+        let img = blockLi.querySelector('img')
+        // If there's an image, puts it on the disc
+        if (img) {
+            discImage.innerHTML = `<img src="${img.src}" alt="disc">`
+        }
+    } 
+	 else if (blockData.type == 'Link') {
+        // Links also have images, show them
+        let img = blockLi.querySelector('img')
+        if (img) {
+            discImage.innerHTML = `<img src="${img.src}" alt="disc">`
+        }
+    } 
+    else if (blockData.type == 'Text') {
+        // For text blocks, show the text content
+        discImage.innerHTML = blockLi.innerHTML
+    } 
+    else if (blockData.type == 'Attachment') {
+        // For PDFs and other files, show image if available
+        let img = blockLi.querySelector('img')// some attachments have preview images, try to find one
+        if (img) {
+            discImage.innerHTML = `<img src="${img.src}" alt="disc" >` // if there's an image, show it
+        }
+    }
+	
+
+
+	document.querySelectorAll('#channel-blocks li').forEach(li => {
+        li.classList.remove('active')
+    })
+    blockLi.classList.add('active') // I also added a class to the clicked block to show it's active, and remove that class from all other blocks.
+
+}
+
+	
 // Then our big function for specific-block-type rendering:
 let renderBlock = (blockData) => {
 	// To start, a shared `ul` where we’ll insert all our blocks
@@ -28,6 +71,8 @@ let renderBlock = (blockData) => {
 	// Links!
 	if (blockData.type == 'Link') {
 		// Declares a “template literal” of the dynamic HTML we want.
+
+		
 		let linkItem =
 			`
 			<li>
@@ -45,6 +90,17 @@ let renderBlock = (blockData) => {
 		// And puts it into the page!
 		channelBlocks.insertAdjacentHTML('beforeend', linkItem)
 
+// ATTRIBUTION
+// GOAL: Make blocks clickable so their content displays on the central disc
+// RESOURCE: GitHub Copilot helped structure the function logic
+// LEARNING: Added click event listener to trigger displayOnDisc function
+	
+		let blockLi = channelBlocks.lastElementChild
+		blockLi.addEventListener('click', () => {
+    	displayOnDisc(blockData, blockLi)
+	})
+		
+
 		// More on template literals:
 		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
 	}
@@ -52,6 +108,7 @@ let renderBlock = (blockData) => {
 	// Images!
 	else if (blockData.type == 'Image') {
 		 let imageItem =
+
 		// Couldn't figure this out for the longest time, but I rewatched the loom and lecture and asked co-pilot help as well. This starts a list item (meant to go inside a <ul> item). The figure element is a semantic wrapper for the images and its caption. 
 		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
         `
@@ -62,6 +119,16 @@ let renderBlock = (blockData) => {
         </li>
      `
 	 channelBlocks.insertAdjacentHTML('beforeend', imageItem)
+
+	 // ATTRIBUTION
+    // GOAL: Make blocks clickable so their content displays on the central disc
+    // RESOURCE: GitHub Copilot helped structure the function logic
+    // LEARNING: Added cursor pointer and click event listener to trigger displayOnDisc function, the first line here declares the variable up to the last added block, then add the event listener to the block and call the displayOnDisc function. 
+    
+	let blockLi = channelBlocks.lastElementChild
+    blockLi.addEventListener('click', () => {
+    displayOnDisc(blockData, blockLi)
+    })
 	}
 
 	// Text!
@@ -76,6 +143,12 @@ let renderBlock = (blockData) => {
         </li>
         `
     channelBlocks.insertAdjacentHTML('beforeend', textItem)
+	
+	
+	let blockLi = channelBlocks.lastElementChild
+	blockLi.addEventListener('click', () => {
+   	displayOnDisc(blockData, blockLi)
+	})
 	}
 
 	// Uploaded (not linked) media…
@@ -98,6 +171,10 @@ let renderBlock = (blockData) => {
 
 			channelBlocks.insertAdjacentHTML('beforeend', videoItem)
 
+			let blockLi = channelBlocks.lastElementChild
+			blockLi.addEventListener('click', () => {
+   			displayOnDisc(blockData, blockLi)
+})
 			// More on `video`, like the `autoplay` attribute:
 			// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video
 		}
@@ -115,6 +192,12 @@ let renderBlock = (blockData) => {
         `
 
     channelBlocks.insertAdjacentHTML('beforeend', pdfItem)
+
+	let blockLi = channelBlocks.lastElementChild
+	blockLi.addEventListener('click', () => {
+   	displayOnDisc(blockData, blockLi)
+			})
+
 		}
 
 		// Uploaded audio!
@@ -129,6 +212,10 @@ let renderBlock = (blockData) => {
 
 			channelBlocks.insertAdjacentHTML('beforeend', audioItem)
 
+			let blockLi = channelBlocks.lastElementChild
+			blockLi.addEventListener('click', () => {
+   			displayOnDisc(blockData, blockLi)
+})
 			// More on`audio`:
 			// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio
 		}
@@ -150,6 +237,10 @@ let renderBlock = (blockData) => {
 
 			channelBlocks.insertAdjacentHTML('beforeend', linkedVideoItem)
 
+			let blockLi = channelBlocks.lastElementChild
+			blockLi.addEventListener('click', () => {
+   			displayOnDisc(blockData, blockLi)
+			})
 			// More on `iframe`:
 			// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
 		}
@@ -169,6 +260,11 @@ let renderBlock = (blockData) => {
 			</li>
 			`
 			channelBlocks.insertAdjacentHTML('beforeend', linkedAudioItem)
+
+			let blockLi = channelBlocks.lastElementChild
+			blockLi.addEventListener('click', () => {
+   			displayOnDisc(blockData, blockLi)
+		})
 		}
 	}
 }

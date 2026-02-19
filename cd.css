@@ -144,6 +144,11 @@ main {
     overflow: hidden;
     aspect-ratio: 1;
 }
+
+#channel-blocks li.active {
+    border: 2px solid var(--main);
+    outline: 2px solid var(--main);
+}
 #channel-blocks img,
 #channel-blocks iframe {
     object-fit: cover;
