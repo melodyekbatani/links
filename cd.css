@@ -22,8 +22,7 @@
     --block-size: 16rem;
 
     /* Filmstrip variables */
-    --block-width: 12rem;
-    --block-height: 12rem;
+    --block-size: 12rem;
     --gap-size: 1rem;
     --padding-size: 1.5rem;
     --border-radius: 10%;
@@ -70,7 +69,7 @@ h1 {
 
 /* MAIN  - flex is simplier for this since it I want to create a single column layout for the header for now */
 main {
-    padding-block-start: 6rem;
+    padding-block-start: 3rem;
     flex: 1;
     position: relative;
     display: flex;
@@ -119,68 +118,48 @@ main {
 .film-wrapper {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    padding-block: 3rem;
-    background: white;
+    gap: var(--gap-size);
+    padding-block: var(--padding-size);
+    background-color: white;
 }
-.film-wrapper #channel-blocks {
+ #channel-blocks {
     display: flex;  
     overflow-x: auto;
     gap: var(--gap-size);
-    flex: 1;
-    min-height: var(--block-height);
-    padding: 0;
+    padding: var(--padding-size);
+    padding-block-end: calc(var(--padding-size) * 3);
+    justify-content: center;
     list-style: none;
-    scroll-behavior: smooth;
+    margin:0;
+    width:100%;
 }
 
-
-#channel-blocks {
+ #channel-blocks li {
+    width: var(--block-size); /* 16rem */
+    height: var(--block-size);
     display: flex;
-    gap: 0.4rem;
-    overflow-x: auto;
-    flex: 1;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-
-.film-wrapper #channel-blocks li {
-    width: var(--block-width);
-    height: var(--block-height);
     flex-shrink: 0; /* image blocks are 12rem wide. If the container is smaller than needed for all blocks, normally flexbox would shrink them. But flex-shrink: 0; says "keep them 12rem, force horizontal scroll instead."*/
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
-    position: relative;
 }
-
-
-
-#channel-blocks::-webkit-scrollbar {
-    display: none;
+#channel-blocks img,
+#channel-blocks iframe {
+    object-fit: cover;
 }
-
-
-.film-wrapper #channel-blocks img {
+#channel-blocks .text,
+#channel-blocks embed,
+#channel-blocks iframe { 
     width: 100%;
     height: 100%;
-    object-fit: cover;
 }
-/* specific targeting the blocks that have images - this is a selector tool that says "only select the li's that have images in them" cropping the image to the size of the block */
-#channel-block li:has(img) {
-    width: var(--block-size);
-    height: var(--block-size);
-    object-fit: cover;
+.film-wrapper #prev,
+.film-wrapper #next {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    flex-shrink: 0;
 }
-
-#channel-block li:has(iframe) {
-    width: var(--block-size);
-    height: var(--block-size);
-    object-fit: cover;
-}
-#channel-block li:has(.text) {
-    width: var(--block-size);
-    height: var(--block-size);
-    object-fit: cover;
-}
-
