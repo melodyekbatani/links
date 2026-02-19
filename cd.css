@@ -156,3 +156,9 @@ main {
     height: 100%;
     object-fit: cover;
 }
+/* specific targeting the blocks that have images - this is a selector tool that says "only select the li's that have images in them" cropping the image to the size of the block */
+#channel-block li:has(img) {
+    width: var(--block-size);
+    height: var(--block-size);
+    object-fit: cover;
+}
