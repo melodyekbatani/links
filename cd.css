@@ -11,6 +11,11 @@
     --ring: #ddd;
     --main:rgb(0, 0, 0);
 
+    /* Filmstrip variables */
+    --block-width: 15rem;
+    --block-height: 5rem;
+    --gap-size: 1rem;
+    --padding-size: 1.5rem;
 
 }
 
@@ -93,3 +98,16 @@ main {
     }
 
 /* FILMSTRIP */
+.film-wrapper {
+display:flex;
+align-items: center; 
+gap: var(-gap-size);
+padding: var (--padding-size);
+background: var(--red);
+}
+.film-wrapper #channel-blocks {
+    display: flex;
+    overflow-x: auto;
+    gap: var(--gap-size); 
+    flex: 1; 
+}
