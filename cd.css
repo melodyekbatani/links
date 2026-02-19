@@ -1,0 +1,46 @@
+/*--------------FONT IMPORT------------.*/
+@import url("https://use.typekit.net/kfz2rir.css");
+
+:root {
+    /*base fonts*/
+  --base-font: "parabolica", sans-serif;
+  --font-weight: 400;
+  --font-size: 1rem;
+}
+html {
+    overflow: hidden;
+}
+
+h1 {
+    font-family: "parabolica", sans-serif;
+    font-weight: 400;
+    font-size: 1rem
+}
+.menu {
+    font-family: "parabolica", sans-serif;
+    font-weight: 400;
+    font-size: 1rem
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  z-index: 10000;
+}
+
+.menu {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: "parabolica", sans-serif;
+  font-weight: 400;
+ font-size: 1rem
+}
+
+.menu a {
+  text-decoration: none;
+  color: black;
+}
