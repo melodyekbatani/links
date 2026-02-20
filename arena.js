@@ -143,14 +143,12 @@ let renderBlock = (blockData) => {
 		// And puts it into the page!
 		channelBlocks.insertAdjacentHTML('beforeend', linkItem)
 
-// ATTRIBUTION
-// GOAL: Make blocks clickable so their content displays on the central disc
-// RESOURCE: GitHub Copilot helped structure the function logic
-// LEARNING: Added click event listener to trigger displayOnDisc function
+		// MAKING FILMSTRIP BLOCKS CLICKABLE
+		// When user clicks a block in the filmstrip, it should display on the disc used claud and copilot to helped structure the function logic and reviewed my understanding with the code tutor, added click event listener to trigger displayOnDisc function
 	
-		let blockLi = channelBlocks.lastElementChild
-		blockLi.addEventListener('click', () => {
-    	displayOnDisc(blockData, blockLi)
+		let blockLi = channelBlocks.lastElementChild //Getting the <li> we just created and added to the filmstrip, lastElementChild gives us the most recently appended child, this is the NEW block we're setting up, not an old one
+		blockLi.addEventListener('click', () => { //addEventListener attaches a click handler to this specific <li> - refrenced MDN to review this. FYI Arrow function () => {} runs when the block is clicked
+		displayOnDisc(blockData, blockLi) // works through event type and callback function
 	})
 		
 
@@ -173,15 +171,11 @@ let renderBlock = (blockData) => {
      `
 	 channelBlocks.insertAdjacentHTML('beforeend', imageItem)
 
-	 // ATTRIBUTION
-    // GOAL: Make blocks clickable so their content displays on the central disc
-    // RESOURCE: GitHub Copilot helped structure the function logic
-    // LEARNING: Added cursor pointer and click event listener to trigger displayOnDisc function, the first line here declares the variable up to the last added block, then add the event listener to the block and call the displayOnDisc function. 
-    
+	 // ATTRIBUTION - SAME AS ABOVE FOR MAKING FILMSTRIP BLOCKS CLICKABLE FOR LINKS
 	let blockLi = channelBlocks.lastElementChild
-    blockLi.addEventListener('click', () => {
-    displayOnDisc(blockData, blockLi)
-    })
+	blockLi.addEventListener('click', () => {
+	displayOnDisc(blockData, blockLi)
+	})
 	}
 
 	// Text!
@@ -221,12 +215,12 @@ let renderBlock = (blockData) => {
 				</div>
 				</li>
 				`
-
+			 // ATTRIBUTION - SAME AS ABOVE FOR MAKING FILMSTRIP BLOCKS CLICKABLE FOR LINKS
 			channelBlocks.insertAdjacentHTML('beforeend', videoItem)
 
 			let blockLi = channelBlocks.lastElementChild
 			blockLi.addEventListener('click', () => {
-   			displayOnDisc(blockData, blockLi)
+			displayOnDisc(blockData, blockLi)
 })
 			// More on `video`, like the `autoplay` attribute:
 			// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video
@@ -262,12 +256,12 @@ let renderBlock = (blockData) => {
 					<audio controls src="${ blockData.attachment.url }"></audio>
 				</li>
 				`
-
+ 			// ATTRIBUTION - SAME AS ABOVE FOR MAKING FILMSTRIP BLOCKS CLICKABLE FOR LINKS
 			channelBlocks.insertAdjacentHTML('beforeend', audioItem)
 
 			let blockLi = channelBlocks.lastElementChild
 			blockLi.addEventListener('click', () => {
-   			displayOnDisc(blockData, blockLi)
+			displayOnDisc(blockData, blockLi)
 })
 			// More on`audio`:
 			// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio
@@ -287,23 +281,20 @@ let renderBlock = (blockData) => {
 					${ blockData.embed.html }
 				</li>
 				`
-
+			// ATTRIBUTION - SAME AS ABOVE FOR MAKING FILMSTRIP BLOCKS CLICKABLE FOR LINKS
 			channelBlocks.insertAdjacentHTML('beforeend', linkedVideoItem)
 
 			let blockLi = channelBlocks.lastElementChild
 			blockLi.addEventListener('click', () => {
-   			displayOnDisc(blockData, blockLi)
+			displayOnDisc(blockData, blockLi)
 			})
+
 			// More on `iframe`:
 			// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
 		}
 
-		// Linked audio!
-		else if (embedType.includes('rich')) {
-			//ATTRIBUTION
-			// GOAL: my audio files weren't showing up, specifically embeddeds from spotify and soundcloud
-			// RESOURCE: Talked to a code tutor 
-			// LEARNING: We reviewed using the console.log to figure out which piece of data is needed to show the right file type, first trying to embed the url. I learnt that these programs have specific ways they want developpers to embed songs/materials and found the embed.html worked for this. Also generally reviewed how to find things in the consol and target specific areas of the channel block source. Also reviewed let statements together
+		// LINKED AUDIO EMBEDS
+		else if (embedType.includes('rich')) { // Audio embeds from Spotify/Soundcloud weren't displaying. Code tutor helped me debug using console.log to inspect the API data We reviewed using the console.log to figure out which piece of data is needed to show the right file type, first trying to embed the url. I learnt that these programs have specific ways they want developpers to embed songs/materials and found the embed.html worked for this. Also generally reviewed how to find things in the consol and target specific areas of the channel block source. Soundcloud, spotify and apple music uses rich embed types - providing pre-built embed elements. 
 
 			let linkedAudioItem =
 			`
@@ -311,6 +302,7 @@ let renderBlock = (blockData) => {
 					${ blockData.embed.html }
 			</li>
 			`
+			// ATTRIBUTION - SAME AS ABOVE FOR MAKING FILMSTRIP BLOCKS CLICKABLE FOR LINKS
 			channelBlocks.insertAdjacentHTML('beforeend', linkedAudioItem)
 
 			let blockLi = channelBlocks.lastElementChild
@@ -363,9 +355,9 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}`, (json) => {
 
 // Get your info to put with the owner's:
 //fetchJson(`https://api.are.na/v3/users/${myUsername}/`, (json) => {
-	//console.log(json) // See what we get back.
+//console.log(json) // See what we get back.
 
-	//renderUser(json) // Pass this to the same function, no nesting.
+//renderUser(json) // Pass this to the same function, no nesting.
 //})
 
 // // And the data for the blocks:
