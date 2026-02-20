@@ -17,7 +17,7 @@
     --disc-size: 65vh;
     --red: #c0392b;
     --active: #4a90d9;
-    --ring: #ddd;
+    --ring: rgb(139, 139, 139);
     --main:rgb(0, 0, 0);
 
     /* Filmstrip variables */
@@ -100,14 +100,17 @@ main {
     justify-content: center;
     align-items: center;
     position: relative;
-    border: 0.6rem solid var(--ring);
+    border: 0.6rem double var(--ring);
     animation: spin 8s linear infinite;
     background-image: url("Illustrations/Disc.png");
-    background-size: cover; /* Similar to object fit but with the background size */
+    background-size: 110%; /* Similar to object fit but with the background size */
+    background-position: center;
 }
+
 
 /* DISC FILL */
 #disc-image {
+    transform-origin: center center; /*  rotates around its exact center point, making the spin smooth and stable without wobble. */
     width: var(--disc-size); 
     height: var(--disc-size);
     justify-content: center;
@@ -115,6 +118,7 @@ main {
     border-radius: 50%;  /* making the content disc shaped */
     object-fit: cover;
     position: relative;
+    
     
 }
 /* selecting all the content types and making them fit into the circle */
@@ -130,9 +134,10 @@ main {
 
 #disc-hole  {
     position: absolute; 
-    background-color: white; 
-    width: 18%; 
-    height: 18%;
+    background-image: url("Illustrations/disc-hole.png");
+    background-size: cover; /* Similar to object fit but with the background size */
+    width: 33%; 
+    height: 33%;
     z-index: 1000;
     border-radius: 50%;
     border: 0.5rem solid var(--ring);
