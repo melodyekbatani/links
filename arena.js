@@ -4,6 +4,8 @@ let myUsername = 'melody-ekbatani' // For linking to your profile.
 
 
 // First, let’s lay out some *functions*, starting with our basic metadata:
+// ATTRIBUTION - I wanted to hide this information coming in from the are.na channel and manually update it on my site, I did this myself through experiementation but confirmed with the code tutor who said it should be fine. Mainly did this because I wanted to customize the title/change description and hide most of the other stuff listed here.
+
 let placeChannelInfo = (channelData) => {
 	// Target some elements in your HTML:
 	// let channelTitle = document.querySelector('#channel-title')
@@ -17,43 +19,52 @@ let placeChannelInfo = (channelData) => {
 	// channelCount.innerHTML = channelData.counts.blocks
 	// channelLink.href = `https://www.are.na/channel/${channelSlug}`
 }
-// adding the interactivity here to make it so the content in the film strip goes into the disc player . I used copilot to help me out on this. 
 
 
+// DISC PLAYER INTERACTION - Making the filmstrip blocks displayon into the disc player - taking the user clicking on content and displaying it on my disc player. I used copilot/claude/mdn and code tutor to confirm and explain how to do this and to understand how to pass data between elements and handle different block types.
 
 
-let displayOnDisc = (blockData, blockLi) => {  // this function takes in the block data and the link to the block that was clicked on.
+let displayOnDisc = (blockData, blockLi) => {  // Used claud to help me figure out the below lines, but confirmed with a code tutor who explained it more deeply to me. This is setting the variable for the block data clicked from the film strip to show on the disc. blockData = the actual Are.na API data (type, title, image URL, etc. blockLi = the HTML <li> element the user clicked in the filmstrip - using both because I need the data AND the visual element to show. 
 
-let discImage = document.querySelector('#disc-image') // this is the image element in the disc player where the content will be displayed. 
-// Checks what TYPE of block was clicked and displays it on the disc MORE ATTRIBUTIONS HERE!!
-    if (blockData.type == 'Image') {
-        // Finds the image tag inside the clicked block
-        let img = blockLi.querySelector('img')
-        // If there's an image, puts it on the disc
-		
-		let title = document.querySelector('#block-title') // Learnt this from code tutor - setting the block title
+let discImage = document.querySelector('#disc-image') // this targets the disc-image div inside my disc player is the image element in the disc player where the content will be displayed. The querySelector returns the first match - selecting content from the document. 
+
+	// IMAGE BLOCKS - PHOTOS, GIFS
+	if (blockData.type == 'Image') {
+	// Are.na API tells me the type is image 
+
+		let img = blockLi.querySelector('img')
+		// Looking inside the clicked <li> for an <img> tag
+		// I'm not using the API image URL directly because the filmstrip already, it's already loaded on the site so I can just grab the existing element 
+	
+		// TITLES/LINKS FOR IMAGE BLOCKS - PHOTOS, GIFS
+		let title = document.querySelector('#block-title') // Learnt this from code tutor - setting the block title. My disc player already has a title that's not visible - this makes it visable from the document querySelector
+
 		title.innerHTML=blockData.title 
 		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link
 		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`
-		link.innerHTML = 'View on Are.na' // Learnt this from code tutor - setting the block link - the ? mark basically says If blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na block
+		link.innerHTML = 'View on Are.na' // Learnt this from code tutor - setting the block link - the ? mark basically says if blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na, since my image blocks dont have other links besides are.na
 		
-        if (img) {
-            discImage.innerHTML = `<img src="${img.src}" alt="disc">`
-        }
-    } 
-	 else if (blockData.type == 'Link') {
-        // Links also have images, show them
-        let img = blockLi.querySelector('img')
-		let title = document.querySelector('#block-title') // Learnt this from code tutor - setting the block title
+		if (img) {
+		discImage.innerHTML = `<img src="${img.src}">`
+		}
+		//discImage.innerHTML - replaces everything inside the disc-image (like the background) and places the new content. Backticks define create a template literal https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals. allowing for a string to be created. Creating a new image tag as a string - then ${img.src} pulls the image source from json. 
+	} 
+	// LINKS
+	else if (blockData.type == 'Link') { // Defining the variable, else if means if its not the first thing, in this case images then do this (basically everthing thats not the first item.)
+
+		let img = blockLi.querySelector('img') // Links point elsewhere but often have thumbnails, if they have images, show them 
+
+		let title = document.querySelector('#block-title') // Learnt this from code tutor - setting the block title (explained above, but also they are in the disc section since i only want the block on the disc title/link to show
 		title.innerHTML=blockData.title 
-		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link
+		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link (explained above)
 		link.href = blockData.source.url
 		link.innerHTML = 'View Link'
-        if (img) {
-            discImage.innerHTML = `<img src="${img.src}" alt="disc">`
-        }
+		if (img) {
+		discImage.innerHTML = `<img src="${img.src}" alt="disc">`
+		}
 
     } 
+	// TEXT BLOCKS 
     else if (blockData.type == 'Text') {
         // For text blocks, show the text content - setting the innerHTML to show the text value (P tag)
         discImage.innerHTML = blockLi.innerHTML
