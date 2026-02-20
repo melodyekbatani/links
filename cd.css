@@ -13,8 +13,9 @@
     overflow-x: hidden;
     height: 100svh; /* setting */
 
-    --font: "parabolica", sans-serif;
-    --disc-size: 65vh;
+    --font: "Averia Serif Libre", serif;
+    --font-style:normal;
+    --disc-size: 58vh;
     --red: #c0392b;
     --active: #4a90d9;
     --ring: rgb(139, 139, 139);
@@ -44,11 +45,11 @@ header .header-container {
     justify-content: space-between;
     align-items: center;
     padding-inline: 1rem; 
-    padding-block: 1rem;
+    padding-block: 0rem;
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 6rem;
     color: var(--main);
 }
 
@@ -80,39 +81,54 @@ main {
     align-items: center;
     overflow: hidden;
 }
-/* DISC - setting up the sizing for the main circle*/
+/* DISC - setting up the sizing for the main circle*/ 
+/* DISC - attributions needed here and in disc-player*/
 #disc-container {
-    overflow: hidden;
-    width: var(--disc-size);
-    height: var(--disc-size);
     position: relative;
-    z-index: 1;
-    right: -65%;
-    top:0%; 
+    width: calc(var(--disc-size) + 2rem);
+    height: calc(var(--disc-size) + 2rem);
+    right: -70%;
     transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#disc-player {
+    width: calc(var(--disc-size) + 2rem);
+    height: calc(var(--disc-size) + 2rem);
+    border-radius: 50%;
+    background-image: url("Illustrations/Disc-ring.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 0.125rem double var(--ring);
 }
 
 #disc {
     width: var(--disc-size);
     height: var(--disc-size);
-    border-radius: 50%; /* making the disc shape */
+    border-radius: 50%;
     overflow: hidden;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    border: 0.6rem double var(--ring);
+    position: relative; /* remove the right/top/transform positioning */
     animation: spin 8s linear infinite;
     background-image: url("Illustrations/Disc.png");
-    background-size: 110%; /* Similar to object fit but with the background size */
+    background-size: 110%;
     background-position: center;
+    transform-origin: center center;
+    border: 0.125rem double var(--ring);
 }
 
 
 /* DISC FILL */
 #disc-image {
+    
     transform-origin: center center; /*  rotates around its exact center point, making the spin smooth and stable without wobble. */
-    width: var(--disc-size); 
-    height: var(--disc-size);
+    width: calc (var(--disc-size)*0.9); 
+    height: calc (var(--disc-size)*0.9); 
     justify-content: center;
     align-items: center;
     border-radius: 50%;  /* making the content disc shaped */
