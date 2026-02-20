@@ -1,5 +1,5 @@
-@import url("https://use.typekit.net/kfz2rir.css");
 
+/*--------------FONT IMPORT------------*/
 @font-face {
     font-family: "DT Nouveau";
     src: url("FONTS/DTNouveau-Regular.otf") format("opentype");
@@ -8,37 +8,44 @@
 
 @import url(https://db.onlinewebfonts.com/c/d53e8c324d86f4bd809f2421498b1f1f?family=BlurWeb-Medium+W03+Regular);
 
-
+/*--------------DESIGN SYSTEM------------*/
 :root {
     overflow-x: hidden;
-    height: 100svh; /* setting */
+    height: 100svh; /* Need to review this - ask Riya how she did this!! */
 
-    --font: "Averia Serif Libre", serif;
-    --font-style:normal;
-    --disc-size: 58vh;
-    --red: #c0392b;
+    /* setting fonts variables */
+    --body-font: "Averia Serif Libre", serif;
+    --body-font-style:normal;
+    --header-font: "BlurWeb-Medium W03 Regular";
+
+    /* setting color variable */
     --active: #4a90d9;
     --ring: rgb(246, 246, 246);
     --main:rgb(0, 0, 0);
 
-    /* Filmstrip variables */
+    /* setting filmstrip variables */
+    --disc-size: 58vh;
     --block-size: 6rem;
     --gap-size: 0.5rem;
     --padding-size: 1.5rem;
     --border-radius: 10%;
 }
 
-h1, h2, h3 {
-    font-family: "BlurWeb-Medium W03 Regular";
-}
-
 html, body {
     overflow: hidden;
     height: 100%;
-    font-family: var(--font);
+}
+
+h1, h2, h3 {
+    font-family: var(--header-font);
+}
+
+p, a {
+    font-family: var(--body-font);
     font-weight: 400;
     font-size: 1rem;
 }
+
 /* HEADER - flex is simplier for this since it I want to create a single column layout for the header for now */
 header {
     display: flex;
