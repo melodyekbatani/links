@@ -52,60 +52,68 @@ let discImage = document.querySelector('#disc-image') // this targets the disc-i
 	// LINKS
 	else if (blockData.type == 'Link') { // Defining the variable, else if means if its not the first thing, in this case images then do this (basically everthing thats not the first item.)
 
-		let img = blockLi.querySelector('img') // Links point elsewhere but often have thumbnails, if they have images, show them 
+		let img = blockLi.querySelector('img') // looking inside the filmstrip item that was clicked and serching for an image first if it has a thumbnail/image
 
 		let title = document.querySelector('#block-title') // Learnt this from code tutor - setting the block title (explained above, but also they are in the disc section since i only want the block on the disc title/link to show
-		title.innerHTML=blockData.title 
+
+		title.innerHTML=blockData.title // taking the title from the are.na data - innerHTML replaces what was in the #block-title before
 		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link (explained above)
-		link.href = blockData.source.url
-		link.innerHTML = 'View Link'
-		if (img) {
-		discImage.innerHTML = `<img src="${img.src}" alt="disc">`
-		}
-
-    } 
-	// TEXT BLOCKS 
-    else if (blockData.type == 'Text') {
-        // For text blocks, show the text content - setting the innerHTML to show the text value (P tag)
-        discImage.innerHTML = blockLi.innerHTML
-
-		// MORE ATTRIBUTION - Same as image
-		let title = document.querySelector('#block-title') // Learnt this from code tutor - setting the block title
-		title.innerHTML=blockData.title 
-		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link
-		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`
-		link.innerHTML = 'View on Are.na' // Learnt this from code tutor - setting the block link - the ? mark basically says If blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na block
-    } 
-    else if (blockData.type == 'Attachment') {
-        // For PDFs and other files, show image if available
-        let img = blockLi.querySelector('img')// some attachments have preview images, try to find one
-		// MORE ATTRIBUTION - Same as image
-		let title = document.querySelector('#block-title') // Learnt this from code tutor - setting the block title
-		title.innerHTML=blockData.title 
-		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link
-		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`
-		link.innerHTML = 'View on Are.na' // Learnt this from code tutor - setting the block link - the ? mark basically says If blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na block
-
-        if (img) {
-            discImage.innerHTML = `<img src="${img.src}" alt="disc" >` // if there's an image, show it
-        }
-    }
-	else if (blockData.type == 'Embed') {
-		discImage.innerHTML = blockLi.innerHTML
-		let title = document.querySelector('#block-title') // Learnt this from code tutor - setting the block title
-		title.innerHTML=blockData.title 
-		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link
-		link.href = blockData.source.url
-		link.innerHTML = 'View Link'
+		link.href = blockData.source.url // Setting where the link goes - different then above since these are linking out and not to the are.na channel - no optional chaning here ? because the links always have an external url - not are.na 
+		link.innerHTML = 'View Link' // Setting what goes into the linked here - 'view link' shows up on the site - wanted to clarify if the user is going to are.na or going elsewhere. 
+		if (img) { // checking if an image was set 
+		discImage.innerHTML = `<img src="${img.src}">` // Creating a NEW <img> tag and inserting it into the disc if there is a image
+		} 
 	}
 
+	// TEXT BLOCKS - This was copied over from the image section above - please refer to the main attributions there, since the code is very similar (but i'll add a few additional attributions here as well) - unlike img blocks, there is no img to extract for this. 
 
+	else if (blockData.type == 'Text') { // For text blocks, show the text content - setting the innerHTML to show the text value (P tag)
+	discImage.innerHTML = blockLi.innerHTML
+
+		let title = document.querySelector('#block-title') // Learnt this from code tutor - setting the block title
+		title.innerHTML=blockData.title 
+		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link
+		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`
+		link.innerHTML = 'View on Are.na' // the ? mark basically says If blockData.source is undefined then returns undefined, link if there's no other link other then are.na it gets directed to the are.na block
+	}
+
+	// ATTACHMENTS - SIMILAR TO LINKS
+	else if (blockData.type == 'Attachment') {
+	// For PDFs and other files, show image if available
+	
+		let img = blockLi.querySelector('img')// some attachments have preview images, try to find one
+
+		let title = document.querySelector('#block-title') // setting the block title
+		title.innerHTML=blockData.title  // display file name
+		let link = document.querySelector('#block-link') // setting the block link
+		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`
+		link.innerHTML = 'View on Are.na' //  setting the block link - the ? mark basically says If blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na block
+
+		if (img) {
+		discImage.innerHTML = `<img src="${img.src}" alt="disc" >` // if there's an image, show it, future - could add a fallback icon for files without previews
+		}
+	}
+
+	// EMBED - Youtube, soundcloud etc. 
+	else if (blockData.type == 'Embed') { 
+	
+		discImage.innerHTML = blockLi.innerHTML // Embeds are iframes, Unlike images where I grab just the src. This preserves the iframe and its attributes so the embed stays functional
+
+		let title = document.querySelector('#block-title') // /Same as Link blocks - takes user off Are.na to the original hosting platform
+		title.innerHTML=blockData.title 
+		let link = document.querySelector('#block-link') // setting the link
+		link.href = blockData.source.url  // Takes user off my site and are.na into thrid party site
+		link.innerHTML = 'View Link' // Text to display
+	}
+
+	// ACTIVE STATE - SELECTING FILM STRIP ITEM
 	document.querySelectorAll('#channel-blocks li').forEach(li => {
-        li.classList.remove('active')
-    })
-    blockLi.classList.add('active') // I also added a class to the clicked block to show it's active, and remove that class from all other blocks.
+	li.classList.remove('active') // Clears any previous selection so only one block is highlighted at a time, learned this pattern from my code tutor. 
+	})
 
+	blockLi.classList.add('active') // Add 'active' to the block that was just clicked to show it's active. 
 }
+
 
 	
 // Then our big function for specific-block-type rendering:
