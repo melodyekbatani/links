@@ -30,6 +30,13 @@ let discImage = document.querySelector('#disc-image') // this is the image eleme
         // Finds the image tag inside the clicked block
         let img = blockLi.querySelector('img')
         // If there's an image, puts it on the disc
+		
+		let title = document.querySelector('#block-title') // Learnt this from code tutor - setting the block title
+		title.innerHTML=blockData.title 
+		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link
+		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`
+		link.innerHTML = 'View on Are.na' // Learnt this from code tutor - setting the block link - the ? mark basically says If blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na block
+		
         if (img) {
             discImage.innerHTML = `<img src="${img.src}" alt="disc">`
         }
@@ -37,22 +44,49 @@ let discImage = document.querySelector('#disc-image') // this is the image eleme
 	 else if (blockData.type == 'Link') {
         // Links also have images, show them
         let img = blockLi.querySelector('img')
+		let title = document.querySelector('#block-title') // Learnt this from code tutor - setting the block title
+		title.innerHTML=blockData.title 
+		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link
+		link.href = blockData.source.url
+		link.innerHTML = 'View Link'
         if (img) {
             discImage.innerHTML = `<img src="${img.src}" alt="disc">`
         }
+
     } 
     else if (blockData.type == 'Text') {
-        // For text blocks, show the text content
+        // For text blocks, show the text content - setting the innerHTML to show the text value (P tag)
         discImage.innerHTML = blockLi.innerHTML
+
+		// MORE ATTRIBUTION - Same as image
+		let title = document.querySelector('#block-title') // Learnt this from code tutor - setting the block title
+		title.innerHTML=blockData.title 
+		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link
+		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`
+		link.innerHTML = 'View on Are.na' // Learnt this from code tutor - setting the block link - the ? mark basically says If blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na block
     } 
     else if (blockData.type == 'Attachment') {
         // For PDFs and other files, show image if available
         let img = blockLi.querySelector('img')// some attachments have preview images, try to find one
+		// MORE ATTRIBUTION - Same as image
+		let title = document.querySelector('#block-title') // Learnt this from code tutor - setting the block title
+		title.innerHTML=blockData.title 
+		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link
+		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`
+		link.innerHTML = 'View on Are.na' // Learnt this from code tutor - setting the block link - the ? mark basically says If blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na block
+
         if (img) {
             discImage.innerHTML = `<img src="${img.src}" alt="disc" >` // if there's an image, show it
         }
     }
-	
+	else if (blockData.type == 'Embed') {
+		discImage.innerHTML = blockLi.innerHTML
+		let title = document.querySelector('#block-title') // Learnt this from code tutor - setting the block title
+		title.innerHTML=blockData.title 
+		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link
+		link.href = blockData.source.url
+		link.innerHTML = 'View Link'
+	}
 
 
 	document.querySelectorAll('#channel-blocks li').forEach(li => {
@@ -247,7 +281,6 @@ let renderBlock = (blockData) => {
 
 		// Linked audio!
 		else if (embedType.includes('rich')) {
-			console.log("this is for embedded audio", blockData)
 			//ATTRIBUTION
 			// GOAL: my audio files weren't showing up, specifically embeddeds from spotify and soundcloud
 			// RESOURCE: Talked to a code tutor 

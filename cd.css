@@ -18,7 +18,7 @@
     --disc-size: 58vh;
     --red: #c0392b;
     --active: #4a90d9;
-    --ring: rgb(139, 139, 139);
+    --ring: rgb(246, 246, 246);
     --main:rgb(0, 0, 0);
 
     /* Filmstrip variables */
@@ -192,7 +192,7 @@ main {
             visibility: hidden;
         }
     }
-    /* External embedded audio */
+
     #channel-blocks li:has(iframe) {
         background-image: url('./Illustrations/Listen.png');
         background-size: cover;
