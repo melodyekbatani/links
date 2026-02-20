@@ -2,52 +2,52 @@
 <html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R&B</title>
-    <link href="reset.css" rel="stylesheet">
-    <link href="cd.css" rel="stylesheet">
-    <script defer src="arena.js"></script>
-    <script defer src="script.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>R&B</title>
+	<link href="reset.css" rel="stylesheet">
+	<link href="cd.css" rel="stylesheet">
+	<script defer src="arena.js"></script>
+	<script defer src="script.js"></script>
 
 
-    <!---------------FONTS----------------------->
-    <link rel="stylesheet" href="https://use.typekit.net/kfz2rir.css">
-    </head>
-    <link href="https://db.onlinewebfonts.com/c/d53e8c324d86f4bd809f2421498b1f1f?family=BlurWeb-Medium+W03+Regular" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<!---------------FONTS----------------------->
+	<link href="https://db.onlinewebfonts.com/c/d53e8c324d86f4bd809f2421498b1f1f?family=BlurWeb-Medium+W03+Regular" rel="stylesheet"><!--Display BlurWeb (HEADERS)-->
+	
+	<link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"> <!--Averia Serif (BODY)-->
 
- <!---------------ATTRIBUTION NEEDED----------------------->
+</head>
+<!---------------ATTRIBUTION NEEDED----------------------->
 
 <body>
-    <header> 
-        <h1>R&B</h1>
-            <ul class="menu">
-                <li class="item1">
-                    <a href="https://www.are.na/trenton-soto-ortkizxpaha/r-b-music">Are.na</a></li>
-                <li class="item2">Info</li>
-                <li class="item3"><a href="placeholder">Playlist</a></li>
-            </ul>
-        </header>
+	<header>
+		<h1>R&B</h1>
+		<ul class="menu">
+			<li class="item1"><a href="https://www.are.na/trenton-soto-ortkizxpaha/r-b-music">Are.na</a></li>
+			<li class="item2">Info</li>
+			<li class="item3"><a href="placeholder">Playlist</a></li>
+		</ul>
+	</header>
 
-<main>
-    <section id="disc-container"><!--Section for a distinct region of the page--->
-        <figure id="disc-player"> <!--carrying the image layers similar to a diagram--->
-            <div id="disc"> <!--This is a div because it's a generic container that carries the content--->
-                <figure id="disc-image"></figure>  <!--This is a figure because it's handeling the content--->
-                <figure id="disc-hole"></figure>
-                <img id="disc-hole-exterior"></img> <!-- used to display a specific image file.--->
-            </div>
-        </figure>
-    </section>
-</main>
-        <h2 id="block-title"> Title </h2>
-        <a id="block-link" href="placeholder">Playlist</a>
-        <figure class="film-wrapper">
-        <button id="prev"></button>
-            <ul id="channel-blocks"></ul>
-        <button id="next"></button>
-        </figure>
+	<main>
+		<section id="disc-container"><!--Section for a distinct region of the page--->
+			<figure id="disc-player"> <!--carrying the image layers similar to a diagram--->
+				<div id="disc"> <!--This is a div because it's a generic container that carries the content--->
+					<figure id="disc-image"></figure> <!--This is a figure because it's handeling the content--->
+					<figure id="disc-hole"></figure>
+					<img id="disc-hole-exterior"></img> <!-- used to display a specific image file.--->
+				</div>
+			</figure>
+		</section>
+	</main>
+
+
+	<h2 id="block-title"> Title </h2> <!--My code tutor helped me figure this out - this is the id that we reference in the JS file for pulling the titles/links - basically this works as a hook for the js-->
+	<a id="block-link" href="placeholder">Playlist</a>
+
+	<figure class="film-wrapper">
+		<button id="prev"></button> <!--Code tutor suggested using the button tag here as its the most semantically correct-->
+			<ul id="channel-blocks"></ul>
+		<button id="next"></button>
+	</figure>
 </body>
 </html>
