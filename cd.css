@@ -40,7 +40,7 @@ html, body {
     font-size: 1rem;
 }
 /* HEADER - flex is simplier for this since it I want to create a single column layout for the header for now */
-header .header-container {
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
