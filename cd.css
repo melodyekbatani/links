@@ -10,21 +10,19 @@
 
 
 :root {
-    
-    overflow-y: hidden; /* hiding vertical scroll */
-    height: 100vh; /* setting */
+    overflow-x: hidden;
+    height: 100svh; /* setting */
 
     --font: "parabolica", sans-serif;
-    --disc-size: 45vh;
+    --disc-size: 65vh;
     --red: #c0392b;
     --active: #4a90d9;
     --ring: #ddd;
     --main:rgb(0, 0, 0);
-    --block-size: 16rem;
 
     /* Filmstrip variables */
-    --block-size: 8rem;
-    --gap-size: 1rem;
+    --block-size: 6rem;
+    --gap-size: 0.5rem;
     --padding-size: 1.5rem;
     --border-radius: 10%;
 }
@@ -34,6 +32,7 @@ h1, h2, h3 {
 }
 
 html, body {
+    overflow: hidden;
     height: 100%;
     font-family: var(--font);
     font-weight: 400;
@@ -45,7 +44,7 @@ header .header-container {
     justify-content: space-between;
     align-items: center;
     padding-inline: 1rem; 
-    padding-block: 1.5rem;
+    padding-block: 1rem;
 }
 
 h1 {
@@ -58,8 +57,6 @@ h1 {
     display: flex;
     gap: 2rem;
     list-style: none;
-    margin: 0;
-    padding: 0;
 }
 
 .menu a {
@@ -76,19 +73,23 @@ h1 {
 
 /* MAIN  - flex is simplier for this since it I want to create a single column layout for the header for now */
 main {
-    padding-block-start: 3rem;
     flex: 1;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 /* DISC - setting up the sizing for the main circle*/
 #disc-container {
+    overflow: hidden;
     width: var(--disc-size);
     height: var(--disc-size);
     position: relative;
     z-index: 1;
+    right: -65%;
+    top:0%; 
+    transform: translateX(-50%);
 }
 
 #disc {
@@ -141,17 +142,22 @@ main {
     /* FYI align-items: center; - you keep doing this! this ONLY APPLIES to FLEX/GRID...same with justify-content */
     }
 
-/* FILMSTRIP */
+
 
 /* FILMSTRIP */
 .film-wrapper {
-    margin-block-start: 6rem;
-    padding: 2rem;
+    overflow-x: visible;
+    margin-block-start: 1rem;
+    margin-inline-start: -2rem;
+    padding: 0rem;
+
     display: flex;
     align-items: center;
     gap: var(--gap-size);
     padding-block: var(--padding-size);
     background-color: white;
+    width: 150%;
+    bottom: 0; /* pins it to the bottom */
 
     /* ADDING IMAGES TO EACH CONTENT BLOCK as a background - used claude to help me figure this out, for each content type i want the image i set to be the background in the film strip. This is setting a background * targets everything inside that li and hides the visibility inside the block (other than the background*/
 
@@ -197,9 +203,9 @@ main {
 
 #channel-blocks {
     display: flex;  
+    flex: 1;
     overflow-x: auto;  /* horizontal scroll */
     gap: var(--gap-size);
-    padding: var(--padding-size);
     padding: 0;
     padding-block-end: calc(var(--padding-size) * 3);
     list-style: none;
@@ -237,28 +243,4 @@ main {
     display: block;
     object-fit: cover;
     aspect-ratio: 1;
-}
-.film-wrapper #prev,
-.film-wrapper #next {
-    background-size: contain; /*  scales the background image to fit inside the button while keeping its full aspect ratio.*/
-    background-repeat: no-repeat;
-    background-position: center center;
-    border: none;
-    width: 3rem;
-    height: 3rem;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-}
-
- #prev {
-    top: 50%;
-    transform: translateY(-50%);
-    background-image: url("Illustrations/left back.png");
-}
-
-#next {
-    top: 50%;
-    transform: translateY(-50%);
-    background-image: url("Illustrations/right back.png");
 }
