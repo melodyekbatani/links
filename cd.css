@@ -152,11 +152,27 @@ main {
     gap: var(--gap-size);
     padding-block: var(--padding-size);
     background-color: white;
+
+    /* ADDING IMAGES TO EACH CONTENT BLOCK as a background - used claude to help me figure this out, for each content type i want the image i set to be the background in the film strip. This is setting a background * targets everything inside that li and hides the visibility inside the block (other than the background*/
+     #channel-blocks li:has(a) {
+        background-image: url('./Illustrations/read external.png');
+        background-size: cover;
+        background-position: center;
+
+        * {
+            visibility: hidden;
+        }
+    }
 }
 
 /* ADDING IMAGES TO EACH CONTENT BLOCK */
 
-.film
+
+
+#channel-blocks li:has(.text) {
+    background-image: url('./Illustrations/Read text.png');
+}
+
 #channel-blocks {
     display: flex;  
     overflow-x: auto;  /* horizontal scroll */
