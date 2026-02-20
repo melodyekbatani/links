@@ -6,7 +6,11 @@
     font-weight: normal;
 }
 
+@import url(https://db.onlinewebfonts.com/c/d53e8c324d86f4bd809f2421498b1f1f?family=BlurWeb-Medium+W03+Regular);
+
+
 :root {
+    
     overflow-y: hidden; /* hiding vertical scroll */
     height: 100vh; /* setting */
 
@@ -23,11 +27,10 @@
     --gap-size: 1rem;
     --padding-size: 1.5rem;
     --border-radius: 10%;
-
 }
 
 h1, h2, h3 {
-    font-family: "DT Nouveau", sans-serif;
+    font-family: "BlurWeb-Medium W03 Regular";
 }
 
 html, body {
@@ -99,8 +102,7 @@ main {
     border: 0.6rem solid var(--ring);
     animation: spin 8s linear infinite;
     background-image: url("Illustrations/Disc.png");
-
-    /* making the disc shape */
+    background-size: cover; /* Similar to object fit but with the background size */
 }
 
 /* DISC FILL */
@@ -111,6 +113,7 @@ main {
     align-items: center;
     border-radius: 50%;  /* making the content disc shaped */
     object-fit: cover;
+    position: relative;
     
 }
 /* selecting all the content types and making them fit into the circle */
@@ -150,6 +153,10 @@ main {
     padding-block: var(--padding-size);
     background-color: white;
 }
+
+/* ADDING IMAGES TO EACH CONTENT BLOCK */
+
+.film
 #channel-blocks {
     display: flex;  
     overflow-x: auto;  /* horizontal scroll */
