@@ -36,6 +36,7 @@
 }
 /*--------------BASE------------*/
 html, body {
+    background: linear-gradient(#ffffff, #e6e6e6);
     overflow: hidden;
     height: 100%;
 
@@ -223,13 +224,15 @@ a:hover {
     padding: 0;
     width: 100%;
     align-items: center;
-    margin-block-start: 5rem;
+    margin-block-start: 8rem;
+    padding-inline: 0.5rem;
 }
 
 .block-info {
      display: flex;
     flex-direction: column;
     margin-right: auto;
+    max-width: 30ch;
 }
 
 .controls {
