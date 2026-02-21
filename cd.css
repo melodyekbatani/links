@@ -278,6 +278,7 @@ a:hover {
 #channel-blocks {
     display: flex;  
     flex: 1;
+    overflow-y: hidden;
     overflow-x: auto;  /* horizontal scroll */
     gap: var(--gap-size);
     padding: 0;
@@ -308,6 +309,7 @@ a:hover {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    box-sizing: border-box; /* adds border to box size - prevents overflow */
     border: 0.5rem groove var(--border) /* border styles mdn */
 }
 
