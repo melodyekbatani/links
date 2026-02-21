@@ -130,10 +130,9 @@ a:hover {
     align-items: center; /* Claud suggested using this specific line - vertical alignment on the disc container*/
     justify-content: center; /* Claud suggested using this specific line - horizontal alignment on the disc container*/
     position: relative; /* relative to parent*/
-    background-image: url("Illustrations/Disc-ring.png"); /* DISC - attributions needed here*/
-    background-size: cover;
-    background-position: center;
-    border: 0.125rem double var(--ring);
+    background-image: url("Illustrations/Disc-ring.png"); /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-image setting background image, learnt this in class but this just selects a background image from file folder. */
+    background-size: cover; /* This is like object-fit for backgrounds */
+    border: 0.125rem double var(--ring); 
 }
 
 #disc {
@@ -142,27 +141,27 @@ a:hover {
     border-radius: 50%;
     overflow: hidden;
     position: relative; /* remove the right/top/transform positioning */
-    animation: spin 8s linear infinite;
+    animation: spin 8s linear infinite; 
     background-image: url("Illustrations/Disc.png");
-    background-size: 110%;
-    background-position: center;
-    transform-origin: center center;
-    border: 0.125rem double var(--ring);
+    background-size: 110%;  /* Similar to object fit but with the background size, https://www.w3schools.com/css/css3_background_size.asp I had some space between the edge and disc image - you can use either auto/contain/cover or percentages/relative units here */
+    background-position: center; /* I learnt this using claude since it wasn't 100% in the center. This sets the background to perfectly center */
+    transform-origin: center center; /* Claud suggested using this to get the spin to orignate from the beginning. This line allows the animation to start in the center point, kind of thought of this like an anchor point in after effect*/
+    border: 0.125rem double var(--ring); /* css border styles - refresher from MDN */
 }
 
 
 /* DISC FILL */
 #disc-image {
     transform-origin: center center; /*  rotates around its exact center point, making the spin smooth and stable without wobble. */
-    width: calc(var(--disc-size) * 1);
-    height: calc(var(--disc-size) * 1);
-    justify-content: center;
-    align-items: center;
+    width: var(--disc-size);
+    height: var(--disc-size);
+    justify-content: center; /* aligns horizontally (main axis - assuming this matches the flex direction) */
+    align-items: center; /* aligns vertically */
     border-radius: 50%;  /* making the content disc shaped */
-    object-fit: cover;
+    object-fit: cover; /* Crops image to full bleed */
     position: relative;
     overflow: hidden;
-    display: flex;  /* ensures centering works */
+    display: flex; /* ensures centering works */
 }
 /* selecting all the content types and making them fit into the circle */
 #disc-image img,
@@ -170,35 +169,26 @@ a:hover {
 #disc-image video,
 #disc-image embed {
  
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: relative;  
-    top: 0;
-    left: 0;
-}
-#disc-image iframe {
-   transform: scale(3.5) translateX(0%) translateY(20%);  
+    width: 100%; /* makes each media element fill the entier parent container */
+    height: 100%; 
+    object-fit: cover; /* ensures cover style on the blocks themselves,  */
 }
 
-/* Attribution needed*/
-#disc-image:has(iframe)::after {
-    content: '';
+#disc-image iframe {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
+    opacity: 1;
     border-radius: 50%;
-    background-color: rgb(44, 52, 158);
-    mix-blend-mode: multiply;
     z-index: 10;
+    transform: translateY(70%) scale(3.5) translateX(0%); /* learnt how to write this synthx using claude: first translateY, then scale, then translateX - the order here is important */
 }
+
 
 #disc-hole  {
     position: absolute; 
     background-image: url("Illustrations/disc-hole.png");
-    background-size: cover; /* Similar to object fit but with the background size */
+    background-size: cover; /* Similar to object fit but with the background size, https://www.w3schools.com/css/css3_background_size.asp this makes it fit the disc size perfectly as a cover rather than cropping it */
     width: 33%; 
     height: 33%;
     z-index: 1000;
@@ -218,15 +208,21 @@ a:hover {
     padding: 0;
     width: 100%;
     align-items: center;
-    margin-block-start: 8rem;
-    padding-inline: 0.5rem;
+    margin-block-start:calc(var(--padding-size) * 3);
+    padding-inline: var(--padding-size);
 }
 
 .block-info {
-     display: flex;
-    flex-direction: column;
-    margin-right: auto;
-    max-width: 30ch;
+display: flex;
+flex-direction: column;
+margin-right: auto; /* vw spacing between the text and the buttons */
+
+    #block-title {
+    max-width: 15ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
 }
 
 .controls {
