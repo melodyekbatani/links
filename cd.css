@@ -11,7 +11,7 @@
 /*--------------DESIGN SYSTEM------------*/
 :root {
     overflow-x: hidden;
-    height: 100svh; /* Need to review this - ask Riya how she did this!! */
+    height: 100vh; /* Need to review this - ask Riya how she did this!! */
 
     /* setting fonts variables */
     --body-font: 'Chillax', sans-serif;
@@ -80,34 +80,32 @@ button img {
 }
 /*--------------MENU------------*/
 .menu {
-    font-weight: 700;
+    font-weight: 700; 
     font-family: var(--font);
     display: flex;
     gap: calc(var(--padding-size) * 2);
     list-style: none;
     align-items: center;
-    margin-block-end: -1rem;
+    margin-block-end: calc(var(--padding-size) * -1);
     justify-content: space-between; /*equally space at viewport width*/
 
 a {
-    color: var(--links);
-    font-size: calc(var(--body-size) * 1.5);
+    font-size: var(--body-size);
 }
 }
 a:hover {
     color:var(--active); 
 }
 }
-
 /*--------------MAIN------------*/
-/* MAIN  - flex is simplier for this since it I want to create a single column layout for the header for now */
+/* using flex here (defaults to row) as the main horizonal axis for the disc and moving it to the right side of the mobile frame*/
 #disc-wrapper{
     position: relative;
     width: 100%;
     display: flex; /* This puts the entier disc block into a wrapper that i can set to align on the edge of the screen */
-    justify-content: flex-end;
-    margin-inline-start:  3rem;
-    margin-block-start: -6rem;
+    justify-content: flex-end; /*right aligns*/
+    margin-inline-start:  calc(var(--padding-size) * 3);
+    margin-block-start: calc(var(--padding-size) * -6);
 }
 
 /*--------------DISC------------*/
@@ -120,30 +118,26 @@ a:hover {
 /* DISC - attributions needed here and in disc-player*/
 #disc-container {
     position: relative;
-    width: calc(var(--disc-size) + 2rem);
+    width: calc(var(--disc-size) + 2rem); /* Adds the padding for the disc player background*/
     height: calc(var(--disc-size) + 2rem);
-    
-    align-self: flex-end;
-    margin-inline-start: -1rem;
-    margin-block-end: -6rem;
 }
 
 #disc-player {
-    width: calc(var(--disc-size) + 2rem);
-    height: calc(var(--disc-size) + 2rem);
+    width: calc(var(--disc-size) + 2rem); /* Places the disc ring image with the padding above for the disc player background*/
+    height: calc(var(--disc-size) + 2rem); 
     border-radius: 50%;
+    display: flex; /* /* Creates a flex container so child elements can be aligned easily — learned in class flexbox layout */
+    align-items: center; /* Claud suggested using this specific line - vertical alignment on the disc container*/
+    justify-content: center; /* Claud suggested using this specific line - horizontal alignment on the disc container*/
+    position: relative; /* relative to parent*/
     background-image: url("Illustrations/Disc-ring.png"); /* DISC - attributions needed here*/
     background-size: cover;
     background-position: center;
-    display: flex; /* DISC - attributions needed here*/
-    align-items: center; /* DISC - attributions needed here*/
-    justify-content: center; /* DISC - attributions needed here*/
-    position: relative; /* DISC - attributions needed here*/
     border: 0.125rem double var(--ring);
 }
 
 #disc {
-    width: var(--disc-size);
+    width: var(--disc-size); 
     height: var(--disc-size);
     border-radius: 50%;
     overflow: hidden;
