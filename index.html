@@ -15,15 +15,17 @@
 	
 	<link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"> <!--Averia Serif (BODY)-->
 
+	<link href="https://api.fontshare.com/v2/css?f[]=chillax@200,300,400,500,600,700,1&display=swap" rel="stylesheet"> <!--chillax (BODY)-->
+
 </head>
 <!---------------ATTRIBUTION NEEDED----------------------->
 
 <body>
 	<header>
+		<button class="info"><img src="/Illustrations/info.png" alt="info"></button> <!---------------semantically not correct try to fix in css----------------------->
 		<h1>R&B</h1>
 		<ul class="menu">
 			<li class="item1"><a href="https://www.are.na/trenton-soto-ortkizxpaha/r-b-music">Are.na</a></li>
-			<li class="item2">Info</li>
 			<li class="item3"><a href="placeholder">Playlist</a></li>
 		</ul>
 	</header>
@@ -38,16 +40,29 @@
 				</div>
 			</figure>
 		</section>
+
+		<section id="middle-nav">
+	<article class="block-info">
+	<h2 id="block-title"> Our collection </h2> <!--My code tutor helped me figure this out - this is the id that we reference in the JS file for pulling the titles/links - basically this works as a hook for the js-->
+	<a id="block-link" href="placeholder">Pick a track!</a>
+	</article>
+
+
+	<nav class="controls">
+		<button id="back"><img src="/Illustrations/back.png" alt="A description of the image"></button>
+		<button id="pause-play"><img src="/Illustrations/play-pause.png" alt="A description of the image"></button>
+		<button id="next"><img src="/Illustrations/forward.png" alt="A description of the image"></button>
+	</nav>
+	
+	<button id="prev"></button> <!--Code tutor suggested using the button tag here as its the most semantically correct-->
+	</section>
+
+	<section id="film">	
+	<figure class="film-wrapper">
+			<ul id="channel-blocks"></ul>
+	</figure>
+	</section>	
 	</main>
 
-
-	<h2 id="block-title"> Title </h2> <!--My code tutor helped me figure this out - this is the id that we reference in the JS file for pulling the titles/links - basically this works as a hook for the js-->
-	<a id="block-link" href="placeholder">Playlist</a>
-
-	<figure class="film-wrapper">
-		<button id="prev"></button> <!--Code tutor suggested using the button tag here as its the most semantically correct-->
-			<ul id="channel-blocks"></ul>
-		<button id="next"></button>
-	</figure>
 </body>
 </html>

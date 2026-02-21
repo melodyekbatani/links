@@ -14,104 +14,130 @@
     height: 100svh; /* Need to review this - ask Riya how she did this!! */
 
     /* setting fonts variables */
-    --body-font: "Averia Serif Libre", serif;
+    --body-font: 'Chillax', sans-serif;
     --body-font-style:normal;
-    --header-font: "BlurWeb-Medium W03 Regular";
+    --body-size: 1rem;
+    --header-font: "BlurWeb-Medium W03 Regular";  /* I know we shouldnt be using fonts like this but I wanted a very specific vibe to the typography and tried a bunch i couldn't get to work in the design system */
+    
 
     /* setting color variable */
-    --active: #4a90d9;
+    --active: #e61468;
+    --links: rgb(44, 44, 44); 
     --ring: rgb(246, 246, 246);
     --main:rgb(0, 0, 0);
+    --border: #dbdbdb;
 
     /* setting filmstrip variables */
-    --disc-size: 58vh;
-    --block-size: 6rem;
+    --disc-size: 50vh;
+    --block-size: 8.2rem;
     --gap-size: 0.5rem;
-    --padding-size: 1.5rem;
+    --padding-size: 1rem;
     --border-radius: 10%;
 }
-
+/*--------------BASE------------*/
 html, body {
     overflow: hidden;
     height: 100%;
-}
 
+}
 h1, h2, h3 {
     font-family: var(--header-font);
 }
 
-p, a {
+a {
     font-family: var(--body-font);
-    font-weight: 400;
-    font-size: 1rem;
+    font-weight: 500;
+    font-size: var(--body-size);
 }
-
+p {
+    font-family: var(--body-font);
+    font-weight: 200;
+    font-size: var(--body-size);
+}
+/*--------------HEADER------------*/
 /* HEADER - flex is simplier for this since it I want to create a single column layout for the header for now */
 header {
     display: flex;
+    flex-direction: column-reverse;
     justify-content: space-between;
-    align-items: center;
-    padding-inline: 1rem; 
-    padding-block: 0rem;
-}
+    padding-inline: var( --padding-size); 
+    padding-block:  var(--padding-size);
 
 h1 {
-    font-size: 6rem;
+    font-size: 7rem;
     color: var(--main);
-}
+    align-items: left;
+    filter: blur(0.05rem);
 
+}
+button img {
+    width:calc(var(--body-size) * 3); /*I keep forgetting how to properly space the calc function - use claude to remember this calc(var(--body-size) * 3) - no spaces until you do calc and put a space between * and 3*/
+    height:calc(var(--body-size) * 3); 
+    margin-inline: calc(var(--padding-size) * 1.8);
+    margin-block: 0.5rem;
+}
+/*--------------MENU------------*/
 .menu {
+    font-weight: 700;
     font-family: var(--font);
     display: flex;
     gap: 2rem;
     list-style: none;
+    align-items: center;
+    margin-block-end: -1rem;
+    justify-content: space-between; /*equally space at viewport width*/
+
+a {
+    color: var(--links);
+    font-size: calc(var(--body-size) * 1.5);
+}
+}
+a:hover {
+    color:var(--active); 
+}
 }
 
-.menu a {
-    text-decoration: underline;
-    color: var(--main);
-}
-
-
-/*....This one makes the images rotate....*/
-@keyframes spin {
-  to { rotate: 360deg; }
-}
-
-
+/*--------------MAIN------------*/
 /* MAIN  - flex is simplier for this since it I want to create a single column layout for the header for now */
 main {
-    flex: 1;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+   position: relative;
+    width: calc(var(--disc-size) + 2rem);
+    height: calc(var(--disc-size) + 2rem);
+    align-self: center; 
+    margin-inline-start: 4rem; /* DISC - attributions needed here and in disc-player*/
+    margin-block-start: -5rem; /* DISC - attributions needed here and in disc-player*/
+    margin-block-end: -6rem; /* DISC - attributions needed here and in disc-player*/
 }
+
+/*--------------DISC------------*/
+/*....ROTATE ANIMATION....*/
+@keyframes spin { /* used to define the CSS animation at various points during its duration - in my case it's faily simple because its a continuous rotate*/
+  to { rotate: 360deg; } /* learnt this on https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/rotate, it */
+}
+
 /* DISC - setting up the sizing for the main circle*/ 
 /* DISC - attributions needed here and in disc-player*/
 #disc-container {
     position: relative;
     width: calc(var(--disc-size) + 2rem);
     height: calc(var(--disc-size) + 2rem);
-    right: -70%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    
+    align-self: flex-end;
+    margin-inline-start: -2rem;
+    margin-block-end: -4rem;
 }
 
 #disc-player {
     width: calc(var(--disc-size) + 2rem);
     height: calc(var(--disc-size) + 2rem);
     border-radius: 50%;
-    background-image: url("Illustrations/Disc-ring.png");
+    background-image: url("Illustrations/Disc-ring.png"); /* DISC - attributions needed here*/
     background-size: cover;
     background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+    display: flex; /* DISC - attributions needed here*/
+    align-items: center; /* DISC - attributions needed here*/
+    justify-content: center; /* DISC - attributions needed here*/
+    position: relative; /* DISC - attributions needed here*/
     border: 0.125rem double var(--ring);
 }
 
@@ -132,28 +158,47 @@ main {
 
 /* DISC FILL */
 #disc-image {
-    
     transform-origin: center center; /*  rotates around its exact center point, making the spin smooth and stable without wobble. */
-    width: calc (var(--disc-size)*0.9); 
-    height: calc (var(--disc-size)*0.9); 
+    width: calc(var(--disc-size) * 1);
+    height: calc(var(--disc-size) * 1);
     justify-content: center;
     align-items: center;
     border-radius: 50%;  /* making the content disc shaped */
     object-fit: cover;
     position: relative;
-    
-    
+    overflow: hidden;
+    display: flex;  /* ensures centering works */
 }
 /* selecting all the content types and making them fit into the circle */
 #disc-image img,
 #disc-image iframe,
 #disc-image video,
 #disc-image embed {
+ 
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: relative;  
+    top: 0;
+    left: 0;
+}
+#disc-image iframe {
+   transform: scale(3.5) translateX(0%) translateY(20%);  
 }
 
+/* Attribution needed*/
+#disc-image:has(iframe)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--active);
+    mix-blend-mode: multiply;
+    z-index: 10;
+}
 
 #disc-hole  {
     position: absolute; 
@@ -171,63 +216,63 @@ main {
     }
 
 
-
-/* FILMSTRIP */
-.film-wrapper {
-    overflow-x: visible;
-    margin-block-start: 1rem;
-    margin-inline-start: -2rem;
-    padding: 0rem;
-
+/*--------------MIDDLE NAVIGATION------------*/
+#middle-nav {
     display: flex;
-    align-items: center;
-    gap: var(--gap-size);
-    padding-block: var(--padding-size);
-    background-color: white;
-    width: 150%;
-    bottom: 0; /* pins it to the bottom */
-
-    /* ADDING IMAGES TO EACH CONTENT BLOCK as a background - used claude to help me figure this out, for each content type i want the image i set to be the background in the film strip. This is setting a background * targets everything inside that li and hides the visibility inside the block (other than the background*/
-
-     /* External links */
-     #channel-blocks li:has(a) {
-        background-image: url('./Illustrations/Link.png');
-        background-size: cover;
-        background-position: center;
-
-        * {
-            visibility: hidden;
-        }
-    }
-
-    #channel-blocks li:has(iframe) {
-        background-image: url('./Illustrations/Listen.png');
-        background-size: cover;
-        background-position: center;
-
-        * {
-            visibility: hidden;
-        }
-    }
-    /* External embedded audio */
-    #channel-blocks li:has(.text) {
-        background-image: url('./Illustrations/read.png');
-        background-size: cover;
-        background-position: center;
-
-        * {
-            visibility: hidden;
-        }
-    }
+    flex-direction: row;
+    padding: 0rem;
+    gap: 0.5rem;
+    justify-content: space-between;
+    margin-block-start: 5rem;
 }
 
-/* ADDING IMAGES TO EACH CONTENT BLOCK */
-
-
-
-#channel-blocks li:has(.text) {
-    background-image: url('./Illustrations/Read text.png');
+#block-info {
+    margin-block-start: 5rem;
+    display: flex;
+    flex-direction: column;
 }
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: 100%;
+}
+
+.controls button {
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+#pause-play {
+    width: 4rem;
+    height: 4rem;
+}
+
+.controls button img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/*--------------FILM------------*/
+
+.film-wrapper {
+    position: fixed; /* Fixed to viewport */
+    width: 100vw; /* Full viewport width */
+    overflow-x:  auto; /* FILM attributions needed here*/
+    overflow-y: hidden;
+    left: 0; /* FILM attributions needed here*/
+    right: 0; /* FILM attributions needed here*/
+    bottom: 0; /* FILM attributions needed here*/
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: end; /* FILM attributions needed here*/
+    gap: var(--gap-size);  /* ADDING IMAGES TO EACH CONTENT BLOCK as a background - used claude to help me figure this out, for each content type i want the image i set to be the background in the film strip. This is setting a background * targets everything inside that li and hides the visibility inside the block (other than the background*/
 
 #channel-blocks {
     display: flex;  
@@ -235,32 +280,52 @@ main {
     overflow-x: auto;  /* horizontal scroll */
     gap: var(--gap-size);
     padding: 0;
-    padding-block-end: calc(var(--padding-size) * 3);
+    padding-block-end: calc(var(--padding-size) * 0);
     list-style: none;
     margin: 0;
     width: 100%;
     flex-wrap: nowrap;  /* keep in one row */
+
+    /* Needs attribution - blurred on both sides */
+    mask-image: linear-gradient(to right,
+        transparent 0%,
+        transparent 100%);
+    -webkit-mask-image: linear-gradient(to right,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%); 
 }
 
 #channel-blocks li {
     width: var(--block-size);
     height: var(--block-size);
+    aspect-ratio: 1;
     display: flex;
+    margin-block-end: -0.25rem;
     flex-shrink: 0;  /* keep this to prevent shrinking */
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    aspect-ratio: 1;
+    border: 0.5rem groove var(--border) /* border styles mdn */
 }
 
 #channel-blocks li.active {
-    border: 2px solid var(--main);
-    outline: 2px solid var(--main);
+    border: 0.5rem groove var(--active); 
 }
 #channel-blocks img,
 #channel-blocks iframe {
     object-fit: cover;
+    scale:105%;
+    object-position: center;
      aspect-ratio: 1;
+     overflow: hidden; 
+}
+#channel-blocks li img {
+    box-sizing: border-box; 
+    aspect-ratio: 1/1;
+    width: 100%;
+    height: 100%; /* border styles mdn */
 }
 
 #channel-blocks .text, #channel-blocks .image,
@@ -271,4 +336,38 @@ main {
     display: block;
     object-fit: cover;
     aspect-ratio: 1;
+}
+
+    /* External links */
+     #channel-blocks li:has(a) {
+        background-image: url('./Illustrations/Link.png');
+        background-size: 102%;
+        background-position: center;
+
+        * {
+            visibility: hidden;
+        }
+    }
+
+    #channel-blocks li:has(iframe) {
+        background-image: url('./Illustrations/Listen.png');
+        background-size: 102%;
+        background-position: center;
+        * {
+            visibility: hidden;
+        }
+    }
+    /* External embedded audio */
+    #channel-blocks li:has(.text) {
+        background-image: url('./Illustrations/read.png');
+        background-size: 102%;/* mdn background size options */
+        background-position: center;
+        * {
+            visibility: hidden;
+        }
+    }
+}
+/* ADDING IMAGES TO EACH CONTENT BLOCK */
+#channel-blocks li:has(.text) {
+background-image: url('./Illustrations/Read text.png');
 }

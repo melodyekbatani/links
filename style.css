@@ -43,7 +43,6 @@
 }
 
 /*--------------GLOBAL------------.*/
-
 h1 {
   font-family: var(--header-font);
   font-weight: var(--header-weight);
@@ -96,8 +95,6 @@ background-image: url("Illustrations/illustrations.png");
  html, body {
   overflow-x: hidden;
   background-color: var(--accent-color);
-  margin: 0;
-  padding:0;
 /*....ATTRIBUTION....*/
 /* GOAL: I wanted to make the header extend to the edge of the screen, this provides a reset/
 /* RESOURCE: Co-pilot, GPT-5.
@@ -124,6 +121,14 @@ background-image: url("Illustrations/illustrations.png");
   background-repeat: no-repeat;
 }
 
+/*-------------- Spacing ------------*/
+header {
+  padding-block-start: calc(var(--large-gutter)*2.5);
+  text-align: center;
+  margin-inline: 0;
+  justify-content: center;
+  align-items: center;
+}
 /*-------------- MENU ------------*/
 .menu {
   list-style: none;
@@ -179,15 +184,6 @@ background-image: url("Illustrations/illustrations.png");
   transition: 2s;
 }
 
-/*-------------- HEADER TEXT ------------*/
-header {
-  padding-block-start: calc(var(--large-gutter)*2.5);
-  text-align: center;
-  margin-inline: 0;
-  justify-content: center;
-  align-items: center;
-  
-}
 
 h1 {
   margin: 0;
