@@ -16,7 +16,7 @@
     /* setting fonts variables */
     --body-font: 'Chillax', sans-serif;
     --body-font-style:normal;
-    --body-size: clamp(0.75rem, 2vw, 2rem); /* The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the type to scale resposively - explained more in the disc size */
+    --body-size: clamp(1rem, 2vw, 2rem); /* The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the type to scale resposively - explained more in the disc size */
     --header-font: "BlurWeb-Medium W03 Regular";  /* I know we shouldnt be using fonts like this but I wanted a very specific vibe to the typography and tried a bunch i couldn't get to work in the design system */
     --heading-size: clamp(5rem, 10vw, 10rem);
 
@@ -73,7 +73,7 @@ h1 {
 }
 
 button img {
-    width:calc(var(--body-size) * 3); /*I keep forgetting how to properly space the calc function - use claude to remember this calc(var(--body-size) * 3) - no spaces until you do calc and put a space between * and 3*/
+    width:calc(var(--body-size) * 3); /* relative to text size - I keep forgetting how to properly space the calc function - use claude to remember this calc(var(--body-size) * 3) - no spaces until you do calc and put a space between * and 3*/
     height:calc(var(--body-size) * 3); 
     margin-inline: calc(var(--padding-size) * 1.8);
     margin-block: calc(var(--padding-size) * 0.5);
@@ -214,7 +214,7 @@ a:hover {
 
 .block-info {
 display: flex;
-flex-direction: column;
+flex-direction: column; 
 margin-right: auto; /* vw spacing between the text and the buttons */
 
     #block-title {
