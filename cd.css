@@ -27,8 +27,8 @@
     --main:rgb(0, 0, 0);
     --border: #dbdbdb;
 
-    /* setting filmstrip variables */
-   --disc-size: clamp(15rem, 80vw, 40rem); /* The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the disc to be resposively scaled - we also covered this in class but i needed a refresher on the synthex https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp. Increasing the middle value, it hits the maximum sooner and grows faster as you drag the viewport wider. */
+    /* setting disc and filmstrip variables */
+   --disc-size: clamp(15rem, 80vw, 30rem); /* The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the disc to be resposively scaled - we also covered this in class but i needed a refresher on the synthex https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp. Increasing the middle value, it hits the maximum sooner and grows faster as you drag the viewport wider. */
     --block-size: 5rem;
     --gap-size: 0.5rem;
     --padding-size: 1rem;
@@ -372,4 +372,16 @@ a:hover {
 /* ADDING IMAGES TO EACH CONTENT BLOCK */
 #channel-blocks li:has(.text) {
 background-image: url('./Illustrations/Read text.png');
+}
+/*-------------- RESPONSIVE DESIGN ------------*/
+/*The disc is super temperament*/
+@media (width > 700px) {
+  :root {
+}
+#disc-wrapper {
+    justify-content: center;
+    margin-inline-end: 0;
+    margin-block-start: calc(var(--disc-size) * -0.7);
+    --disc-size: clamp(15rem, 50vw, 35rem); 
+}
 }
