@@ -218,6 +218,7 @@ flex-direction: column;
 margin-right: auto; /* vw spacing between the text and the buttons */
 
     #block-title {
+    font-size: calc(var(--body-size) * 1.5);
     max-width: 15ch;
     white-space: nowrap;
     overflow: hidden;
@@ -229,18 +230,19 @@ margin-right: auto; /* vw spacing between the text and the buttons */
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    align-items: center;
     width: auto; /* Attributions needed */
     margin-inline-start: calc(var(--padding-size) * -1); 
 }
 
 .controls button {
-    width: 3rem;
-    height: 3rem;
+    width: calc(var(--body-size) * 3); /* relative to text size - 3rem is the min button size*/
+    height: calc(var(--body-size) * 3);
 }
 
 #pause-play {
-    width: 5rem;
-    height: 5rem;
+   width: calc(var(--body-size) * 3.5);
+    height: calc(var(--body-size) * 3.5);
 }
 
 .controls button img {
