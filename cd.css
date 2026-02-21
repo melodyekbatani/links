@@ -16,19 +16,19 @@
     /* setting fonts variables */
     --body-font: 'Chillax', sans-serif;
     --body-font-style:normal;
-    --body-size: 1rem;
+    --body-size: clamp(0.75rem, 2vw, 2rem); /* The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the type to scale resposively - explained more in the disc size */
     --header-font: "BlurWeb-Medium W03 Regular";  /* I know we shouldnt be using fonts like this but I wanted a very specific vibe to the typography and tried a bunch i couldn't get to work in the design system */
-    
+    --heading-size: clamp(5rem, 10vw, 10rem);
 
     /* setting color variable */
-    --active: #e61468;
-    --links: rgb(44, 44, 44); 
+    --active: rgb(255, 0, 0);
+    --links: rgb(48, 48, 48);
     --ring: rgb(246, 246, 246);
     --main:rgb(0, 0, 0);
-    --border: #dbdbdb;
+    --border: rgb(206, 206, 206);
 
     /* setting disc and filmstrip variables */
-   --disc-size: clamp(15rem, 80vw, 30rem); /* The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the disc to be resposively scaled - we also covered this in class but i needed a refresher on the synthex https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp. Increasing the middle value, it hits the maximum sooner and grows faster as you drag the viewport wider. */
+    --disc-size: clamp(15rem, 80vw, 30rem); /* The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the disc to be resposively scaled - we also covered this in class but i needed a refresher on the synthex https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp. Increasing the middle value, it hits the maximum sooner and grows faster as you drag the viewport wider. */
     --block-size: 5rem;
     --gap-size: 0.5rem;
     --padding-size: 1rem;
@@ -50,6 +50,7 @@ a {
     font-weight: 500;
     font-size: var(--body-size);
 }
+
 p {
     font-family: var(--body-font);
     font-weight: 200;
@@ -65,7 +66,7 @@ header {
     padding-block:  var(--padding-size);
 
 h1 {
-    font-size: 7rem;
+    font-size: var(--heading-size);
     color: var(--main);
     align-items: left;
     filter: blur(0.05rem);
@@ -75,14 +76,14 @@ button img {
     width:calc(var(--body-size) * 3); /*I keep forgetting how to properly space the calc function - use claude to remember this calc(var(--body-size) * 3) - no spaces until you do calc and put a space between * and 3*/
     height:calc(var(--body-size) * 3); 
     margin-inline: calc(var(--padding-size) * 1.8);
-    margin-block: 0.5rem;
+    margin-block: calc(var(--padding-size) * 0.5);
 }
 /*--------------MENU------------*/
 .menu {
     font-weight: 700;
     font-family: var(--font);
     display: flex;
-    gap: 2rem;
+    gap: calc(var(--padding-size) * 2);
     list-style: none;
     align-items: center;
     margin-block-end: -1rem;
@@ -385,6 +386,7 @@ background-image: url('./Illustrations/Read text.png');
     justify-content: center;
     margin-inline-end: 0;
     margin-block-start: clamp(calc(var(--disc-size) * -0.9), calc(var(--disc-size) * -0.75 + 3vw), calc(var(--disc-size) * -0.7)); /* using the logic from the clamp() on disc size, it's used here to scale the fixed margin fluidly. Syntax via MDN: developer.mozilla.org/en-US/docs/Web/CSS/clamp, help intergrating the logic/variable assisted by Claude.By writing each value relative to --disc-size, the bleed stays proportional to the disc as it grows (on ipad and up). The three values are: calc(var(--disc-size) * -0.8) for max bleed, calc(var(--disc-size) * -0.7 + 2vw) for preferred value that shifts with viewport width, and calc(var(--disc-size) * -0.6) the min bleed.  */
-    --disc-size: clamp(15rem, 50vw, 35rem); 
+    --disc-size: clamp(15rem, 50vw, 35rem);
 }
+
 }
