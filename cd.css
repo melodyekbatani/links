@@ -68,8 +68,8 @@ h1 {
     color: var(--main);
     align-items: left;
     filter: blur(0.05rem);
-
 }
+
 button img {
     width:calc(var(--body-size) * 3); /*I keep forgetting how to properly space the calc function - use claude to remember this calc(var(--body-size) * 3) - no spaces until you do calc and put a space between * and 3*/
     height:calc(var(--body-size) * 3); 
@@ -99,7 +99,7 @@ a:hover {
 
 /*--------------MAIN------------*/
 /* MAIN  - flex is simplier for this since it I want to create a single column layout for the header for now */
-main {
+#main {
    position: relative;
     width: calc(var(--disc-size) + 2rem);
     height: calc(var(--disc-size) + 2rem);
@@ -220,36 +220,34 @@ main {
 #middle-nav {
     display: flex;
     flex-direction: row;
-    padding: 0rem;
-    gap: 0.5rem;
-    justify-content: space-between;
+    padding: 0;
+    width: 100%;
+    align-items: center;
     margin-block-start: 5rem;
 }
 
-#block-info {
-    margin-block-start: 5rem;
-    display: flex;
+.block-info {
+     display: flex;
     flex-direction: column;
+    margin-right: auto;
 }
 
 .controls {
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    width: 100%;
+    width: auto; /* Attributions needed */
+    margin-inline-start: calc(var(--padding-size) * -1); 
 }
 
 .controls button {
     width: 3rem;
     height: 3rem;
-    padding: 0;
-    background: none;
-    border: none;
 }
 
 #pause-play {
-    width: 4rem;
-    height: 4rem;
+    width: 5rem;
+    height: 5rem;
 }
 
 .controls button img {
