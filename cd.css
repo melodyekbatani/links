@@ -28,7 +28,7 @@
     --border: #dbdbdb;
 
     /* setting filmstrip variables */
-    --disc-size: 50vh;
+   --disc-size: clamp(15rem, 80vw, 40rem); /* The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the disc to be resposively scaled - we also covered this in class but i needed a refresher on the synthex https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp. Increasing the middle value, it hits the maximum sooner and grows faster as you drag the viewport wider. */
     --block-size: 5rem;
     --gap-size: 0.5rem;
     --padding-size: 1rem;
@@ -100,14 +100,13 @@ a:hover {
 
 /*--------------MAIN------------*/
 /* MAIN  - flex is simplier for this since it I want to create a single column layout for the header for now */
-#main {
-   position: relative;
-    width: calc(var(--disc-size) + 2rem);
-    height: calc(var(--disc-size) + 2rem);
-    align-self: center; 
-    margin-inline-start: 4rem; /* DISC - attributions needed here and in disc-player*/
-    margin-block-start: -5rem; /* DISC - attributions needed here and in disc-player*/
-    margin-block-end: -6rem; /* DISC - attributions needed here and in disc-player*/
+#disc-wrapper{
+    position: relative;
+    width: 100%;
+    display: flex; /* This puts the entier disc block into a wrapper that i can set to align on the edge of the screen */
+    justify-content: flex-end;
+    margin-inline-start:  3rem;
+    margin-block-start: -6rem;
 }
 
 /*--------------DISC------------*/
@@ -124,8 +123,8 @@ a:hover {
     height: calc(var(--disc-size) + 2rem);
     
     align-self: flex-end;
-    margin-inline-start: -2rem;
-    margin-block-end: -4rem;
+    margin-inline-start: -1rem;
+    margin-block-end: -6rem;
 }
 
 #disc-player {
