@@ -88,6 +88,9 @@ dialog {
 	/* Style the `dialog` itself, which is `display: none;` to start. */
 	background-image: url('Illustrations/mobile-modal.png');
     background-size: contain; 
+    background-position: center;
+    background-repeat: no-repeat;
+
 	filter: drop-shadow(0 0.5rem 1rem rgba(229, 229, 229, 0.5)); /* Some depth. */
 	gap: calc(2 * var(--base));
 	justify-items: center; /* Center the children. */
