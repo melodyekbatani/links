@@ -20,7 +20,7 @@
     --heading-size: clamp(5rem, 10vw, 10rem);
 
     /* setting color variable */
-    --active: rgb(255, 0, 0);
+    --active: rgb(233, 255, 124);
     --links: rgb(48, 48, 48);
     --ring: rgb(246, 246, 246);
     --main:rgb(0, 0, 0);
@@ -28,7 +28,7 @@
 
     /* setting disc and filmstrip variables */
     --disc-size: clamp(15rem, 80vw, 30rem); /* The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the disc to be resposively scaled - we also covered this in class but i needed a refresher on the synthex https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp. Increasing the middle value, it hits the maximum sooner and grows faster as you drag the viewport wider. */
-    --block-size: clamp(5rem, 15vw, 12rem);/* I experimented with the values here - and thought the logic was max width is the smaller then the preferred value. but this just means that the clamp works faster and stops at 12rem*/
+    --block-size: clamp(5rem, 10vw, 8rem);/* I experimented with the values here - and thought the logic was max width is the smaller then the preferred value. but this just means that the clamp works faster and stops at 12rem*/
     --gap-size: 0.5rem;
     --padding-size: 1rem;
     --border-radius: 10%;
@@ -326,7 +326,7 @@ margin-right: auto; /* vw spacing between the text and the buttons */
 }
 
 #channel-blocks li.active {
-    border: 0.5rem outset var(--active); 
+    filter: blur(0.15rem) grayscale(100%); /* learnt this on mdn https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/filter */
 }
 
 /* External links */
@@ -360,12 +360,11 @@ margin-right: auto; /* vw spacing between the text and the buttons */
 
 }
 
-#channel-block li {
+#channel-blocks li { /* similar to a hover - attribution above */
         scale: 1;
-        
         transition: scale 0.2s ease; }
         
-        a:hover {
+        #channel-blocks li:hover {
         scale: 1.1; }
 
 
