@@ -476,7 +476,7 @@ margin-right: auto; /* vw spacing between the text and the buttons */
 padding: var(--padding-size);
     #block-title {
     font-size: calc(var(--body-size) * 1);
-    max-width: 15ch;
+    max-width: 20ch;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
