@@ -62,7 +62,7 @@ font-size: var(--body-size);
 /* HEADER - flex is simplier for this since it I want to create a single column layout for the header for now */
 header {
 display: flex;
-flex-direction: column-reverse;
+flex-direction: column;
 justify-content: space-between;
 padding-inline: var( --padding-size); 
 padding-block:  var(--padding-size);
@@ -74,12 +74,41 @@ padding-block:  var(--padding-size);
     filter: blur(0.05rem);
     }
 
-    button img {
+ #modal {
+    z-index: 100;
     width:calc(var(--body-size) * 3); /* relative to text size - I keep forgetting how to properly space the calc function - use claude to remember this calc(var(--body-size) * 3) - no spaces until you do calc and put a space between * and 3*/
     height:calc(var(--body-size) * 3); 
     margin-inline: calc(var(--padding-size) * 1.8);
     margin-block: calc(var(--padding-size) * 0.5);
     }
+}
+    body:has(dialog[open]) { overflow: hidden; }
+
+dialog {
+	/* Style the `dialog` itself, which is `display: none;` to start. */
+	background-image: url('Illustrations/mobile-modal.png');
+    background-size: contain; 
+	filter: drop-shadow(0 0.5rem 1rem rgba(229, 229, 229, 0.5)); /* Some depth. */
+	gap: calc(2 * var(--base));
+	justify-items: center; /* Center the children. */
+	padding: var(--base);
+
+	/* Defaults to `position: absolute;`, this centers it: */
+	inset-block-start: 50%;
+	inset-inline-start: 50%;
+	position: fixed; /* In the viewport. */
+	translate: -50% -50%;
+
+	/* When JS adds the `open` attribute… */
+	&[open] { display: grid } /* `block` is default, but we can override. */
+
+	button { background-color: tomato; } /* Always have a clear “close” `button`! */
+
+	&::backdrop {
+		background-color: rgba(0, 0, 0, 0.66); /* A dark overlay. */
+		pointer-events: none; /* Let clicks pass through to our `document` listener. */
+	}
+}
 /*--------------MENU------------*/
     .menu {
     font-weight: 700; 
@@ -97,7 +126,7 @@ padding-block:  var(--padding-size);
         a:hover {
         color:var(--active); }
     }
-}
+
 /*--------------MAIN------------*/
 main {
     display: flex;
@@ -467,6 +496,21 @@ header {
     --disc-size: clamp(15rem, 40vw, 25rem);
 }
 
+ #modal {
+
+}
+    body:has(dialog[open]) { overflow: hidden; }
+
+dialog {
+	/* Style the `dialog` itself, which is `display: none;` to start. from class website*/
+	background-image: url('Illustrations/web-modal.png');
+
+
+	&::backdrop {
+		background-color: rgba(0, 0, 0, 0.66); /* A dark overlay. */
+		pointer-events: none; /* Let clicks pass through to our `document` listener. */
+	}
+}
 
 .block-info {
 display: flex;
