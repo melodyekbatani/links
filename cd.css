@@ -212,15 +212,13 @@ width: 100%;
 /*--------------MIDDLE NAVIGATION------------*/
 #middle-nav {
     position:fixed;
-    
+    bottom: var(--block-size); /* find relative units for this!!! sits exactly on top of the film strip */
+    left: 0;
+    right: 0;
     display: flex;
     flex-direction: row;
-    
-    padding-block-end: var(--block-size);
-    
-    margin-bottom: var(--block-size);
     flex-shrink: 0; /*works with flex:1; and pushes this above the fixed b*/
-        width: 100%;
+    width: 100%;
     align-items: center;
 
 }
@@ -377,10 +375,6 @@ header {
     --disc-size: clamp(15rem, 50vw, 35rem);
 }
 
-#middle-nav {
-    margin-block-end: var(--block-size);
-    padding-inline: var(--padding-size);
-}
 
 .block-info {
 display: flex;
