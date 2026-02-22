@@ -191,7 +191,22 @@ width: 100%;
     z-index: 10;
     transform: translateY(70%) scale(3.5) translateX(0%); /* learnt how to write this synthx using claude: first translateY, then scale, then translateX - the order here is important */
 }
-
+#disc-image:has(.text) {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background-image: url('./Illustrations/lyrics-text.png');
+    background-size: 150%;
+    background-position: center;
+    transform-origin: center center;
+    h3 {
+       padding-block-end: 10rem; 
+    }
+    p {
+        padding-block-start: 3rem;
+        font-size: calc(var(--body-size) * 0.6)
+    }
+}
 
 #disc-hole  {
     position: absolute; 
@@ -326,6 +341,7 @@ margin-right: auto; /* vw spacing between the text and the buttons */
 }
 
 #channel-blocks li.active {
+    scale: 1.1; 
     filter: blur(0.15rem) grayscale(100%); /* learnt this on mdn https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/filter */
 }
 
