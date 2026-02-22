@@ -143,6 +143,7 @@ let renderBlock = (blockData) => {
 		// And puts it into the page!
 		channelBlocks.insertAdjacentHTML('beforeend', linkItem)
 
+		
 		// MAKING FILMSTRIP BLOCKS CLICKABLE
 		// When user clicks a block in the filmstrip, it should display on the disc used claud and copilot to helped structure the function logic and reviewed my understanding with the code tutor, added click event listener to trigger displayOnDisc function
 	
