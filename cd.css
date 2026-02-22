@@ -379,7 +379,7 @@ background-image: url('./Illustrations/Read text.png');
     aspect-ratio: 1;
 }
 
-/* border styles mdn */
+/* more comments to come ...This is how u get the links not to show up within the block element */
 #channel-blocks li a,
 #channel-blocks li iframe {
     pointer-events: none;
