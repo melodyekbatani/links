@@ -11,7 +11,6 @@
 /*--------------DESIGN SYSTEM------------*/
 :root {
     overflow-x: hidden;
-    height: 100vh; /* Need to review this - ask Riya how she did this!! */
 
     /* setting fonts variables */
     --body-font: 'Chillax', sans-serif;
@@ -36,11 +35,11 @@
 }
 /*--------------BASE------------*/
 html, body {
+    height: 100dvh; /* Need to review this - ask Riya how she did this and if this is the corrent synthx, i ended up googling this!! */
     display: flex; /* Putting a flex here so it's easier to control the movement :) */
     flex-direction: column;
-    background: linear-gradient(#ffffff, #e6e6e6);
     overflow: hidden;
-    height: 100%;
+    background: linear-gradient(#ffffff, #e6e6e6);
 
 }
 h1, h2, h3 {
@@ -100,6 +99,12 @@ padding-block:  var(--padding-size);
     }
 }
 /*--------------MAIN------------*/
+main {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /*I leanrt this on Claude and watched this video to understand it better https://www.youtube.com/watch?v=_tlxwc9ssH4&t=784s. Telling the flex to take up all the avalible space, body is a flex column with header, main, and the film strip,  flex: 1 on main is saying "give me all the leftover height that header doesn't use.*/
+    justify-content: flex-start; 
+}
 
 /* using flex here (defaults to row) as the main horizonal axis for the disc and moving it to the right side of the mobile frame*/
 #disc-wrapper{
@@ -192,7 +197,7 @@ width: 100%;
     position: absolute; 
     background-image: url("Illustrations/disc-hole.png");
     background-size: cover; /* Similar to object fit but with the background size, https://www.w3schools.com/css/css3_background_size.asp this makes it fit the disc size perfectly as a cover rather than cropping it */
-    width: 33%; 
+    width: 33%; /* sets to 1/3 of the disc size */
     height: 33%;
     z-index: 1000;
     border-radius: 50%;
@@ -206,13 +211,18 @@ width: 100%;
 
 /*--------------MIDDLE NAVIGATION------------*/
 #middle-nav {
+    position:fixed;
+    
     display: flex;
     flex-direction: row;
-    padding: 0;
-    width: 100%;
+    
+    padding-block-end: var(--block-size);
+    
+    margin-bottom: var(--block-size);
+    flex-shrink: 0; /*works with flex:1; and pushes this above the fixed b*/
+        width: 100%;
     align-items: center;
-    margin-block-start:calc(var(--padding-size) * 3);
-    padding-inline: var(--padding-size);
+
 }
 
 .block-info {
@@ -368,7 +378,7 @@ header {
 }
 
 #middle-nav {
-    margin-block-start: 10rem;
+    margin-block-end: var(--block-size);
     padding-inline: var(--padding-size);
 }
 
