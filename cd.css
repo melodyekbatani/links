@@ -46,6 +46,7 @@ h1, h2, h3 {
 font-family: var(--header-font);
 }
 
+
 a {
 font-family: var(--body-font);
 font-weight: 500;
@@ -191,20 +192,36 @@ width: 100%;
     z-index: 10;
     transform: translateY(70%) scale(3.5) translateX(0%); /* learnt how to write this synthx using claude: first translateY, then scale, then translateX - the order here is important */
 }
+
 #disc-image:has(.text) {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    justify-content: center;
+
     background-image: url('./Illustrations/lyrics-text.png');
     background-size: 150%;
     background-position: center;
-    transform-origin: center center;
-    h3 {
-       padding-block-end: 10rem; 
+
+    .text {
+       justify-content: center; 
+       
     }
+    h3 {
+    padding-block-end: 6rem;
+    font-size: 1.25rem;
+    
+    }
+
     p {
-        padding-block-start: 3rem;
-        font-size: calc(var(--body-size) * 0.6)
+        margin-block-start: 3rem;
+        font-size: 0.75rem;
+        display: -webkit-box;
+        max-width: 40ch;
+        -webkit-line-clamp: 3; /* ATTRIBUTION learnt this previously on mdn */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
@@ -244,12 +261,14 @@ flex-direction: column;
 margin-right: auto; /* vw spacing between the text and the buttons */
 
     #block-title {
-    font-size: calc(var(--body-size) * 1.5);
     max-width: 15ch;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     }
+}
+.block-info h2 {
+    font-size: 1rem;
 }
 
 .controls {
@@ -446,7 +465,7 @@ header {
     justify-content: center;
     margin-inline-end: 0;
     margin-block-start: clamp(calc(var(--disc-size) * -0.9), calc(var(--disc-size) * -0.75 + 3vw), calc(var(--disc-size) * -0.7)); /* using the logic from the clamp() on disc size, it's used here to scale the fixed margin fluidly. Syntax via MDN: developer.mozilla.org/en-US/docs/Web/CSS/clamp, help intergrating the logic/variable assisted by Claude.By writing each value relative to --disc-size, the bleed stays proportional to the disc as it grows (on ipad and up). The three values are: calc(var(--disc-size) * -0.8) for max bleed, calc(var(--disc-size) * -0.7 + 2vw) for preferred value that shifts with viewport width, and calc(var(--disc-size) * -0.6) the min bleed.  */
-    --disc-size: clamp(15rem, 50vw, 35rem);
+    --disc-size: clamp(15rem, 40vw, 25rem);
 }
 
 
@@ -454,16 +473,21 @@ header {
 display: flex;
 flex-direction: column; 
 margin-right: auto; /* vw spacing between the text and the buttons */
-
+padding: var(--padding-size);
     #block-title {
-    font-size: calc(var(--body-size) * 1.5);
+    font-size: calc(var(--body-size) * 1);
     max-width: 15ch;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     }
+    #block-link {
+        font-size: calc(var(--body-size) * 0.75);
+    }
 }
-
+.controls {
+    padding: var(--padding-size);
+}
 .controls button {
     width: calc(var(--body-size) * 1.5); /* relative to text size - 3rem is the min button size*/
     height: calc(var(--body-size) * 1.5);
@@ -474,4 +498,11 @@ margin-right: auto; /* vw spacing between the text and the buttons */
     height: calc(var(--body-size) * 2);
 }
 
+}
+@media (width > 1210px) {
+    #disc-wrapper {
+    justify-content: center;
+    margin-inline-end: 0;
+    margin-block-start: -20rem; /* using the logic from the clamp() on disc size, it's used here to scale the fixed margin fluidly. Syntax via MDN: developer.mozilla.org/en-US/docs/Web/CSS/clamp, help intergrating the logic/variable assisted by Claude.By writing each value relative to --disc-size, the bleed stays proportional to the disc as it grows (on ipad and up). The three values are: calc(var(--disc-size) * -0.8) for max bleed, calc(var(--disc-size) * -0.7 + 2vw) for preferred value that shifts with viewport width, and calc(var(--disc-size) * -0.6) the min bleed.  */
+}
 }
