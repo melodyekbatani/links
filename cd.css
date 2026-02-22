@@ -277,6 +277,14 @@ margin-right: auto; /* vw spacing between the text and the buttons */
     display: flex;
     align-items: end; /* FILM attributions needed here*/
     gap: var(--gap-size);  /* ADDING IMAGES TO EACH CONTENT BLOCK as a background - used claude to help me figure this out, for each content type i want the image i set to be the background in the film strip. This is setting a background * targets everything inside that li and hides the visibility inside the block (other than the background*/
+    background-color:white;
+     /* Needs attribution - blurred on both sides */
+    -webkit-mask-image: linear-gradient(to top,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%);
+
 
 #channel-blocks {
     display: flex;  
@@ -313,8 +321,8 @@ margin-right: auto; /* vw spacing between the text and the buttons */
     justify-content: center;
     overflow: hidden;
     box-sizing: border-box; /* adds border to box size - prevents overflow */
-    border: 0.5rem outset rgb(255, 255, 255); /* border styles mdn */
-    border-radius: 20%;
+    border: 0.5rem solid rgb(255, 255, 255); /* border styles mdn */
+    border-radius: 0
 }
 
 #channel-blocks li.active {
@@ -349,15 +357,17 @@ margin-right: auto; /* vw spacing between the text and the buttons */
             visibility: hidden;
         }
     }
+
 }
 /* ADDING IMAGES TO EACH CONTENT BLOCK */
 #channel-blocks li:has(.text) {
 background-image: url('./Illustrations/Read text.png');
+ }
 
 #channel-blocks img,
 #channel-blocks iframe {
     object-fit: cover;
-    scale:105%;
+    scale:80%;
     object-position: center;
      aspect-ratio: 1;
      overflow: hidden; 
@@ -385,8 +395,7 @@ background-image: url('./Illustrations/Read text.png');
     pointer-events: none;
 }
 
-    }
-
+   
 /* ADDING IMAGES TO EACH CONTENT BLOCK */
 #channel-blocks li:has(.text) {
 background-image: url('./Illustrations/Read text.png');
