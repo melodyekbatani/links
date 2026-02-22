@@ -39,7 +39,6 @@ html, body {
     display: flex; /* Putting a flex here so it's easier to control the movement :) */
     flex-direction: column;
     overflow: hidden;
-    background: linear-gradient(#ffffff, #e6e6e6);
 
 }
 h1, h2, h3 {
@@ -474,6 +473,7 @@ display: flex;
 flex-direction: column; 
 margin-right: auto; /* vw spacing between the text and the buttons */
 padding: var(--padding-size);
+
     #block-title {
     font-size: calc(var(--body-size) * 1);
     max-width: 20ch;
