@@ -36,50 +36,53 @@
 }
 /*--------------BASE------------*/
 html, body {
+    display: flex; /* Putting a flex here so it's easier to control the movement :) */
+    flex-direction: column;
     background: linear-gradient(#ffffff, #e6e6e6);
     overflow: hidden;
     height: 100%;
 
 }
 h1, h2, h3 {
-    font-family: var(--header-font);
+font-family: var(--header-font);
 }
 
 a {
-    font-family: var(--body-font);
-    font-weight: 500;
-    font-size: var(--body-size);
+font-family: var(--body-font);
+font-weight: 500;
+font-size: var(--body-size);
 }
 
 p {
-    font-family: var(--body-font);
-    font-weight: 200;
-    font-size: var(--body-size);
+font-family: var(--body-font);
+font-weight: 200;
+font-size: var(--body-size);
 }
+
 /*--------------HEADER------------*/
 /* HEADER - flex is simplier for this since it I want to create a single column layout for the header for now */
 header {
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: space-between;
-    padding-inline: var( --padding-size); 
-    padding-block:  var(--padding-size);
+display: flex;
+flex-direction: column-reverse;
+justify-content: space-between;
+padding-inline: var( --padding-size); 
+padding-block:  var(--padding-size);
 
-h1 {
+    h1 {
     font-size: var(--heading-size);
     color: var(--main);
     align-items: left;
     filter: blur(0.05rem);
-}
+    }
 
-button img {
+    button img {
     width:calc(var(--body-size) * 3); /* relative to text size - I keep forgetting how to properly space the calc function - use claude to remember this calc(var(--body-size) * 3) - no spaces until you do calc and put a space between * and 3*/
     height:calc(var(--body-size) * 3); 
     margin-inline: calc(var(--padding-size) * 1.8);
     margin-block: calc(var(--padding-size) * 0.5);
-}
+    }
 /*--------------MENU------------*/
-.menu {
+    .menu {
     font-weight: 700; 
     font-family: var(--font);
     display: flex;
@@ -89,19 +92,19 @@ button img {
     margin-block-end: calc(var(--padding-size) * -1);
     justify-content: space-between; /*equally space at viewport width*/
 
-a {
-    font-size: var(--body-size);
-}
-}
-a:hover {
-    color:var(--active); 
-}
+        a {
+        font-size: var(--body-size); }
+        
+        a:hover {
+        color:var(--active); }
+    }
 }
 /*--------------MAIN------------*/
+
 /* using flex here (defaults to row) as the main horizonal axis for the disc and moving it to the right side of the mobile frame*/
 #disc-wrapper{
-    position: relative;
-    width: 100%;
+position: relative;
+width: 100%;
     display: flex; /* This puts the entier disc block into a wrapper that i can set to align on the edge of the screen */
     justify-content: flex-end; /*right aligns*/
     margin-inline-start:  calc(var(--padding-size) * 3);
@@ -231,7 +234,7 @@ margin-right: auto; /* vw spacing between the text and the buttons */
     flex-direction: row;
     gap: 1rem;
     align-items: center;
-    width: auto; /* Attributions needed */
+    width: auto; /* Instructs the browser to calculate an element's width based */
     margin-inline-start: calc(var(--padding-size) * -1); 
 }
 
@@ -258,7 +261,7 @@ margin-right: auto; /* vw spacing between the text and the buttons */
     width: 100vw; /* Full viewport width */
     overflow-x:  auto; /* FILM attributions needed here*/
     overflow-y: hidden;
-    left: 0; /* FILM attributions needed here*/
+    left: 0; /* Resets to position 0*/
     right: 0; /* FILM attributions needed here*/
     bottom: 0; /* FILM attributions needed here*/
     padding: 0;
@@ -302,7 +305,8 @@ margin-right: auto; /* vw spacing between the text and the buttons */
     justify-content: center;
     overflow: hidden;
     box-sizing: border-box; /* adds border to box size - prevents overflow */
-    border: 0.5rem groove var(--border) /* border styles mdn */
+    border: 0.5rem outset rgb(255, 255, 255); /* border styles mdn */
+    border-radius: 20%;
 }
 
 #channel-blocks li.active {
@@ -333,35 +337,8 @@ margin-right: auto; /* vw spacing between the text and the buttons */
     aspect-ratio: 1;
 }
 
-    /* External links */
-     #channel-blocks li:has(a) {
-        background-image: url('./Illustrations/Link.png');
-        background-size: 102%;
-        background-position: center;
-
-        * {
-            visibility: hidden;
-        }
     }
 
-    #channel-blocks li:has(iframe) {
-        background-image: url('./Illustrations/Listen.png');
-        background-size: 102%;
-        background-position: center;
-        * {
-            visibility: hidden;
-        }
-    }
-    /* External embedded audio */
-    #channel-blocks li:has(.text) {
-        background-image: url('./Illustrations/read.png');
-        background-size: 102%;/* mdn background size options */
-        background-position: center;
-        * {
-            visibility: hidden;
-        }
-    }
-}
 /* ADDING IMAGES TO EACH CONTENT BLOCK */
 #channel-blocks li:has(.text) {
 background-image: url('./Illustrations/Read text.png');
@@ -374,11 +351,49 @@ background-image: url('./Illustrations/Read text.png');
 @media (width > 700px) {
   :root {
 }
+header {
+    button img {
+    width:calc(var(--body-size) * 1.5); /* relative to text size - I keep forgetting how to properly space the calc function - use claude to remember this calc(var(--body-size) * 3) - no spaces until you do calc and put a space between * and 3*/
+    height:calc(var(--body-size) * 1.5); 
+    margin-inline: calc(var(--padding-size) * 1.8);
+    margin-block: calc(var(--padding-size) * 0.5);
+    }
+}
+
 #disc-wrapper {
     justify-content: center;
     margin-inline-end: 0;
     margin-block-start: clamp(calc(var(--disc-size) * -0.9), calc(var(--disc-size) * -0.75 + 3vw), calc(var(--disc-size) * -0.7)); /* using the logic from the clamp() on disc size, it's used here to scale the fixed margin fluidly. Syntax via MDN: developer.mozilla.org/en-US/docs/Web/CSS/clamp, help intergrating the logic/variable assisted by Claude.By writing each value relative to --disc-size, the bleed stays proportional to the disc as it grows (on ipad and up). The three values are: calc(var(--disc-size) * -0.8) for max bleed, calc(var(--disc-size) * -0.7 + 2vw) for preferred value that shifts with viewport width, and calc(var(--disc-size) * -0.6) the min bleed.  */
     --disc-size: clamp(15rem, 50vw, 35rem);
+}
+
+#middle-nav {
+    margin-block-start: 10rem;
+    padding-inline: var(--padding-size);
+}
+
+.block-info {
+display: flex;
+flex-direction: column; 
+margin-right: auto; /* vw spacing between the text and the buttons */
+
+    #block-title {
+    font-size: calc(var(--body-size) * 1.5);
+    max-width: 15ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+}
+
+.controls button {
+    width: calc(var(--body-size) * 1.5); /* relative to text size - 3rem is the min button size*/
+    height: calc(var(--body-size) * 1.5);
+}
+
+#pause-play {
+   width: calc(var(--body-size) * 2);
+    height: calc(var(--body-size) * 2);
 }
 
 }
