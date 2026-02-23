@@ -22,12 +22,13 @@
 	--subheader-size: clamp(1.25rem, 2vw, 1.75rem);
 
 	/* setting color variable */
-	--active: rgb(104, 20, 58);
+	--active: rgb(67, 12, 37);
 	--selected: rgb(146, 130, 255);
-	--links: rgb(255, 0, 144);
+	--links: rgb(175, 9, 56);
 	--ring: rgb(180, 180, 180);
-	--main: rgb(17, 218, 167);
+	--main: rgb(67, 12, 37);
 	--border: rgb(206, 206, 206);
+	--white: white; 
 
 	/* setting disc and filmstrip variables */
 	--disc-size: clamp(15rem, 80vw, 30rem);
@@ -99,45 +100,56 @@ header {
 body:has(dialog[open]) {
 	overflow: hidden;
 }
+.dialog-header { 	/* This wasnt working when nested but I did try */
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+
+}
 
 dialog {
-	/* Style the `dialog` itself, which is `display: none;` to start. */
+	/* From class - Style the `dialog` itself, which is `display: none;` to start. */
 	background-image: url('Illustrations/web-modal.png');
 	background-size: fill;
 	background-position: center;
 	background-repeat: no-repeat;
 
-	width: clamp(22rem, 55vw, 70rem);
+	width: clamp(20rem, 55vw, 70rem);
 	height: auto;
 	max-width: 100ch;
 
 	padding: 0.5rem;
 	/*Asked claud to help me make the text responsive to the image size, rem won't scale with the illustration as it resizes. I used % units here to keep it contained to the size of the frame. https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units */
-	border-radius: 1rem; /* Defaults to `position: absolute;`, this centers it: from class website*/
+	border-radius: 1.2rem; 
 	inset-block-start: 50%;
 	inset-inline-start: 50%;
 	position: fixed; /* In the viewport. */
-	translate: -50% -50%;
-
+	translate: -50% -50%; /* In the viewport. */
+	
 	#modal-text {
 		display: flex;
 		flex-direction: column;
-		background-color: white;
+
 		padding: 1rem;
-		border-radius: 1rem;
+		border-radius: 0.7rem; /* Chareese taught me this trick to make the borders look proper - outside border is more curved then inner border */
 		box-shadow: 0.3rem /* Writing it like this so I can understand the values better - using box shadow because I want to add a border radius. horizontal offset — pushes shadow right */
 		0.3rem /* vertical offset — pushes shadow down */
 		0.6rem /* blur radius — how soft the shadow is */
 		0.125rem /* spread radius — how much it expands before blurring */
-		rgba(104, 104, 104, 0.5); /* color — grey at 50% opacity */
+		grey; /* color — grey at 50% opacity */
 	}
-
 	h3 {
 		margin-block: 0.5rem;
-		text-align: center;
+		text-align: left;
 		font-size: clamp(1.5rem, 2.5vw, 2.5rem);
 		/* smallest, preferred, max */
 		padding-block-end: 0.5rem;
+		color: var(--main);
+	}
+
+	button {
+		width: calc(var(--body-size) * 3); /*smallest button size */
+		height: calc(var(--body-size) * 3);
 	}
 
 	p,
@@ -145,22 +157,13 @@ dialog {
 		margin-block-start: 1rem;
 		font-size: clamp(1rem, 1.25vw, 1.25rem);
 		line-height: 1.5;
-	}
-
-	button {
-		font-family: var(--body-font);
-		margin-block: 0.5rem;
-		text-align: center;
-		align-self: center;
-		justify-content: center;
-		width: calc(var(--body-size) * 3);
-		height: calc(var(--body-size) * 3);
-	}
+	
 
 	&::backdrop {
 		background-color: rgba(0, 0, 0, 0.66); /* A dark overlay. */
 		pointer-events: none; /* Let clicks pass through to our `document` listener. */
 	}
+}
 }
 
 &[open] { display: grid }
@@ -313,6 +316,7 @@ main {
 
 /* selecting the actual text elements */
 	.text {
+		color: var(--white);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -332,6 +336,7 @@ main {
 	}
 
 	p {
+		color:var(--white);
 		font-size: clamp(calc(var(--body-font) * 0.75),50vw, calc(var(--body-font) * 2));
 		width: 23ch; /* talked about this in class but also referenced Mdn and Claud for this - it restricts the number of characters - you can use a percentage, rem, or percent for width*/
 		display: -webkit-box;
@@ -376,7 +381,6 @@ main {
 	width: 100%;
 	align-items: center;
 	padding: var( --padding-size);
-
 }
 
 .block-info {
@@ -397,6 +401,7 @@ main {
 
 .block-info h2 {
 	font-size: 1rem;
+	color: var(--main);
 }
 
 .controls {
