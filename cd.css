@@ -91,11 +91,12 @@ dialog {
     background-position: center;
     background-repeat: no-repeat;
 
-    width: 90vw;
-    max-width: 50rem;
+    width: clamp(22rem, 55vw, 70rem);
     height: auto;
-    min-height: 70vh;
-
+ 
+    padding-block-start: 10%; /*Asked claud to help me make the text responsive to the image size, rem won't scale with the illustration as it resizes. I used % units here to keep it contained to the size of the frame. https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units */
+    padding-block-end: 8%;
+    padding-inline: 8%;
 
 	/* Defaults to `position: absolute;`, this centers it: from class website*/
 	inset-block-start: 50%;
@@ -106,7 +107,19 @@ dialog {
 	/* When JS adds the `open` attribute… */
 	&[open] { display: grid } /* `block` is default, but we can override. */
 
-	button { background-color: tomato; } /* Always have a clear “close” `button`! */
+    h3 {
+        font-size: clamp(0.875rem, 2vw, 1.25rem);
+        padding-block-end: 0.5rem;
+    }
+
+    p {
+        font-size: clamp(0.75rem, 1.5vw, 1rem);
+        line-height: 1.5;
+    }
+
+    button {
+        background-color: tomato;
+    }
 
 	&::backdrop {
 		background-color: rgba(0, 0, 0, 0.66); /* A dark overlay. */
