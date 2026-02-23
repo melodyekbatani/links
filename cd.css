@@ -85,7 +85,10 @@ header {
 	padding-block: var(--padding-size);
 
 	h1 {
+		padding-block-start: var(--gap-size);
 		font-size: var(--heading-size);
+		margin-block: -1.5rem;
+		margin-inline: -0.25rem;
 		color: var(--active);
 		align-items: left;
 		filter: blur(0.05rem); /* Learnt about filters from your suggestions in class https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/filter-function/blur but here's were I found the correct way to write it - number is blur with a radius of x in my case its very very small */
@@ -177,10 +180,10 @@ dialog {
 
 /*--------------MENU------------*/
 .menu {
+	z-index: 1000;
 	display: flex;
 	gap: calc(var(--padding-size) * 2);
 	list-style: none;
-	margin-block-end: calc(var(--padding-size) * -1);
 	justify-content: space-between; /*equally space at viewport width*/
 	align-items: center;
 	font-family: var(--font);
@@ -402,6 +405,9 @@ main {
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
+	#block-link:not([href="placeholder"]) {
+	text-decoration: underline; 
+	} /* Claude helped me figure this out, I wanted it so the placeholder link wasnt underlined but everything else was - i used the :not() element, it is a CSS pseudo-class that matches everything EXCEPT what's in the brackets — so this only underlines the link when the href is no longer "placeholder", i.e. when a real block is selected.*/
 }
 
 .block-info h2 {
@@ -617,8 +623,8 @@ main {
 		margin-right: auto;
 		/* vw spacing between the text and the buttons */
 		padding: var(--padding-size);
+		align-items: flex-start; /* not left */
 		text-align: left;
-		align-items: left;
 
 		#block-title {
 			font-size: calc(var(--body-size) * 1);
@@ -634,8 +640,12 @@ main {
 			padding: 0; 
 			text-align: left;
 			font-size: calc(var(--body-size) * 0.75);
+			text-decoration: none;
 		}
+		
+		
 	}
+	
 
 	.controls {
 		padding: var(--padding-size);
