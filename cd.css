@@ -87,7 +87,7 @@ header {
 	h1 {
 		padding-block-start: var(--gap-size);
 		font-size: var(--heading-size);
-		margin-block: -1.5rem;
+		margin-block: -1rem;
 		margin-inline: -0.25rem;
 		color: var(--active);
 		align-items: left;
