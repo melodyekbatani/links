@@ -95,7 +95,7 @@ dialog {
     height: auto;
     max-width: 90ch;
  
-    padding: 1rem; /*Asked claud to help me make the text responsive to the image size, rem won't scale with the illustration as it resizes. I used % units here to keep it contained to the size of the frame. https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units */
+    padding: 0.5rem; /*Asked claud to help me make the text responsive to the image size, rem won't scale with the illustration as it resizes. I used % units here to keep it contained to the size of the frame. https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units */
     border-radius: 1rem;
 	/* Defaults to `position: absolute;`, this centers it: from class website*/
 	inset-block-start: 50%;
@@ -110,29 +110,31 @@ dialog {
         display:flex;
         flex-direction: column;
         background-color: white;
-        padding: 2rem;
+        padding: 1rem;
         border-radius: 1rem;
         box-shadow: 0.3rem   /* horizontal offset — pushes shadow right */ 0.3rem   /* vertical offset — pushes shadow down */ 0.6rem   /* blur radius — how soft the shadow is */ 0.125rem /* spread radius — how much it expands before blurring */ rgba(104, 104, 104, 0.5); /* color — grey at 50% opacity */
 
     }
     h3 {
-        font-size: clamp(1rem, 2vw, 1.5rem);
+        font-size: clamp(1.5rem, 2vw, 2rem);
         padding-block-end: 0.5rem;
     }
 
     p, a { /* you can select multiple elements by using the comma between to set common styles */
-        font-size: clamp(0.85rem, 1.5vw, 1.25rem);
+        
+        margin-block-start: 1rem;
+        font-size: clamp(1rem, 1.25vw, 1.25rem);
         line-height: 1.5;
     }
    
     button {
         font-family: var(--body-font);
-        background-color: tomato;
-        padding: 0.5rem;
-        border-radius: 0.5rem;
+        margin-block: 0.5rem;
         text-align: center;
+        align-self: center;
        justify-content: center;
-       align-items: center;
+       width: calc(var(--body-size) * 3);
+       height: calc(var(--body-size) * 3);
     }
 
 	&::backdrop {
