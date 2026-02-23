@@ -93,7 +93,7 @@ dialog {
 
     width: clamp(22rem, 55vw, 70rem);
     height: auto;
-    max-width: 90ch;
+    max-width: 100ch;
  
     padding: 0.5rem; /*Asked claud to help me make the text responsive to the image size, rem won't scale with the illustration as it resizes. I used % units here to keep it contained to the size of the frame. https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units */
     border-radius: 1rem;
@@ -116,7 +116,9 @@ dialog {
 
     }
     h3 {
-        font-size: clamp(1.5rem, 2vw, 2rem);
+        margin-block: 0.5rem;
+        text-align: center;
+        font-size: clamp(1.5rem, 2.5vw, 2.5rem);
         padding-block-end: 0.5rem;
     }
 
