@@ -22,10 +22,11 @@
 	--subheader-size: clamp(1.25rem, 2vw, 1.75rem);
 
 	/* setting color variable */
-	--active: rgb(130, 138, 255);
-	--links: rgb(48, 48, 48);
+	--active: rgb(104, 20, 58);
+	--selected: rgb(146, 130, 255);
+	--links: rgb(255, 0, 144);
 	--ring: rgb(180, 180, 180);
-	--main: rgb(0, 0, 0);
+	--main: rgb(17, 218, 167);
 	--border: rgb(206, 206, 206);
 
 	/* setting disc and filmstrip variables */
@@ -57,12 +58,14 @@ h3 {
 }
 
 a {
+	color: var(--links);
 	font-family: var(--body-font);
 	font-weight: 500;
 	font-size: var(--body-size);
 }
 
 p {
+	color: var(--main);
 	font-family: var(--body-font);
 	font-weight: 400;
 	font-size: var(--body-size);
@@ -79,9 +82,9 @@ header {
 
 	h1 {
 		font-size: var(--heading-size);
-		color: var(--main);
+		color: var(--active);
 		align-items: left;
-		filter: blur(0.05rem);
+		filter: blur(0.05rem); /* Learnt about filters from your suggestions in class https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/filter-function/blur but here's were I found the correct way to write it - number is blur with a radius of x in my case its very very small */
 	}
 
 	#modal {
@@ -173,12 +176,13 @@ dialog {
 	align-items: center;
 	font-family: var(--font);
 
+	/*This is a simple interaction to make the link clickable */
 	a {
 		font-size: var(--body-size);
 	}
 
 	a:hover {
-		color: var(--active);
+		color: var(--selected);
 	}
 }
 
@@ -303,7 +307,7 @@ main {
 	flex-direction: column; /* vertical */
 	text-align: center;
 
-	background-image: url('./Illustrations/lyrics text.png');
+	background-image: url('Illustrations/lyrics-text.png');
 	background-size: 140%;
 	background-position: center;
 
@@ -317,12 +321,12 @@ main {
 
 	h3 {
 		padding-block-end: clamp(3rem, 40vw, 16rem); /* learning to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
-		font-size: clamp(calc(var(--body-size) * 1.15),40vw, calc(var(--body-size) * 1.5));
+		font-size: clamp(calc(var(--body-size) * 1.15),40vw, calc(var(--body-size) * 1.25));
 		/* using the logic from the clamp() on disc size, it's used here to scale the fixed margin fluidly. Syntax via MDN: developer.mozilla.org/en-US/docs/Web/CSS/clamp, help intergrating the logic/variable assisted by Claude.By writing each value relative to --disc-size, the bleed stays proportional to the disc as it grows (on ipad and up). The three values are: calc(var(--disc-size) * -0.8) for max bleed, calc(var(--disc-size) * -0.7 + 2vw) for preferred value that shifts with viewport width, and calc(var(--disc-size) * -0.6) the min bleed.  */
 		overflow: hidden;
-		text-overflow: ellipsis;
-		text-wrap: balance; /* Learnt this in class but using it here, used mdn to refresh my knowledge of it. https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap I think balance works on all browser types  */
-		width: 12ch; /* talked about this in class but also referenced Mdn and Claud for this - it restricts the number of characters - you can use a percentage, rem, or percent for width*/
+		text-overflow: ellipsis; /* Displays ... at the point where text is clipped. Only works when paired with overflow:hidden and white-space:nowrap.I think Lucy originally showed me this but also had to find the right synthx on MDN. */
+		text-wrap: balance; /* Learnt this in class but using it here, used mdn to refresh my knowledge of it. https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap I think balance works on most browser types  */
+		width: 20ch; /* talked about this in class but also referenced Mdn and Claud for this - it restricts the number of characters - you can use a percentage, rem, or percent for width*/
 		white-space: nowrap; /* learnt this through Claude means don't wrap to more then 1 line */
 		overflow: hidden;  /* nessessary to hide the overflow */
 	}
@@ -330,19 +334,18 @@ main {
 	p {
 		font-size: clamp(calc(var(--body-font) * 0.75),50vw, calc(var(--body-font) * 2));
 		width: 23ch; /* talked about this in class but also referenced Mdn and Claud for this - it restricts the number of characters - you can use a percentage, rem, or percent for width*/
-		max-width: 40ch;
 		display: -webkit-box;
 		-webkit-line-clamp: 2;
-		/* ATTRIBUTION learnt this previously on mdn */
+		/* Limits text to 2 lines then truncates with ellipsis. Requires display:-webkit-box and -webkit-box-orient:vertical to work, Standard for doing this sort of thing. ChatGPT + MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/line-clamp  */
 		text-wrap: balance; /* more info on this above */
-		-webkit-box-orient: vertical;
+		-webkit-box-orient: vertical; /* Required along with line clamp tells the webkit box to flow children vertically so line counting works. MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/box-orient */
 		overflow: hidden;
-		text-overflow: ellipsis;
+		text-overflow: ellipsis; /* more info on this above */
 	}
 }
 
 #disc-hole {
-	position: absolute;
+	position: absolute; /* Positioning the disc hole absolute so it stablizizes in the center of the discplate - kind of thinking about building this part as if it was a physical object*/
 	background-image: url("Illustrations/disc-hole.png");
 	background-size: cover;
 	/* Similar to object fit but with the background size, https://www.w3schools.com/css/css3_background_size.asp this makes it fit the disc size perfectly as a cover rather than cropping it */
@@ -354,7 +357,7 @@ main {
 	border: 0.5rem solid var(--ring);
 	top: 50%;
 	left: 50%;
-	/* tell it where to go — 50% from the top and 50% from the left */
+	/* tell it where to go — 50% from the top and 50% from the left from the edges of the frame -  learnt from claude*/
 	transform: translate(-50%, -50%);
 	/* Asked Claude to help make this in the center of my circle - kept forgetting the synthx. moves - vertically then horizontally */
 	/* FYI align-items: center; - you keep doing this! this ONLY APPLIES to FLEX/GRID...same with justify-content */
@@ -363,32 +366,30 @@ main {
 
 /*--------------MIDDLE NAVIGATION------------*/
 #middle-nav {
-	position: fixed;
+	position: fixed; /* Always confused about position fixed or absolute - since middle nav is a child element I'm going to eleminate the chance for it to become absolute to the parent."Fixed element is positioned relative to the viewport (the browser window) and stays in the same place even when the page is scrolled." absolute element is positioned relative to its nearest ancestor with a position value other than static. https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/#:~:text=A%20fixed%20position%20element%20is,when%20the%20page%20is%20scrolled. */
 	bottom: var(--block-size);
 	/* find relative units for this!!! sits exactly on top of the film strip */
-	left: 0;
+	left: 0; /* No relative units for this - I think! This controls the inherited positioning - touch the left and right side  */
 	right: 0;
 	display: flex;
-	flex-direction: column-reverse;
-	flex-shrink: 0;
-	/*works with flex:1; and pushes this above the fixed b*/
+	flex-direction: column-reverse; /*reverses the direction of my html*/
 	width: 100%;
 	align-items: center;
-	padding-inline: 0.5rem;
+	padding: var( --padding-size);
 
 }
 
 .block-info {
-	display: flex;
+	display: flex; /* I explain this and the next few lines in detail above*/
 	flex-direction: column;
 	text-align: center;
 	justify-content: center;
 	align-items: center;
-	padding-block: 0.5rem;
+	padding: var( --padding-size);
 
 	#block-title {
 		max-width: 25ch;
-		white-space: nowrap;
+		white-space: nowrap; /* I explain this and the next few lines in detail above, stops overflowing*/
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
