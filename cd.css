@@ -233,7 +233,7 @@ main {
 	position: relative;
 	width: calc(var(--disc-size) + 2rem); 
 	/* Adds the padding for the disc player background*/
-	height: calc(var(--disc-size) + 2rem);
+	height: calc(100dvh) + 2rem;
 }
 
 #disc-player {
@@ -257,6 +257,7 @@ main {
 }
 
 #disc {
+	
 	width: var(--disc-size);
 	height: var(--disc-size);
 	border-radius: 50%;
@@ -397,7 +398,7 @@ main {
 	text-align: center;
 	justify-content: center;
 	align-items: center;
-		padding-block-start: var(--padding-size);
+	padding-block-start: var(--padding-size);
 
 	#block-title {
 		max-width: 25ch;
