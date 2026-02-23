@@ -405,6 +405,9 @@ main {
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
+	#block-link {
+		text-decoration: none;
+	}
 	#block-link:not([href="placeholder"]) {
 	text-decoration: underline; 
 	} /* Claude helped me figure this out, I wanted it so the placeholder link wasnt underlined but everything else was - i used the :not() element, it is a CSS pseudo-class that matches everything EXCEPT what's in the brackets — so this only underlines the link when the href is no longer "placeholder", i.e. when a real block is selected.*/
