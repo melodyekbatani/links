@@ -86,19 +86,18 @@ padding-block:  var(--padding-size);
 
 dialog {
 	/* Style the `dialog` itself, which is `display: none;` to start. */
-	background-image: url('Illustrations/mobile-modal.png');
+	background-image: url('Illustrations/web-modal.png');
     background-size: contain; 
     background-position: center;
     background-repeat: no-repeat;
-    width: 70%;
-    height: 70%;
-    font-size: 1rem;
-	filter: drop-shadow(0 0.5rem 1rem rgba(229, 229, 229, 0.5)); /* Some depth. */
-	gap: calc(2 * var(--base));
-	justify-items: center; /* Center the children. */
-	padding: var(--base);
 
-	/* Defaults to `position: absolute;`, this centers it: */
+    width: 90vw;
+    max-width: 50rem;
+    height: auto;
+    min-height: 70vh;
+
+
+	/* Defaults to `position: absolute;`, this centers it: from class website*/
 	inset-block-start: 50%;
 	inset-inline-start: 50%;
 	position: fixed; /* In the viewport. */
@@ -232,7 +231,7 @@ width: 100%;
     align-items: center;
     text-align: center;
 
-    background-image: url('./Illustrations/lyrics-text.png');
+    background-image: url('./Illustrations/lyrics text.png');
     background-size: 150%;
     background-position: center;
 
