@@ -22,11 +22,11 @@
 	--subheader-size: clamp(1.25rem, 2vw, 1.75rem);
 
 	/* setting color variable */
-	--active: rgb(67, 12, 37);
+	--active: rgb(103, 103, 103);
 	--selected: rgb(146, 130, 255);
-	--links: rgb(175, 9, 56);
+	--links: rgb(57, 57, 57);
 	--ring: rgb(180, 180, 180);
-	--main: rgb(67, 12, 37);
+	--main: rgb(79, 79, 79);
 	--border: rgb(206, 206, 206);
 	--white: white; 
 
@@ -64,6 +64,8 @@ a {
 	font-family: var(--body-font);
 	font-weight: 500;
 	font-size: var(--body-size);
+	text-decoration: underline; /* Learnt this in class but refresher https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration*/
+	text-underline-offset: 0.15rem; /* This is new - wanted to adjust the underline https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-underline-offset - you can set the underline offset (to better accomodate for the y in playlist)*/
 }
 
 p {
@@ -144,7 +146,7 @@ dialog {
 		text-align: left;
 		font-size: clamp(1.5rem, 2.5vw, 2.5rem);
 		/* smallest, preferred, max */
-		padding-block-end: 0.5rem;
+		padding: 0.5rem;
 		color: var(--main);
 	}
 
@@ -155,10 +157,12 @@ dialog {
 
 	p,
 	a { /* you can select multiple elements by using the comma between to set common styles */
+		padding-block-end: var(--padding-size);
 		font-weight: 450;
-		margin-block-start: 1rem;
+		padding-inline: 0.5rem;
+		margin-block-start: var(--padding-size);
 		font-size: clamp(1rem, 1.25vw, 1.25rem);
-		line-height: 1.5;
+		line-height: 1. 4;
 	}
 
 	&::backdrop {
@@ -626,6 +630,9 @@ main {
 		}
 
 		#block-link {
+			align-items: left;
+			padding: 0; 
+			text-align: left;
 			font-size: calc(var(--body-size) * 0.75);
 		}
 	}
