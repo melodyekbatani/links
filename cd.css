@@ -87,17 +87,16 @@ padding-block:  var(--padding-size);
 dialog {
 	/* Style the `dialog` itself, which is `display: none;` to start. */
 	background-image: url('Illustrations/web-modal.png');
-    background-size: contain; 
+    background-size: fill; 
     background-position: center;
     background-repeat: no-repeat;
 
     width: clamp(22rem, 55vw, 70rem);
     height: auto;
+    max-width: 90ch;
  
-    padding-block-start: 10%; /*Asked claud to help me make the text responsive to the image size, rem won't scale with the illustration as it resizes. I used % units here to keep it contained to the size of the frame. https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units */
-    padding-block-end: 8%;
-    padding-inline: 8%;
-
+    padding: 1rem; /*Asked claud to help me make the text responsive to the image size, rem won't scale with the illustration as it resizes. I used % units here to keep it contained to the size of the frame. https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units */
+    border-radius: 1rem;
 	/* Defaults to `position: absolute;`, this centers it: from class website*/
 	inset-block-start: 50%;
 	inset-inline-start: 50%;
@@ -107,18 +106,33 @@ dialog {
 	/* When JS adds the `open` attribute… */
 	&[open] { display: grid } /* `block` is default, but we can override. */
 
+    #modal-text {
+        display:flex;
+        flex-direction: column;
+        background-color: white;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0.3rem   /* horizontal offset — pushes shadow right */ 0.3rem   /* vertical offset — pushes shadow down */ 0.6rem   /* blur radius — how soft the shadow is */ 0.125rem /* spread radius — how much it expands before blurring */ rgba(104, 104, 104, 0.5); /* color — grey at 50% opacity */
+
+    }
     h3 {
-        font-size: clamp(0.875rem, 2vw, 1.25rem);
+        font-size: clamp(1rem, 2vw, 1.5rem);
         padding-block-end: 0.5rem;
     }
 
-    p {
-        font-size: clamp(0.75rem, 1.5vw, 1rem);
+    p, a { /* you can select multiple elements by using the comma between to set common styles */
+        font-size: clamp(0.85rem, 1.5vw, 1.25rem);
         line-height: 1.5;
     }
-
+   
     button {
+        font-family: var(--body-font);
         background-color: tomato;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        text-align: center;
+       justify-content: center;
+       align-items: center;
     }
 
 	&::backdrop {
