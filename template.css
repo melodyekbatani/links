@@ -8,32 +8,24 @@
 
 /*--------------STYLES------------.*/
 :root {
+    overflow-x: hidden;
+    --body-font: 'Chillax', sans-serif;
+    --body-font-style:normal;
+    --body-size: clamp(1rem, 2vw, 2rem); 
+    --header-font: "BlurWeb-Medium W03 Regular"; 
+    --heading-size: clamp(5rem, 10vw, 10rem);
 
-  /*color variables*/
-  --white: #fff;
-  --black: #000;
-  --main-color:#5a2d82;
-  --accent-color:#b8E7FF;
+    /* setting color variable */
+    --active: rgb(233, 255, 124);
+    --links: rgb(48, 48, 48);
+    --ring: rgb(246, 246, 246);
+    --main:rgb(0, 0, 0);
+    --border: rgb(206, 206, 206);
 
-  /*padding variables*/
-  --large-gutter: 2rem;
-  --small-gutter: 1rem;
-  --corner-rounded: 1rem;
-  --corner-pill: 50em;
-  --corner-circle: 100%;
-
-  /*header fonts*/
-  --header-font: "strelka", sans-serif;
-  --header-weight: 600;
-  --header-size: calc(var(--body-size) * 7);
-
-  /*subheader fonts*/
-  --subheader-font: "parabolica", sans-serif;
-  --subheader-weight: 400;
-  --subheader-size: calc(var(--body-size) * 1.25);
-
-  /*body fonts*/
-  --body-font: "parabolica", sans-serif;
-  --body-weight: 400;
-  --body-size: 1rem;
+   
+    --disc-size: clamp(15rem, 80vw, 30rem);
+    --block-size: clamp(5rem, 10vw, 8rem);
+    --gap-size: 0.5rem;
+    --padding-size: 1rem;
+    --border-radius: 10%;
 }
