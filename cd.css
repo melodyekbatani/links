@@ -33,11 +33,12 @@
 	/* setting disc and filmstrip variables */
 	--disc-size: clamp(15rem, 80vw, 30rem);
 	/* The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the disc to be resposively scaled - we also covered this in class but i needed a refresher on the synthex https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp. Increasing the middle value, it hits the maximum sooner and grows faster as you drag the viewport wider. */
-	--block-size: clamp(5rem, 10vw, 8rem);
+	--block-size: clamp(5.5rem, 10vw, 8rem);
 	/* I experimented with the values here - and thought the logic was max width is the smaller then the preferred value. but this just means that the clamp works faster and stops at 12rem*/
-	--gap-size: 0.5rem;
+	--gap-size: 0.25rem;
 	--padding-size: 1rem;
 	--border-radius: 10%;
+	--button-size: clamp(2.75rem, 70vw, 3rem);
 }
 
 /*--------------BASE------------*/
@@ -129,8 +130,8 @@ dialog {
 	#modal-text {
 		display: flex;
 		flex-direction: column;
-
-		padding: 1rem;
+		background-color: var(--white);
+		padding: var(--gap-size);
 		border-radius: 0.7rem; /* Chareese taught me this trick to make the borders look proper - outside border is more curved then inner border */
 		box-shadow: 0.3rem /* Writing it like this so I can understand the values better - using box shadow because I want to add a border radius. horizontal offset — pushes shadow right */
 		0.3rem /* vertical offset — pushes shadow down */
@@ -154,16 +155,17 @@ dialog {
 
 	p,
 	a { /* you can select multiple elements by using the comma between to set common styles */
+		font-weight: 450;
 		margin-block-start: 1rem;
 		font-size: clamp(1rem, 1.25vw, 1.25rem);
 		line-height: 1.5;
-	
+	}
 
 	&::backdrop {
-		background-color: rgba(0, 0, 0, 0.66); /* A dark overlay. */
+		background-color:var(--active); /* A dark overlay. */
+		opacity: 60%;
 		pointer-events: none; /* Let clicks pass through to our `document` listener. */
 	}
-}
 }
 
 &[open] { display: grid }
@@ -380,7 +382,6 @@ main {
 	flex-direction: column-reverse; /*reverses the direction of my html*/
 	width: 100%;
 	align-items: center;
-	padding: var( --padding-size);
 }
 
 .block-info {
@@ -389,7 +390,7 @@ main {
 	text-align: center;
 	justify-content: center;
 	align-items: center;
-	padding: var( --padding-size);
+		padding-block-start: var(--padding-size);
 
 	#block-title {
 		max-width: 25ch;
@@ -407,86 +408,80 @@ main {
 .controls {
 	display: flex;
 	flex-direction: row;
-	gap: 1rem;
+	gap: var(--padding-size);
 	align-items: center;
 	width: auto;
-	/* Instructs the browser to calculate an element's width based */
+	/* MDN and Claude, lets the browser determine the element’s width based on its layout and available space, helping me learn that elements don’t always need fixed widths because CSS can size them if they're set up properly. */
 }
 
 .controls button {
-	width: calc(var(--body-size) * 3);
-	/* relative to text size - 3rem is the min button size*/
-	height: calc(var(--body-size) * 3);
+	width: var(--button-size);
+	/* relative to text size - 2.75rem is the min button size*/
+	height: var(--button-size);
 }
 
 #pause-play {
-	width: calc(var(--body-size) * 3.5);
-	height: calc(var(--body-size) * 3.5);
+	width: var(--button-size);
+	height: var(--button-size);
 }
 
 .controls button img {
 	width: 100%;
 	height: 100%;
-	object-fit: contain;
+	object-fit: contain; /* get's the whole image in the frame*/
 }
 
 /*--------------FILM------------*/
+/* I knew I wanted a fixed horizontal film strip that stuck to the bottom of the bottom of the viewport, scrolls horizontally, displays square content blocks and adds soft fade edges to imply overflow. I used MDN, Claude to help with parts of this, but I'll explain it in more detail below */
 
 .film-wrapper {
-	position: fixed;
-	/* Fixed to viewport */
+	position: fixed; /* like I mentioned before, this fixed position removes an element from the normal page flow and positions it relative to the viewport, keeping it locked in place even when the page scrolls. */
 	width: 100vw;
-	/* Full viewport width */
+	/* Full viewport width - taking up the entier horizontal space along the bottom */
 	overflow-x: auto;
-	/* FILM attributions needed here*/
+	/* we learnt this in class but this allows you to scroll horizontally. I was confused about this so I looked it up on mdn. https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow-x Unlike scroll, user agents display scroll bars only if the content is overflowing and hide scroll bars by default*/
 	overflow-y: hidden;
 	left: 0;
 	/* Resets to position 0*/
 	right: 0;
-	/* FILM attributions needed here*/
+	/* Used Claude to troubleshoot bottom spacing by applying fixed positioning and removing margin and padding to align the element to the viewport edge. - it makes sense because we are resetting position and margin/padding.*/
 	bottom: 0;
-	/* FILM attributions needed here*/
 	padding: 0;
 	margin: 0;
 	display: flex;
-	align-items: end;
-	/* FILM attributions needed here*/
+	
 	gap: var(--gap-size);
 	/* ADDING IMAGES TO EACH CONTENT BLOCK as a background - used claude to help me figure this out, for each content type i want the image i set to be the background in the film strip. This is setting a background * targets everything inside that li and hides the visibility inside the block (other than the background*/
 	background-color: white;
-	/* Needs attribution - blurred on both sides */
-	-webkit-mask-image: linear-gradient(to top,
-			transparent 0%,
-			black 10%,
-			black 90%,
-			transparent 100%);
+	/* the element fades to transparent at both the top and bottom edges, while remaining fully visible in the middle 80%. */
 
 
 	#channel-blocks {
 		display: flex;
 		flex: 1;
 		overflow-y: hidden;
-		overflow-x: auto;
-		/* horizontal scroll */
+		overflow-x: auto; /* horizontal scroll explained above*/
 		gap: var(--gap-size);
+		list-style: none;  /* gets the bullets to stop showing up - but also you can do fun stuff with this https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/list-style - like making bullet points squared! */
 		padding: 0;
-		padding-block-end: calc(var(--padding-size) * 0);
-		list-style: none;
 		margin: 0;
 		width: 100%;
 		flex-wrap: nowrap;
-		/* keep in one row */
+		/* keep in one row - specifies that flex items within a flex container will not wrap onto multiple lines learnt from https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-wrap  */
 
-		/* Needs attribution - blurred on both sides */
+		/* figured this out with Claude, horizontal edge fade using mask-image gradient runs left→right. The colors and numbers mean transparent at both edges, fully visible in the middle black = show, transparent = hide — webkit and standard need to match or it breaks. I learnt CSS mask-image uses a gradient where black = show and transparent = hide,  */
+		/* figured this out with Claude, horizontal edge fade using mask-image gradient runs left→right. The colors and numbers mean transparent at both edges, fully visible in the middle black = show, transparent = hide — webkit and standard need to match or it breaks. I learnt CSS mask-image uses a gradient where black = show and transparent = hide - thats why im doing it in both right and left direction  */
 		mask-image: linear-gradient(to right,
-				transparent 0%,
-				transparent 100%);
-		-webkit-mask-image: linear-gradient(to right,
-				transparent 0%,
-				black 10%,
-				black 90%,
-				transparent 100%);
-	}
+			transparent 0%,
+			black 10%,
+			black 80%,
+			transparent 100%);
+		-webkit-mask-image: linear-gradient(to left,
+			transparent 0%,
+			black 10%,
+			black 80%,
+			transparent 100%);
+		}
 
 	#channel-blocks li {
 		width: var(--block-size);
@@ -495,32 +490,31 @@ main {
 		display: flex;
 		margin-block-end: -0.25rem;
 		flex-shrink: 0;
-		/* keep this to prevent shrinking */
+		/* keep this to prevent shrinking. I think I explained this before but in case, this is a CSS property applied to a flex item to prevent it from shrinking smaller than its width or flex-basis when the container has limited space. https://stackoverflow.com/questions/43360735/prevent-flex-item-from-shrinking */
 		align-items: center;
 		justify-content: center;
 		overflow: hidden;
+		border-block: 0.7rem solid rgb(255, 255, 255);/*i thought of this makeshift solution basically I created these custom thumbnails for some elements but not all - this makes the images look the same size as the discs*/
 		box-sizing: border-box;
-		/* adds border to box size - prevents overflow */
-		border: 0.5rem solid rgb(255, 255, 255);
-		/* border styles mdn */
-		border-radius: 0
+		/* adds border calculated inside box size - prevents overflow on images. */
 	}
 
 	#channel-blocks li.active {
 		scale: 1.1;
 		filter: blur(0.15rem) grayscale(100%);
-		/* learnt this on mdn https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/filter */
+		/* learnt this on mdn https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/filter - there are different types of filters that you can combine - this is adding a blur and grayscale */
 	}
 
 	/* External links */
 	#channel-blocks li:has(a) {
 		background-image: url('./Illustrations/Link.png');
-		background-size: 102%;
-		background-position: center;
+		background-size: 102%; /* I wanted to make the background size bigger slightly to fix the croping here */
+		background-position: center; /* Learnt this from Claude, it centers the background position - adding this fixes the vertical postion */
 
 		* {
 			visibility: hidden;
 		}
+		/* used Claude to figure out visibility: hidden on the wildcard selector - selecting all its childern elements and hides them. it hides all the text/icons inside the li so only the background image shows through. The reason you target children with * rather than the li itself is that visibility: hidden on the parent would also hide the background, but background images aren't affected by visibility, so hiding just the children lets the background show while clearing everything on top of it. */
 	}
 
 	#channel-blocks li:has(iframe) {
@@ -533,11 +527,10 @@ main {
 		}
 	}
 
-	/* External embedded audio */
+	/* External embedded audio same attribution as above */
 	#channel-blocks li:has(.text) {
 		background-image: url('./Illustrations/read.png');
 		background-size: 102%;
-		/* mdn background size options */
 		background-position: center;
 
 		* {
@@ -548,19 +541,12 @@ main {
 }
 
 #channel-blocks li {
-	/* similar to a hover - attribution above */
+	/* similar to a hover - attribution above, here's a reference https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/transform-function/scale*/
 	scale: 1;
 	transition: scale 0.2s ease;
 }
-
 #channel-blocks li:hover {
-	scale: 1.1;
-}
-
-
-/* ADDING IMAGES TO EACH CONTENT BLOCK */
-#channel-blocks li:has(.text) {
-	background-image: url('./Illustrations/Read text.png');
+	scale: 1.15;
 }
 
 #channel-blocks img,
@@ -573,11 +559,10 @@ main {
 }
 
 #channel-blocks li img {
-	box-sizing: border-box;
-	aspect-ratio: 1/1;
+	box-sizing: border-box;  /*really trying to get the scaling down*/
+	aspect-ratio: 1;
 	width: 100%;
 	height: 100%;
-	/* border styles mdn */
 }
 
 #channel-blocks .text,
@@ -591,17 +576,7 @@ main {
 	aspect-ratio: 1;
 }
 
-/* more comments to come ...This is how u get the links not to show up within the block element */
-#channel-blocks li a,
-#channel-blocks li iframe {
-	pointer-events: none;
-}
 
-
-/* ADDING IMAGES TO EACH CONTENT BLOCK */
-#channel-blocks li:has(.text) {
-	background-image: url('./Illustrations/Read text.png');
-}
 
 /*-------------- RESPONSIVE DESIGN ------------*/
 /*The disc is super temperament*/
@@ -661,7 +636,7 @@ main {
 
 	.controls button {
 		width: calc(var(--body-size) * 1.5);
-		/* relative to text size - 3rem is the min button size*/
+		/* relative to text size - 1.5rem is okay for desktope*/
 		height: calc(var(--body-size) * 1.5);
 	}
 
