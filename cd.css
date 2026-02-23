@@ -612,7 +612,7 @@ main {
 	#disc-wrapper {
 		justify-content: center;
 		margin-inline-end: 0;
-		margin-block-start: clamp(calc(var(--disc-size) * -0.9), calc(var(--disc-size) * -0.75 + 3vw), calc(var(--disc-size) * -0.7));
+		margin-block-start: clamp(calc(var(--disc-size) * -0.9), calc(var(--disc-size) * -0.75 + 3vw), calc(var(--disc-size) * -0.6));
 		/* using the logic from the clamp() on disc size, it's used here to scale the fixed margin fluidly. Syntax via MDN: developer.mozilla.org/en-US/docs/Web/CSS/clamp, help intergrating the logic/variable assisted by Claude.By writing each value relative to --disc-size, the bleed stays proportional to the disc as it grows (on ipad and up). The three values are: calc(var(--disc-size) * -0.8) for max bleed, calc(var(--disc-size) * -0.7 + 2vw) for preferred value that shifts with viewport width, and calc(var(--disc-size) * -0.6) the min bleed.  */
 		--disc-size: clamp(25rem, 45vw, 70rem);
 	}
