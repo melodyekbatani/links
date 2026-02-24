@@ -32,8 +32,8 @@
 	--black: black;
 
 	/* setting disc and filmstrip variables */
-	--disc-size: clamp(15rem, 80vw, 30rem);
-	/* The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the disc to be resposively scaled - we also covered this in class but i needed a refresher on the synthex https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp. Increasing the middle value, it hits the maximum sooner and grows faster as you drag the viewport wider. */
+	--disc-size: clamp(14rem, min(70vw, 48vh), 26rem);
+	/* The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the disc to be resposively scaled - we also covered this in class but i needed a refresher on the synthex https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp. Increasing the middle value, it hits the maximum sooner and grows faster as you drag the viewport wider. disc with stay between min and max - will always choose between 70vw → 70% of viewport width and 48vh → 48% of viewport height based on whichever is smaller*/
 	--block-size: clamp(5.5rem, 10vw, 8rem);
 	/* I experimented with the values here - and thought the logic was max width is the smaller then the preferred value. but this just means that the clamp works faster and stops at 12rem*/
 	--gap-size: 0.25rem;
@@ -212,8 +212,11 @@ dialog {
 main {
 	display: flex;
 	flex-direction: column;
-	flex: 1; /*I learNt this on Claude and watched this video to understand it better https://www.youtube.com/watch?v=_tlxwc9ssH4&t=784s. Telling the flex to take up all the avalible space, body is a flex column with header, main, and the film strip,  flex: 1 on main is saying "give me all the leftover height that header doesn't use.*/
-	justify-content: flex-start
+	flex: 1; /*I learnt this on Claude and watched this video to understand it better https://www.youtube.com/watch?v=_tlxwc9ssH4&t=784s. Telling the flex to take up all the avalible space, body is a flex column with header, main, and the film strip,  flex: 1 on main is saying "give me all the leftover height that header doesn't use.*/
+	justify-content: center; 
+	min-height: 0; 
+	padding-block-end: calc(var(--block-size) * 2);
+
 }
 
 /* using flex here (defaults to row) as the main horizonal axis for the disc and moving it to the right side of the mobile frame*/
@@ -221,7 +224,11 @@ main {
 	position: relative;
 	width: 100%;
 	display: flex; /* This puts the entier disc block into a wrapper that i can set to align on the edge of the screen */
+	flex: 1;
 	justify-content: center;/*right aligns*/
+	align-items: center;
+	overflow: visible;
+
 }
 
 /*--------------DISC------------*/
@@ -237,7 +244,11 @@ to { rotate: 360deg; }
 #disc-container {
 	position: relative;
 	width: calc(var(--disc-size) + 2rem);  /* Adds the padding for the disc player background*/
-	height: calc(100dvh) + 2rem; /*  This is how you would do clac without var */
+	height: calc(var(--disc-size) + 2rem); 
+	flex-shrink: 0;  /* Item will NOT shrink, it keeps its size even if container overflows.*/
+	display: flex; 
+	justify-content: center; 
+	align-items: center;
 }
 
 #disc-player {
@@ -584,7 +595,9 @@ to { rotate: 360deg; }
 }
 
 @media (width > 700px) {
-	:root {}
+	:root {
+		--disc-size: clamp(22rem, min(44vw, 50vh), 38rem);
+	}
 
 	header {
 		button img {
@@ -596,12 +609,7 @@ to { rotate: 360deg; }
 		}
 	}
 
-	#disc-wrapper {
-		justify-content: center;
-		margin-inline-end: 0;
-		margin-block-start: -5rem;
-		--disc-size: clamp(25rem, 45vw, 70rem);
-	}
+
 
 	#middle-nav {
 		flex-direction: row;
@@ -665,7 +673,7 @@ to { rotate: 360deg; }
 	#disc-image:has(.text) {
 
 	h3 {
-		padding-block-end: clamp(15rem, 30vw,35rem); /* to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
+		padding-block-end: clamp(15rem, 30vw,35rem); /* learning to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
 	}
 	p {
 		font-size: clamp(calc(var(--body-font) * 3),50vw, calc(var(--body-font) * 4));
@@ -677,12 +685,11 @@ to { rotate: 360deg; }
 
 @media (width > 1400px) {
 :root {
---disc-size: clamp(30rem, 120vw, 60rem);
+--disc-size: clamp(34rem, min(38vw, 54vh), 50rem);
 }
 #disc-container {
 	position: relative;
-	width: calc(var(--disc-size) + 0rem); 
-	/* Adds the padding for the disc player background*/
-	height: calc(100dvh) + 10rem;
+	width: calc(var(--disc-size) + 2rem);
+	height: calc(var(--disc-size) + 2rem);
 }
 }
