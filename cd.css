@@ -335,17 +335,17 @@ to { rotate: 360deg; }
 		width: 20ch; /* talked about this in class but also referenced Mdn and Claud for this - it restricts the number of characters - you can use a percentage, rem, or percent for width*/
 		white-space: nowrap; /* learnt this through Claude means don't wrap to more then 1 line */
 		overflow: hidden;  /* nessessary to hide the overflow */
-		padding-block-end: clamp(3rem, 40vw, 16rem); /* learning to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
-		font-size: clamp(calc(var(--body-size) * 1.15),40vw, calc(var(--body-size) * 1.25));
+		padding-block-end: 8rem; /* from old clamp thing I tried learning to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
+		font-size:0.9rem;
 		/* using the logic from the clamp() on disc size, it's used here to scale the fixed margin fluidly. Syntax via MDN: developer.mozilla.org/en-US/docs/Web/CSS/clamp, help intergrating the logic/variable assisted by Claude.By writing each value relative to --disc-size, the bleed stays proportional to the disc as it grows (on ipad and up). The three values are: calc(var(--disc-size) * -0.8) for max bleed, calc(var(--disc-size) * -0.7 + 2vw) for preferred value that shifts with viewport width, and calc(var(--disc-size) * -0.6) the min bleed.  */
 	}
 
 	p {
-		width: 23ch; /* talked about this in class but also referenced Mdn and Claud for this - it restricts the number of characters - you can use a percentage, rem, or percent for width*/
+		width: 20ch; /* talked about this in class but also referenced Mdn and Claud for this - it restricts the number of characters - you can use a percentage, rem, or percent for width*/
+		font-size:calc(var(--body-size)*0.75);
 		display: -webkit-box;
 		-webkit-line-clamp: 2;
 		/* Limits text to 2 lines then truncates with ellipsis. Requires display:-webkit-box and -webkit-box-orient:vertical to work, Standard for doing this sort of thing. ChatGPT + MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/line-clamp  */
-		font-size: clamp(calc(var(--body-font) * 0.75),50vw, calc(var(--body-font) * 2));
 		text-wrap: balance; /* more info on this above */
 		-webkit-box-orient: vertical; /* Required along with line clamp tells the webkit box to flow children vertically so line counting works. MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/box-orient */
 		overflow: hidden;
@@ -601,7 +601,16 @@ to { rotate: 360deg; }
 	#disc-wrapper{
 	margin-block-start: -3rem;
 	}
-
+	#disc-image:has(.text) {
+		h3 {
+			padding-block-end: 8rem;
+			font-size: 1.1rem;
+		}
+		
+		p {
+			font-size: 0.9rem;
+		}
+	}
 }
 
 @media (width > 700px) {
@@ -688,12 +697,24 @@ to { rotate: 360deg; }
 	#disc-image:has(.text) {
 
 	h3 {
-		padding-block-end: clamp(15rem, 30vw,35rem); /* learning to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
+		padding-block-end: 9rem;
+		font-size: 1.5rem; /* learning to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
 	}
 	p {
-		font-size: clamp(calc(var(--body-font) * 3),50vw, calc(var(--body-font) * 4));
+		font-size: 1.1rem;
 	}
 
+}
+}
+@media (width > 800px) {
+	#disc-image:has(.text) {
+	h3 {
+		padding-block-end: 10rem;
+		font-size: 1.5rem; /* learning to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
+	}
+	p {
+		font-size: 1.1rem;
+	}
 }
 }
 
@@ -707,7 +728,17 @@ to { rotate: 360deg; }
 	width: calc(var(--disc-size) + 2rem);
 	height: calc(var(--disc-size) + 2rem);
 }
+	#disc-image:has(.text) {
+	h3 {
+		padding-block-end: 16rem;
+		font-size: 1.5rem; /* learning to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
+	}
+	p {
+		font-size: 1.1rem;
+	}
 }
+}
+
 @media (width > 1800px) {
 :root {
  --disc-size: clamp(40rem, min(25vw, 40vh), 45rem);
@@ -717,6 +748,15 @@ to { rotate: 360deg; }
 	position: relative;
 	width: calc(var(--disc-size) + 2rem);
 	height: calc(var(--disc-size) + 2rem);
+}
+#disc-image:has(.text) {
+	h3 {
+		padding-block-end: 16rem;
+		font-size: 1.5rem; /* learning to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
+	}
+	p {
+		font-size: 1.1rem;
+	}
 }
 }
 @media (width > 2000px) {
@@ -728,5 +768,14 @@ to { rotate: 360deg; }
 	position: relative;
 	width: calc(var(--disc-size) + 2rem);
 	height: calc(var(--disc-size) + 2rem);
+}
+#disc-image:has(.text) {
+	h3 {
+		padding-block-end: 27rem;
+		font-size: 2rem; /* learning to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
+	}
+	p {
+		font-size: 1.5rem;
+	}
 }
 }
