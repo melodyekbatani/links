@@ -9,53 +9,47 @@
 
 /*--------------DESIGN SYSTEM------------*/
 :root {
-	overflow-x: hidden;
+overflow-x: hidden;
 
-	/* setting fonts variables */
-	--body-font: 'Chillax', sans-serif;
-	--body-font-style: normal;
-	--body-size: clamp(1rem, 2vw, 2rem);
-	/* Learnt this originally in class but used mdn and claude to understand it further and use it as a variable. The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the type to scale resposively - explained more in the disc size */
-	--header-font: "BlurWeb-Medium W03 Regular";
-	/* I know we shouldn't be using fonts like this but I wanted a very specific vibe to the typography and tried a bunch i couldn't get to work in the design system */
-	--heading-size: clamp(5rem, 10vw, 10rem);
-	--subheader-size: clamp(1.25rem, 2vw, 1.75rem);
+/* setting fonts variables */
+--body-font: 'Chillax', sans-serif;
+--body-font-style: normal;
+--body-size: clamp(1rem, 2vw, 2rem);
+/* Learnt this originally in class but used mdn and claude to understand it further and use it as a variable. The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the type to scale resposively - explained more in the disc size */
+--header-font: "BlurWeb-Medium W03 Regular";
+/* I know we shouldn't be using fonts like this but I wanted a very specific vibe to the typography and tried a bunch i couldn't get to work in the design system/unable to add it to my html - I looked into purchasing it but that site seemed just as sketchy */
+--heading-size: clamp(5rem, 10vw, 10rem);
+--subheader-size: clamp(1.25rem, 2vw, 1.75rem);
 
-	/* setting color variable */
-	--active: rgb(103, 103, 103);
-	--selected: rgb(146, 130, 255);
-	--links: rgb(57, 57, 57);
-	--ring: rgb(180, 180, 180);
-	--main: rgb(79, 79, 79);
-	--border: rgb(206, 206, 206);
-	--white: white; 
+/* setting color variable */
+--active: rgb(103, 103, 103);
+--selected: rgb(146, 130, 255);
+--links: rgb(57, 57, 57);
+--ring: rgb(180, 180, 180);
+--main: rgb(79, 79, 79);
+--border: rgb(206, 206, 206);
+--white: white; 
 
-	/* setting disc and filmstrip variables */
-	--disc-size: clamp(15rem, 80vw, 30rem);
-	/* The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the disc to be resposively scaled - we also covered this in class but i needed a refresher on the synthex https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp. Increasing the middle value, it hits the maximum sooner and grows faster as you drag the viewport wider. */
-	--block-size: clamp(5.5rem, 10vw, 8rem);
-	/* I experimented with the values here - and thought the logic was max width is the smaller then the preferred value. but this just means that the clamp works faster and stops at 12rem*/
-	--gap-size: 0.25rem;
-	--padding-size: 1rem;
-	--border-radius: 10%;
-	--button-size: clamp(2.75rem, 70vw, 3rem);
+/* setting disc and filmstrip variables */
+--disc-size: clamp(15rem, 80vw, 30rem);
+/* The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the disc to be resposively scaled - we also covered this in class but i needed a refresher on the synthex https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp. Increasing the middle value, it hits the maximum sooner and grows faster as you drag the viewport wider. */
+--block-size: clamp(5.5rem, 10vw, 8rem);
+/* I experimented with the values here - and thought the logic was max width is the smaller then the preferred value. but this just means that the clamp works faster and stops at 12rem*/
+--gap-size: 0.25rem;
+--padding-size: 1rem;
+--border-radius: 10%;
+--button-size: clamp(2.75rem, 70vw, 3rem);
 }
 
 /*--------------BASE------------*/
-html,
-body {
-	display: flex;
-	/* Putting a flex around my entier body block so it's easier to control the movement for a more responsive layout :) */
-	height: 100dvh;
-	/* I remember Micheal mentioning  svh in class during the reviews with Riya, since my design is capped at the screen size I wanted to use this. Upon looking this up, I found an article on https://learnbricksbuilder.com/demystifying-vh-dvh-svh-and-lvh-in-css/ that explained "DVH, or dynamic viewport height, is a newer unit that adjusts according to changes in the viewport size. It reacts to events like window resizing or device rotation, keeping your layout consistent DVH is ideal for elements that need to maintain size or position relative to the viewport, even when it changes" which is why it works better for my design*/
-	flex-direction: column;
-	/* if you dont add a direction - default is row */
+html, body {
+	display: flex; /* Putting a flex around my entier body block so it's easier to control the movement for a more responsive layout :) */
+	height: 100dvh; /* I remember Micheal/Eric mentioning  svh in class during the reviews with Riya & over slack, since my design is capped at the screen size I wanted to use this. Upon looking this up, I found an article on https://learnbricksbuilder.com/demystifying-vh-dvh-svh-and-lvh-in-css/ that explained "DVH, or dynamic viewport height, is a newer unit that adjusts according to changes in the viewport size. It reacts to events like window resizing or device rotation, keeping your layout consistent DVH is ideal for elements that need to maintain size or position relative to the viewport, even when it changes" which is why it works better for my design*/
+	flex-direction: column;/* if you dont add a direction - default is row */
 	overflow: hidden;
 }
 
-h1,
-h2,
-h3 {
+h1,h2,h3 {
 	font-family: var(--header-font);
 }
 
@@ -78,59 +72,59 @@ p {
 /*--------------HEADER------------*/
 /* HEADER - flex is simplier for this since it I want to create a single column layout for the header for now */
 header {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	padding-inline: var(--padding-size);
-	padding-block: var(--padding-size);
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+padding-inline: var(--padding-size);
+padding-block: var(--padding-size);
 
 	h1 {
-		padding-block-start: var(--gap-size);
-		font-size: var(--heading-size);
-		margin-block: -1rem;
-		margin-inline: -0.25rem;
-		color: var(--active);
-		align-items: left;
-		filter: blur(0.05rem); /* Learnt about filters from your suggestions in class https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/filter-function/blur but here's were I found the correct way to write it - number is blur with a radius of x in my case its very very small */
+	padding-block-start: var(--gap-size);
+	font-size: var(--heading-size);
+	margin-block: -1rem;
+	margin-inline: -0.25rem;
+	color: var(--active);
+	align-items: left;
+	filter: blur(0.05rem); /* Learnt about filters from your suggestions in class https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/filter-function/blur but here's were I found the correct way to write it - number is blur with a radius of x in my case its very very small */
 	}
 
 	#modal {
-		z-index: 100;
-		width: calc(var(--body-size) * 3); /* relative to text size - I keep forgetting how to properly space the calc function - use claude to remember this calc(var(--body-size) * 3) - no spaces until you do calc and put a space between * and 3*/
-		height: calc(var(--body-size) * 3);
-		margin-inline: calc(var(--padding-size) * 1.8);
-		margin-block: calc(var(--padding-size) * 0.5);
+	z-index: 100;
+	width: calc(var(--body-size) * 3); /* relative to text size - I keep forgetting how to properly space the calc function - use claude to remember this calc(var(--body-size) * 3) - no spaces until you do calc and put a space between * and 3*/
+	height: calc(var(--body-size) * 3);
+	margin-inline: calc(var(--padding-size) * 1.8);
+	margin-block: calc(var(--padding-size) * 0.5);
 	}
 }
 
 body:has(dialog[open]) {
-	overflow: hidden;
+overflow: hidden;
 }
-.dialog-header { 	/* This wasnt working when nested but I did try */
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
 
+.dialog-header { /* This wasnt working when nested but I did try */
+display: flex;
+justify-content: space-between;
+flex-direction: row;
 }
+
 
 dialog {
-	/* From class - Style the `dialog` itself, which is `display: none;` to start. */
-	background-image: url('Illustrations/web-modal.png');
-	background-size: fill;
-	background-position: center;
-	background-repeat: no-repeat;
+/* From class - Style the `dialog` itself, which is `display: none;` to start. */
+background-image: url('Illustrations/web-modal.png');
+background-size: fill;
+background-position: center;
+background-repeat: no-repeat;
 
-	width: clamp(20rem, 55vw, 70rem);
-	height: auto;
-	max-width: 100ch;
+width: clamp(20rem, 55vw, 70rem);
+height: auto;
+max-width: 100ch;
 
-	padding: 0.5rem;
-	/*Asked claud to help me make the text responsive to the image size, rem won't scale with the illustration as it resizes. I used % units here to keep it contained to the size of the frame. https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units */
-	border-radius: 1.2rem; 
-	inset-block-start: 50%;
-	inset-inline-start: 50%;
-	position: fixed; /* In the viewport. */
-	translate: -50% -50%; /* In the viewport. */
+padding: 0.5rem; /*Asked claud to help me make the text responsive to the image size, rem won't scale with the illustration as it resizes. I used % units here to keep it contained to the size of the frame. https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units */
+border-radius: 1.2rem; 
+inset-block-start: 50%;
+inset-inline-start: 50%;
+position: fixed; /* In the viewport. */
+translate: -50% -50%; /* In the viewport. */
 	
 	#modal-text {
 		display: flex;
