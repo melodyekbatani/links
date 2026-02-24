@@ -216,7 +216,7 @@ main {
 	justify-content: center; 
 	min-height: 0; 
 	padding-block-end: calc(var(--block-size) * 2);
-
+	margin-block-start: -2rem;
 }
 
 /* using flex here (defaults to row) as the main horizonal axis for the disc and moving it to the right side of the mobile frame*/
@@ -685,9 +685,10 @@ to { rotate: 360deg; }
 
 @media (width > 1400px) {
 :root {
---disc-size: clamp(34rem, min(38vw, 54vh), 50rem);
+ --disc-size: clamp(50rem, min(50vw, 60vh), 70rem);
 }
 #disc-container {
+	margin-block-end: 2rem;
 	position: relative;
 	width: calc(var(--disc-size) + 2rem);
 	height: calc(var(--disc-size) + 2rem);
