@@ -1,5 +1,6 @@
 // from class website https://typography-interaction-2526.github.io/topic/javascript/#opening-a-modal and used mdn/claude/youtube to help me put this together. Firstly asked it to explain to me what each thing I'm trying to do is called in javascript then how the synthx works and when it gives me something I alway ask why, how it works or deeper references that i go and look at/watch 
 
+let currentIndex = -1
  // currentIndex =-1 is a function that remembers the position of the last block clicked. Starts at -1 meaning nothing clicked yet (the empty disc plate). Updates to that block's number when clicked — so the 5th block = 4 (counting starts at 0). next/back then just add or subtract 1 from this.
 
 // DIALOG
