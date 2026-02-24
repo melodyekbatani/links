@@ -9,48 +9,54 @@
 
 /*--------------DESIGN SYSTEM------------*/
 :root {
-overflow-x: hidden;
-/* setting fonts variables */
---body-font: 'Chillax', sans-serif;
---body-font-style: normal;
---body-size: clamp(1rem, 2vw, 2rem);
-/* Learnt this originally in class but used mdn and claude to understand it further and use it as a variable. The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the type to scale resposively - explained more in the disc size */
---header-font: "BlurWeb-Medium W03 Regular";
-/* I know we shouldn't be using fonts like this but I wanted a very specific vibe to the typography and tried a bunch i couldn't get to work in the design system/unable to add it to my html - I looked into purchasing it but that site seemed just as sketchy */
---heading-size: clamp(5rem, 10vw, 10rem);
---subheader-size: clamp(1.25rem, 2vw, 1.75rem);
+	overflow-x: hidden;
+	/* setting fonts variables */
+	--body-font: 'Chillax', sans-serif;
+	--body-font-style: normal;
+	--body-size: clamp(1rem, 2vw, 2rem);
+	/* Learnt this originally in class but used mdn and claude to understand it further and use it as a variable. The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the type to scale resposively - explained more in the disc size */
+	--header-font: "BlurWeb-Medium W03 Regular";
+	/* I know we shouldn't be using fonts like this but I wanted a very specific vibe to the typography and tried a bunch i couldn't get to work in the design system/unable to add it to my html - I looked into purchasing it but that site seemed just as sketchy */
+	--heading-size: clamp(5rem, 10vw, 10rem);
+	--subheader-size: clamp(1.25rem, 2vw, 1.75rem);
 
-/* setting color variable */
---active: rgb(103, 103, 103);
---selected: rgb(146, 130, 255);
---links: rgb(57, 57, 57);
---ring: rgb(180, 180, 180);
---main: rgb(79, 79, 79);
---border: rgb(206, 206, 206);
---white: white; 
---grey: grey; 
---black: black; 
+	/* setting color variable */
+	--active: rgb(103, 103, 103);
+	--selected: rgb(146, 130, 255);
+	--links: rgb(57, 57, 57);
+	--ring: rgb(180, 180, 180);
+	--main: rgb(79, 79, 79);
+	--border: rgb(206, 206, 206);
+	--white: white;
+	--grey: grey;
+	--black: black;
 
-/* setting disc and filmstrip variables */
---disc-size: clamp(15rem, 80vw, 30rem);
-/* The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the disc to be resposively scaled - we also covered this in class but i needed a refresher on the synthex https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp. Increasing the middle value, it hits the maximum sooner and grows faster as you drag the viewport wider. */
---block-size: clamp(5.5rem, 10vw, 8rem);
-/* I experimented with the values here - and thought the logic was max width is the smaller then the preferred value. but this just means that the clamp works faster and stops at 12rem*/
---gap-size: 0.25rem;
---padding-size: 1rem;
---border-radius: 10%;
---button-size: clamp(2.75rem, 70vw, 3rem);
+	/* setting disc and filmstrip variables */
+	--disc-size: clamp(15rem, 80vw, 30rem);
+	/* The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the disc to be resposively scaled - we also covered this in class but i needed a refresher on the synthex https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp. Increasing the middle value, it hits the maximum sooner and grows faster as you drag the viewport wider. */
+	--block-size: clamp(5.5rem, 10vw, 8rem);
+	/* I experimented with the values here - and thought the logic was max width is the smaller then the preferred value. but this just means that the clamp works faster and stops at 12rem*/
+	--gap-size: 0.25rem;
+	--padding-size: 1rem;
+	--border-radius: 10%;
+	--button-size: clamp(2.75rem, 70vw, 3rem);
 }
 
 /*--------------BASE------------*/
-html, body {
-	display: flex; /* Putting a flex around my entier body block so it's easier to control the movement for a more responsive layout :) */
-	height: 100dvh; /* I remember Micheal/Eric mentioning  svh in class during the reviews with Riya & over slack, since my design is capped at the screen size I wanted to use this. Upon looking this up, I found an article on https://learnbricksbuilder.com/demystifying-vh-dvh-svh-and-lvh-in-css/ that explained "DVH, or dynamic viewport height, is a newer unit that adjusts according to changes in the viewport size. It reacts to events like window resizing or device rotation, keeping your layout consistent DVH is ideal for elements that need to maintain size or position relative to the viewport, even when it changes" which is why it works better for my design*/
-	flex-direction: column;/* if you dont add a direction - default is row */
+html,
+body {
+	display: flex;
+	/* Putting a flex around my entier body block so it's easier to control the movement for a more responsive layout :) */
+	height: 100dvh;
+	/* I remember Micheal/Eric mentioning  svh in class during the reviews with Riya & over slack, since my design is capped at the screen size I wanted to use this. Upon looking this up, I found an article on https://learnbricksbuilder.com/demystifying-vh-dvh-svh-and-lvh-in-css/ that explained "DVH, or dynamic viewport height, is a newer unit that adjusts according to changes in the viewport size. It reacts to events like window resizing or device rotation, keeping your layout consistent DVH is ideal for elements that need to maintain size or position relative to the viewport, even when it changes" which is why it works better for my design*/
+	flex-direction: column;
+	/* if you dont add a direction - default is row */
 	overflow: hidden;
 }
 
-h1,h2,h3 {
+h1,
+h2,
+h3 {
 	font-family: var(--header-font);
 }
 
@@ -59,8 +65,10 @@ a {
 	font-family: var(--body-font);
 	font-weight: 500;
 	font-size: var(--body-size);
-	text-decoration: underline; /* Learnt this in class but refresher https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration*/
-	text-underline-offset: 0.15rem; /* This is new - wanted to adjust the underline https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-underline-offset - you can set the underline offset (to better accomodate for the y in playlist)*/
+	text-decoration: underline;
+	/* Learnt this in class but refresher https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration*/
+	text-underline-offset: 0.15rem;
+	/* This is new - wanted to adjust the underline https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-underline-offset - you can set the underline offset (to better accomodate for the y in playlist)*/
 }
 
 p {
@@ -73,79 +81,81 @@ p {
 /*--------------HEADER------------*/
 /* HEADER - flex is simplier for this since it I want to create a single column layout for the header for now */
 header {
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-padding-inline: var(--padding-size);
-padding-block: var(--padding-size);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding-inline: var(--padding-size);
+	padding-block: var(--padding-size);
 
 	h1 {
-	padding-block-start: var(--gap-size);
-	margin-block: -1rem;
-	margin-inline: -0.25rem;
-	font-size: var(--heading-size);
-	color: var(--active);
-	filter: blur(0.05rem); /* Learnt about filters from your suggestions in class https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/filter-function/blur but here's were I found the correct way to write it - number is blur with a radius of x in my case its very very small */
+		padding-block-start: var(--gap-size);
+		margin-block: -1rem;
+		margin-inline: -0.25rem;
+		font-size: var(--heading-size);
+		color: var(--active);
+		filter: blur(0.05rem);
+		/* Learnt about filters from your suggestions in class https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/filter-function/blur but here's were I found the correct way to write it - number is blur with a radius of x in my case its very very small */
 	}
 
 	#modal {
-	z-index: 100;
-	width: calc(var(--body-size) * 3); /* relative to text size - I keep forgetting how to properly space the calc function - use claude to remember this calc(var(--body-size) * 3) - no spaces until you do calc and put a space between * and 3*/
-	height: calc(var(--body-size) * 3);
-	margin-inline: calc(var(--padding-size) * 1.8);
-	margin-block: calc(var(--padding-size) * 0.5);
+		z-index: 100;
+		width: calc(var(--body-size) * 3);
+		/* relative to text size - I keep forgetting how to properly space the calc function - use claude to remember this calc(var(--body-size) * 3) - no spaces until you do calc and put a space between * and 3*/
+		height: calc(var(--body-size) * 3);
+		margin-inline: calc(var(--padding-size) * 1.8);
+		margin-block: calc(var(--padding-size) * 0.5);
 	}
 }
 
 body:has(dialog[open]) {
-overflow: hidden;
+	overflow: hidden;
 }
 
-.dialog-header { /* This wasnt working when nested but I did try */
-display: flex;
-justify-content: space-between;
-flex-direction: row;
+.dialog-header {
+	/* This wasnt working when nested but I did try */
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
 }
-
 
 dialog {
 /* From class - Style the `dialog` itself, which is `display: none;` to start. */
 
-position: fixed; /* In the viewport. */
-translate: -50% -50%; /* In the viewport. */
-width: clamp(20rem, 55vw, 70rem);
-height: auto;
-max-width: 100ch;
+	position: fixed; /* In the viewport. */
+	translate: -50% -50%; /* In the viewport. */
+	width: clamp(20rem, 55vw, 70rem);
+	height: auto;
+	max-width: 100ch;
 
-padding: 0.5rem; /*Asked claud to help me make the text responsive to the image size, rem won't scale with the illustration as it resizes. I used % units here to keep it contained to the size of the frame. https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units */
-inset-block-start: 50%;
-inset-inline-start: 50%;
-border-radius: 1.2rem; 
+	padding:var(--gap-size); /*Asked Claud to help me make the text responsive to the image size, rem won't scale with the illustration as it resizes. I used % units here to keep it contained to the size of the frame. https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units */
+	inset-block-start: 50%;
+	inset-inline-start: 50%;
+	border-radius: 1.2rem; 
 
-background-image: url('Illustrations/web-modal.png');
-background-size: fill;
-background-position: center;
-background-repeat: no-repeat;
+	background-image: url('Illustrations/web-modal.png');
+	background-size: fill;
+	background-position: center;
+	background-repeat: no-repeat;
 
 	#modal-text {
-	display: flex;
-	flex-direction: column;
-	padding: var(--gap-size);
-	background-color: var(--white);
-	border-radius: 0.7rem; /* Chareese taught me this trick to make the borders look proper - outside border is more curved then inner border */
-	box-shadow: 0.3rem /* Writing it like this so I can understand the values better - using box shadow because I want to add a border radius. horizontal offset — pushes shadow right */
-	0.3rem /* vertical offset — pushes shadow down */
-	0.6rem /* blur radius — how soft the shadow is */
-	0.125rem /* spread radius — how much it expands before blurring */
-	var(--grey); /* color — grey at 50% opacity */
-		
+		display: flex;
+		flex-direction: column;
+		padding: var(--gap-size);
+		background-color: var(--white);
+		border-radius: 0.7rem;
+		/* Chareese taught me this trick to make the borders look proper - outside border is more curved then inner border */
+		box-shadow: 0.3rem /* Writing it like this so I can understand the values better - using box shadow because I want to add a border radius. horizontal offset — pushes shadow right */
+		0.3rem /* vertical offset — pushes shadow down */
+		0.6rem /* blur radius — how soft the shadow is */
+		0.125rem /* spread radius — how much it expands before blurring */
+		var(--grey); /* color of box shadow — grey at 50% opacity */
 	}
 	h3 {
 		margin-block: 0.5rem;
+		padding: 0.5rem;
 		text-align: left;
 		font-size: clamp(1.5rem, 2.5vw, 2.5rem);
 		/* smallest, preferred, max */
-		padding: 0.5rem;
 		color: var(--main);
 	}
 
@@ -157,15 +167,15 @@ background-repeat: no-repeat;
 	p,
 	a { /* you can select multiple elements by using the comma between to set common styles */
 		padding-block-end: var(--padding-size);
-		font-weight: 450;
 		padding-inline: 0.5rem;
 		margin-block-start: var(--padding-size);
 		font-size: clamp(1rem, 1.25vw, 1.25rem);
-		line-height: 1. 4;
+		line-height: 1.4;
+		font-weight: 450;
 	}
 
 	&::backdrop {
-		background-color:var(--active); /* A dark overlay. */
+		background-color:var(--black); /* A dark overlay. */
 		opacity: 60%;
 		pointer-events: none; /* Let clicks pass through to our `document` listener. */
 	}
@@ -178,10 +188,10 @@ background-repeat: no-repeat;
 .menu {
 	z-index: 1000;
 	display: flex;
-	gap: calc(var(--padding-size) * 2);
 	list-style: none;
 	justify-content: space-between; /*equally space at viewport width*/
 	align-items: center;
+	gap: calc(var(--padding-size) * 2);
 	font-family: var(--font);
 
 	/*This is a simple interaction to make the link clickable */
@@ -198,8 +208,7 @@ background-repeat: no-repeat;
 main {
 	display: flex;
 	flex-direction: column;
-	flex: 1;
-	/*I leanrt this on Claude and watched this video to understand it better https://www.youtube.com/watch?v=_tlxwc9ssH4&t=784s. Telling the flex to take up all the avalible space, body is a flex column with header, main, and the film strip,  flex: 1 on main is saying "give me all the leftover height that header doesn't use.*/
+	flex: 1; /*I learNt this on Claude and watched this video to understand it better https://www.youtube.com/watch?v=_tlxwc9ssH4&t=784s. Telling the flex to take up all the avalible space, body is a flex column with header, main, and the film strip,  flex: 1 on main is saying "give me all the leftover height that header doesn't use.*/
 	justify-content: flex-start;
 }
 
@@ -207,10 +216,8 @@ main {
 #disc-wrapper {
 	position: relative;
 	width: 100%;
-	display: flex;
-	/* This puts the entier disc block into a wrapper that i can set to align on the edge of the screen */
-	justify-content: flex-end;
-	/*right aligns*/
+	display: flex; /* This puts the entier disc block into a wrapper that i can set to align on the edge of the screen */
+	justify-content: flex-end;/*right aligns*/
 	margin-inline-start: calc(var(--padding-size) * 3);
 	margin-block-start: calc(var(--padding-size) * -6);
 }
@@ -218,37 +225,29 @@ main {
 /*--------------DISC------------*/
 /*....ROTATE ANIMATION....*/
 @keyframes spin {
-	/* used to define the CSS animation at various points during its duration - in my case it's faily simple because its a continuous rotate*/
-	to { rotate: 360deg; }
-	/* learnt this on https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/rotate, connects with the #disc element and sets the keyframe animation to rotate*/
+/* used to define the CSS animation at various points during its duration - in my case it's faily simple because its a continuous rotate*/
+to { rotate: 360deg; }
+/* learnt this on https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/rotate, connects with the #disc element and sets the keyframe animation to rotate*/
 }
 
 /* DISC - setting up the sizing for the main circle*/
 /* DISC - attributions needed here and in disc-player*/
 #disc-container {
 	position: relative;
-	width: calc(var(--disc-size) + 2rem); 
-	/* Adds the padding for the disc player background*/
-	height: calc(100dvh) + 2rem;
+	width: calc(var(--disc-size) + 2rem);  /* Adds the padding for the disc player background*/
+	height: calc(100dvh) + 2rem; /*  This is how you would do clac without var */
 }
 
 #disc-player {
-	width: calc(var(--disc-size) + 2rem);
-	/* Places the disc ring image with the padding above for the disc player background using calc here because I want it relative to to disc size*/
+	width: calc(var(--disc-size) + 2rem); /* Places the disc ring image with the padding above for the disc player background using calc here because I want it relative to to disc size*/
 	height: calc(var(--disc-size) + 2rem);
 	border-radius: 50%;
-	display: flex;
-	/* /Creates a flex container so child elements can be aligned easily — learned in class flexbox layout */
-	align-items: center;
-	/* Claud suggested using this specific command - vertical alignment on the disc container - align-items  only valid for items inside a flex/grid */
-	justify-content: center;
-	/* Claud suggested using this specific line - horizontal alignment on the disc container - only valid for items inside a flex/grid*/
-	position: relative;
-	/* relative to parent*/
-	background-image: url("Illustrations/Disc-ring.png");
-	/* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-image setting background image, learnt this in class needed clarification on the synthx but this just selects a background image from file folder. */
-	background-size: cover;
-	/* This is like object-fit for backgrounds */
+	display: flex; /* /Creates a flex container so child elements can be aligned easily — learned in class flexbox layout */
+	align-items: center; /* Claud suggested using this specific command - vertical alignment on the disc container - align-items  only valid for items inside a flex/grid */
+	justify-content: center; /* Claud suggested using this specific line - horizontal alignment on the disc container - only valid for items inside a flex/grid*/
+	position: relative; /* relative to parent*/
+	background-image: url("Illustrations/Disc-ring.png"); /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-image setting background image, learnt this in class needed clarification on the synthx but this just selects a background image from file folder. */
+	background-size: cover; /* This is like object-fit for backgrounds */
 	border: 0.125rem double var(--ring);
 }
 
@@ -258,36 +257,26 @@ main {
 	height: var(--disc-size);
 	border-radius: 50%;
 	overflow: hidden;
-	position: relative;
-	/* remove the right/top/transform positioning */
+	position: relative; /* remove the right/top/transform positioning */
 	animation: spin 8s linear infinite;
 	background-image: url("Illustrations/Disc.png");
-	background-size: 110%;
-	/* Similar to object fit but with the background size, https://www.w3schools.com/css/css3_background_size.asp I had some space between the edge and disc image - you can use either auto/contain/cover or percentages/relative units here */
-	background-position: center;
-	/* I learnt this using claude since it wasn't 100% in the center. This sets the background to perfectly center */
-	transform-origin: center center;
-	/* Claud suggested using this to get the spin to orignate from the beginning. This line allows the animation to start in the center point, kind of thought of this like an anchor point in after effect - rotates around its exact center point, making the spin smooth and stable without wobble. */
-	border: 0.125rem double var(--ring);
-	/* css border styles - refresher from MDN */
+	background-size: 110%; /* Similar to object fit but with the background size, https://www.w3schools.com/css/css3_background_size.asp I had some space between the edge and disc image - you can use either auto/contain/cover or percentages/relative units here */
+	background-position: center; /* I learnt this using claude since it wasn't 100% in the center. This sets the background to perfectly center */
+	transform-origin: center center; /* Claud suggested using this to get the spin to orignate from the beginning. This line allows the animation to start in the center point, kind of thought of this like an anchor point in after effect - rotates around its exact center point, making the spin smooth and stable without wobble. */
+	border: 0.125rem double var(--ring); /* css border styles - refresher from MDN */
 }
 
 
 /* DISC FILL */
 #disc-image {
 	overflow: hidden;
-	display: flex;
-	/* ensures centering works */
+	display: flex; /* ensures centering works */
 	width: var(--disc-size);
 	height: var(--disc-size);
-	justify-content: center;
-	/* aligns horizontally (main axis - assuming this matches the flex direction) */
-	align-items: center;
-	/* aligns vertically - more attributions on this above */
-	border-radius: 50%;
-	/* making the content disc shaped - border-radius 50% just means fully rounded */
-	object-fit: cover;
-	/* Crops image to full bleed */
+	justify-content: center; /* aligns horizontally (main axis - assuming this matches the flex direction) */
+	align-items: center; /* aligns vertically - more attributions on this above */
+	border-radius: 50%; /* making the content disc shaped - border-radius 50% just means fully rounded */
+	object-fit: cover; /* Crops image to full bleed */
 }
 
 /* selecting all the content types and making them fit into the circle */
@@ -295,11 +284,9 @@ main {
 #disc-image iframe,
 #disc-image video,
 #disc-image embed {
-	width: 100%;
-	/* makes each media element fill the entier parent container */
+	width: 100%; /* makes each media element fill the entier parent container */
 	height: 100%;
-	object-fit: cover;
-	/* ensures cover style on the blocks themselves,  */
+	object-fit: cover; /* ensures cover style on the blocks themselves,  */
 }
 
 #disc-image iframe {
@@ -307,8 +294,7 @@ main {
 	width: 100%;
 	height: 100%;
 	z-index: 10; /* a bit of overkill but make sure all iframes sit ontop of the disk */
-	transform: translateY(70%) scale(3.5) translateX(0%);
-	/* learnt how to write this synthx using claude: first translateY, then scale, then translateX - the order here is important */
+	transform: translateY(70%) scale(3.5) translateX(0%); /* learnt how to write this synthx using claude: first translateY, then scale, then translateX - the order here is important */
 }
 
 #disc-image:has(.text) {
@@ -353,6 +339,10 @@ main {
 		overflow: hidden;
 		text-overflow: ellipsis; /* more info on this above */
 	}
+}
+
+  #disc-image embed {
+  filter: blur(2rem) brightness(0.5);
 }
 
 #disc-hole {
