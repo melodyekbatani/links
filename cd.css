@@ -665,7 +665,7 @@ to { rotate: 360deg; }
 	#disc-image:has(.text) {
 
 	h3 {
-		padding-block-end: clamp(15rem, 30vw,35rem); /* learning to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
+		padding-block-end: clamp(15rem, 30vw,35rem); /* to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
 	}
 	p {
 		font-size: clamp(calc(var(--body-font) * 3),50vw, calc(var(--body-font) * 4));
