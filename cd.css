@@ -54,6 +54,7 @@ body {
 	overflow: hidden;
 }
 
+
 h1,
 h2,
 h3 {
@@ -265,7 +266,6 @@ to { rotate: 360deg; }
 }
 
 #disc {
-	
 	width: var(--disc-size);
 	height: var(--disc-size);
 	border-radius: 50%;
@@ -299,7 +299,7 @@ to { rotate: 360deg; }
 #disc-image embed {
 	width: 100%; /* makes each media element fill the entier parent container */
 	height: 100%;
-	object-fit: cover; /* ensures cover style on the blocks themselves,  */
+	object-fit: cover; /* ensures cover style on the blocks themselves */
 }
 
 #disc-image iframe {
@@ -307,14 +307,34 @@ to { rotate: 360deg; }
 	width: 100%;
 	height: 100%;
 	z-index: 10; /* a bit of overkill but make sure all iframes sit ontop of the disk */
-	transform: translateY(-70%) scale(3) translateX(0%); /* learnt how to write this synthx using claude: first translateY, then scale, then translateX - the order here is important */
+	transform: translateY(20%) scale(200%) translateX(0%); /* learnt how to write this synthx using claude: first translateY, then scale, then translateX - the order here is important */
 }
+
+#disc-image:has(iframe)::before, /* Used Claude to help me figure out how to select this and put the background below the iframe/embeds for the music player */
+#disc-image:has(embed)::before { /* creates a pseudo-element before the content */
+    content: ''; /*  creates an empty pseudo-element (required for ::before) */
+    position: absolute; /* positions it over the disc */
+    width: 100%;
+    height: 100%;
+    background-image: url('Illustrations/songs-embeds.png');
+    background-size: 145%;
+    background-position: center;
+    border-radius: 50%;
+    z-index: 100; /* layers it above the disc content but below the actual embed (which has z-index: 10)*/
+}
+
+#disc-image iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
 
 #disc-image:has(.text) {
 	display: flex; /* using flex here to organize content */
 	flex-direction: column; /* vertical */
 	text-align: center;
-
 	background-image: url('Illustrations/lyrics-text.png');
 	background-size: 140%;
 	background-position: center;
@@ -353,7 +373,6 @@ to { rotate: 360deg; }
 		color:var(--white);
 	}
 }
-
 #disc-hole {
 	position: absolute; /* Positioning the disc hole absolute so it stablizizes in the center of the discplate - kind of thinking about building this part as if it was a physical object*/
 	background-image: url("Illustrations/disc-hole.png");

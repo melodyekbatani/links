@@ -104,7 +104,7 @@ let discImage = document.querySelector('#disc-image') // this targets the disc-i
 		title.innerHTML=blockData.title 
 		let link = document.querySelector('#block-link') // setting the link
 		link.href = blockData.source.url  // Takes user off my site and are.na into thrid party site
-		link.innerHTML = 'View Link' // Text to display
+		link.innerHTML = 'Listen' // Text to display
 	}
 
 	// ACTIVE STATE - SELECTING FILM STRIP ITEM
