@@ -294,7 +294,7 @@ to { rotate: 360deg; }
 	width: 100%;
 	height: 100%;
 	z-index: 10; /* a bit of overkill but make sure all iframes sit ontop of the disk */
-	transform: translateY(70%) scale(3.5) translateX(0%); /* learnt how to write this synthx using claude: first translateY, then scale, then translateX - the order here is important */
+	transform: translateY(-70%) scale(3) translateX(0%); /* learnt how to write this synthx using claude: first translateY, then scale, then translateX - the order here is important */
 }
 
 #disc-image:has(.text) {
@@ -308,41 +308,37 @@ to { rotate: 360deg; }
 
 /* selecting the actual text elements */
 	.text {
-		color: var(--white);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		color: var(--white);
 	}
 
 	h3 {
-		padding-block-end: clamp(3rem, 40vw, 16rem); /* learning to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
-		font-size: clamp(calc(var(--body-size) * 1.15),40vw, calc(var(--body-size) * 1.25));
-		/* using the logic from the clamp() on disc size, it's used here to scale the fixed margin fluidly. Syntax via MDN: developer.mozilla.org/en-US/docs/Web/CSS/clamp, help intergrating the logic/variable assisted by Claude.By writing each value relative to --disc-size, the bleed stays proportional to the disc as it grows (on ipad and up). The three values are: calc(var(--disc-size) * -0.8) for max bleed, calc(var(--disc-size) * -0.7 + 2vw) for preferred value that shifts with viewport width, and calc(var(--disc-size) * -0.6) the min bleed.  */
 		overflow: hidden;
 		text-overflow: ellipsis; /* Displays ... at the point where text is clipped. Only works when paired with overflow:hidden and white-space:nowrap.I think Lucy originally showed me this but also had to find the right synthx on MDN. */
 		text-wrap: balance; /* Learnt this in class but using it here, used mdn to refresh my knowledge of it. https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap I think balance works on most browser types  */
 		width: 20ch; /* talked about this in class but also referenced Mdn and Claud for this - it restricts the number of characters - you can use a percentage, rem, or percent for width*/
 		white-space: nowrap; /* learnt this through Claude means don't wrap to more then 1 line */
 		overflow: hidden;  /* nessessary to hide the overflow */
+		padding-block-end: clamp(3rem, 40vw, 16rem); /* learning to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
+		font-size: clamp(calc(var(--body-size) * 1.15),40vw, calc(var(--body-size) * 1.25));
+		/* using the logic from the clamp() on disc size, it's used here to scale the fixed margin fluidly. Syntax via MDN: developer.mozilla.org/en-US/docs/Web/CSS/clamp, help intergrating the logic/variable assisted by Claude.By writing each value relative to --disc-size, the bleed stays proportional to the disc as it grows (on ipad and up). The three values are: calc(var(--disc-size) * -0.8) for max bleed, calc(var(--disc-size) * -0.7 + 2vw) for preferred value that shifts with viewport width, and calc(var(--disc-size) * -0.6) the min bleed.  */
 	}
 
 	p {
-		color:var(--white);
-		font-size: clamp(calc(var(--body-font) * 0.75),50vw, calc(var(--body-font) * 2));
 		width: 23ch; /* talked about this in class but also referenced Mdn and Claud for this - it restricts the number of characters - you can use a percentage, rem, or percent for width*/
 		display: -webkit-box;
 		-webkit-line-clamp: 2;
 		/* Limits text to 2 lines then truncates with ellipsis. Requires display:-webkit-box and -webkit-box-orient:vertical to work, Standard for doing this sort of thing. ChatGPT + MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/line-clamp  */
+		font-size: clamp(calc(var(--body-font) * 0.75),50vw, calc(var(--body-font) * 2));
 		text-wrap: balance; /* more info on this above */
 		-webkit-box-orient: vertical; /* Required along with line clamp tells the webkit box to flow children vertically so line counting works. MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/box-orient */
 		overflow: hidden;
 		text-overflow: ellipsis; /* more info on this above */
+		color:var(--white);
 	}
-}
-
-  #disc-image embed {
-  filter: blur(2rem) brightness(0.5);
 }
 
 #disc-hole {
@@ -650,6 +646,18 @@ to { rotate: 360deg; }
 		width: calc(var(--body-size) * 2);
 		height: calc(var(--body-size) * 2);
 	}
+
+
+	#disc-image:has(.text) {
+
+	h3 {
+		padding-block-end: clamp(15rem, 30vw,35rem); /* learning to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
+	}
+	p {
+		font-size: clamp(calc(var(--body-font) * 3),50vw, calc(var(--body-font) * 4));
+	}
+
+}
 
 }
 
