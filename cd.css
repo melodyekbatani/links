@@ -670,7 +670,7 @@ main {
 
 @media (width > 1400px) {
 :root {
---disc-size: clamp(rem, 120vw, 60rem);
+--disc-size: clamp(30rem, 120vw, 60rem);
 }
 #disc-container {
 	position: relative;

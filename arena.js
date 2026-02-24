@@ -4,7 +4,8 @@ let myUsername = 'melody-ekbatani' // For linking to your profile.
 
 
 // First, let’s lay out some *functions*, starting with our basic metadata:
-// ATTRIBUTION - I wanted to hide this information coming in from the are.na channel and manually update it on my site, I did this myself through experiementation but confirmed with the code tutor who said it should be fine. Mainly did this because I wanted to customize the title/change description and hide most of the other stuff listed here.
+
+// NOTES ON THIS - I wanted to hide this information coming in from the are.na channel and manually update it on my site, I did this myself through experiementation but confirmed with the code tutor who said it should be fine. Mainly did this because I wanted to customize the title/change description and hide most of the other stuff listed here.
 
 let placeChannelInfo = (channelData) => {
 	// Target some elements in your HTML:
@@ -21,10 +22,10 @@ let placeChannelInfo = (channelData) => {
 }
 
 
-// DISC PLAYER INTERACTION - Making the filmstrip blocks displayon into the disc player - taking the user clicking on content and displaying it on my disc player. I used copilot/claude/mdn and code tutor to confirm and explain how to do this and to understand how to pass data between elements and handle different block types.
+// DISC PLAYER INTERACTION - Making the filmstrip blocks display on into the disc player by taking the user clicking on content and displaying it on my disc player. I used copilot/claude/mdn and code tutor to confirm and explain how to do this and to understand how to pass data between elements and handle different block types.
 
 
-let displayOnDisc = (blockData, blockLi) => {  // Used claud to help me figure out the below lines, but confirmed with a code tutor who explained it more deeply to me. This is setting the variable for the block data clicked from the film strip to show on the disc. blockData = the actual Are.na API data (type, title, image URL, etc. blockLi = the HTML <li> element the user clicked in the filmstrip - using both because I need the data AND the visual element to show. 
+let displayOnDisc = (blockData, blockLi) => {  // Used Claude to help me figure out the below lines, but confirmed with a code tutor who explained it more deeply to me. This is setting the variable for the block data clicked from the film strip to show on the disc. blockData = the actual Are.na API data (type, title, image URL, etc. blockLi = the HTML <li> element the user clicked in the filmstrip - using both because I need the data AND the visual element to show. 
 
 let discImage = document.querySelector('#disc-image') // this targets the disc-image div inside my disc player is the image element in the disc player where the content will be displayed. The querySelector returns the first match - selecting content from the document. 
 
@@ -117,8 +118,8 @@ let discImage = document.querySelector('#disc-image') // this targets the disc-i
 
 	
 // Then our big function for specific-block-type rendering:
-let renderBlock = (blockData) => {
-	// To start, a shared `ul` where we’ll insert all our blocks
+let renderBlock = (blockData, i) => {
+	// To start, a shared `ul` where we’ll insert all our blocks. // i is the second parameter added so renderBlock can receive the position number // from the forEach loop — forEach automatically counts each item (0, 1, 2, 3 etc.)// but only shares it if you ask by adding i as a second parameter here AND in the forEach call. // Without it, currentIndex = i inside the click listeners would break. // MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach // YouTube: https://www.youtube.com/watch?v=e2qbolkHKt4
 	let channelBlocks = document.querySelector('#channel-blocks')
 
 	// Links!
@@ -143,12 +144,13 @@ let renderBlock = (blockData) => {
 		// And puts it into the page!
 		channelBlocks.insertAdjacentHTML('beforeend', linkItem)
 
-		
+
 		// MAKING FILMSTRIP BLOCKS CLICKABLE
 		// When user clicks a block in the filmstrip, it should display on the disc used claud and copilot to helped structure the function logic and reviewed my understanding with the code tutor, added click event listener to trigger displayOnDisc function
 	
 		let blockLi = channelBlocks.lastElementChild //Getting the <li> we just created and added to the filmstrip, lastElementChild gives us the most recently appended child, this is the NEW block we're setting up, not an old one
 		blockLi.addEventListener('click', () => { //addEventListener attaches a click handler to this specific <li> - refrenced MDN to review this. FYI Arrow function () => {} runs when the block is clicked
+		currentIndex = i // THIS IS IMPORTANT FOR THE BUTTON ANIMATION - Remembers the position of the last block clicked. Starts at -1 meaning nothing clicked yet. Updates to that block's number when clicked — so the 5th block = 4 (counting starts at 0). next/back then just add or subtract 1 from this. gives the index (i) number of each item as a parameter (basically counts what number each block is). I'm adding it in currentIndex when a block is clicked so that the back/next buttons // in script.js know where we are in the list and can do currentIndex + 1 or - 1 for the forward and back icon. // Learnt about foreach's parameter from Claude but used MDN and some YouTube videos (https://www.youtube.com/watch?v=e2qbolkHKt4) to https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach 
 		displayOnDisc(blockData, blockLi) // works through event type and callback function
 	})
 		
@@ -175,6 +177,7 @@ let renderBlock = (blockData) => {
 	 // ATTRIBUTION - SAME AS ABOVE FOR MAKING FILMSTRIP BLOCKS CLICKABLE FOR LINKS
 	let blockLi = channelBlocks.lastElementChild
 	blockLi.addEventListener('click', () => {
+	currentIndex = i // Explained above 
 	displayOnDisc(blockData, blockLi)
 	})
 	}
@@ -195,6 +198,7 @@ let renderBlock = (blockData) => {
 	
 	let blockLi = channelBlocks.lastElementChild
 	blockLi.addEventListener('click', () => {
+	currentIndex = i // Explained above 
    	displayOnDisc(blockData, blockLi)
 	})
 	}
@@ -221,6 +225,7 @@ let renderBlock = (blockData) => {
 
 			let blockLi = channelBlocks.lastElementChild
 			blockLi.addEventListener('click', () => {
+			currentIndex = i // Explained above 
 			displayOnDisc(blockData, blockLi)
 })
 			// More on `video`, like the `autoplay` attribute:
@@ -243,7 +248,8 @@ let renderBlock = (blockData) => {
 
 	let blockLi = channelBlocks.lastElementChild
 	blockLi.addEventListener('click', () => {
-   	displayOnDisc(blockData, blockLi)
+	currentIndex = i // Explained above 
+	displayOnDisc(blockData, blockLi)
 			})
 
 		}
@@ -262,6 +268,7 @@ let renderBlock = (blockData) => {
 
 			let blockLi = channelBlocks.lastElementChild
 			blockLi.addEventListener('click', () => {
+			currentIndex = i // Explained above 
 			displayOnDisc(blockData, blockLi)
 })
 			// More on`audio`:
@@ -287,6 +294,7 @@ let renderBlock = (blockData) => {
 
 			let blockLi = channelBlocks.lastElementChild
 			blockLi.addEventListener('click', () => {
+			currentIndex = i // Explained above 
 			displayOnDisc(blockData, blockLi)
 			})
 
@@ -308,7 +316,8 @@ let renderBlock = (blockData) => {
 
 			let blockLi = channelBlocks.lastElementChild
 			blockLi.addEventListener('click', () => {
-   			displayOnDisc(blockData, blockLi)
+			currentIndex = i // Explained above 
+			displayOnDisc(blockData, blockLi)
 		})
 		}
 	}
@@ -366,9 +375,9 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
 console.log(json) // See what we get back.
 
 // 	// Loop through the nested `.data` array (list).
-json.data.forEach((blockData) => {
-console.log(blockData) // The data for a single block.
+json.data.forEach((blockData, i) => {
+console.log(blockData) // The data for a single block. // forEach gives the index (i) number of each item as a parameter (basically counts what number each block is). I'm adding it in currentIndex when a block is clicked so that the back/next buttons // in script.js know where we are in the list and can do currentIndex + 1 or - 1 for the forward and back icon. // Learnt about foreach's parameter from Claude but used MDN and some YouTube videos (https://www.youtube.com/watch?v=e2qbolkHKt4) to https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach 
 
-renderBlock(blockData) // Pass the single block’s data to the render function.
+renderBlock(blockData, i) // Explained a few times throughout the code but (i) sets a parameter to each block so it assigns it an item number. The reason it's here is because this is the moment each block gets created, forEach is looping through all my Are.na blocks one by one and handing them to renderBlock to build the HTML. Since i only exists inside this forEach loop, this is the only place you can pass it through. Pass the single block’s data to the render function. Learnt this on claude, but also kind of found this reddit comment helpful to understand it better: i = whatever index (0,1,2,3 whatever) of a. i changes its value with each loop, starts at 0 and increases by one each loop. Arrays hold a list of values and each one is accessible by its number in the list (its index). So a[i] means go inside a and get me the value with the index of i. - lorls333. By applying it here its building the index that changes with the values.  
 	})
 })
