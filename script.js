@@ -30,12 +30,12 @@ document.addEventListener('click', (event) => {
 })
 // PAUSE / PLAY
 
-let isPlaying = true // Tracks whether the disc is spinning. Starts as true because the CSS animation runs on load. this is a true/false switch that remembers whether the disc is currently spinning or not. Starts as true because the CSS animation runs on load. The reason I couldn't do this in CSS is because it can't respond to clicks on its own, it has no way to react "when this button is clicked, do this."  JS is what listens for the click and then reaches into the CSS to change the property. So the animation lives in CSS because that's where visual effects belong, but the button interaction has to live in JS because that's the only language that can respond to what a user does. Learnt the below part using Claude and MDN - this is directly controlled using #disc {animation: spin 8s linear infinite animation-play-state: paused; @keyframes spin from { transform: rotate(0deg); } to { transform: rotate(360deg); }
+let isDiscPlaying = true // Tracks whether the disc is spinning. Starts as true because the CSS animation runs on load. this is a true/false switch that remembers whether the disc is currently spinning or not. Starts as true because the CSS animation runs on load. The reason I couldn't do this in CSS is because it can't respond to clicks on its own, it has no way to react "when this button is clicked, do this."  JS is what listens for the click and then reaches into the CSS to change the property. So the animation lives in CSS because that's where visual effects belong, but the button interaction has to live in JS because that's the only language that can respond to what a user does. Learnt the below part using Claude and MDN - this is directly controlled using #disc {animation: spin 8s linear infinite animation-play-state: paused; @keyframes spin from { transform: rotate(0deg); } to { transform: rotate(360deg); }
 
 document.querySelector('#pause-play').addEventListener('click', () => {
 	let disc = document.querySelector('#disc')
-	isPlaying = !isPlaying  // The ! means "not" — so if isPlaying was true it becomes !true = false, and if it was false it becomes !false = true. This flips the value each time the button is clicked so JS always knows the current state of the disc. flip between true and false, https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_NOT. This is the the MDN page for the ! operator (called "Logical NOT") — explains exactly how it flips boolean values. 
-	disc.style.animationPlayState = isPlaying ? 'running' : 'paused'  // animationPlayState pauses and resumes the spin animation defined in cd.css. // I'm controlling it from JS here because JS is what handles the button click — // it reaches into the CSS and flips the switch depending on isPlaying. // MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-play-state
+	isDiscPlaying = !isDiscPlaying  // The ! means "not" — so if isDiscPlaying was true it becomes !true = false, and if it was false it becomes !false = true. This flips the value each time the button is clicked so JS always knows the current state of the disc. flip between true and false, https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_NOT. This is the the MDN page for the ! operator (called "Logical NOT") — explains exactly how it flips boolean values. 
+	disc.style.animationPlayState = isDiscPlaying ? 'running' : 'paused'  // animationPlayState pauses and resumes the spin animation defined in cd.css. // I'm controlling it from JS here because JS handles the button click — // it reaches into the CSS and flips the switch depending on isDiscPlaying. // MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-play-state
 })
 
 
@@ -68,3 +68,22 @@ document.querySelector('#next').addEventListener('click', () => {
 document.querySelector('#back').addEventListener('click', () => {
 	goToBlock(currentIndex - 1) // Same as next but subtracts 1 to go backwards through the filmstrip.
 })
+
+//Attribution - This interaction pattern was initially found by following a YouTube tutorial https://www.youtube.com/watch?v=APjb5Er03UE used this video and Claude/Chatgpt to help me understand this better. I adapted the structure to fit my own file system, icon-swap logic, and state handling.While the core event-listener pattern comes from the tutorial, the implementation required debugging and media control behaviour in the browser, which deepened my understanding of how JavaScript connects interface elements to real actions and required me to use the inspector multiple times. To start, the const is a JavaScript keyword used to declare a variable that will always point to the same thing.
+
+const volumeBtn  = document.querySelector('#volume-btn'); //Finds the button in the DOM. This is DOM selection turnsstatic HTML into an interactive component. 
+const bgMusic    = document.querySelector('#bg-music'); //This targers the audio element Gives you access to built-in media methods like .play() and .pause(). 
+const volumeIcon = document.querySelector('#volume-icon'); //This targers the audio element Gives you access to built-in media methods like .play() and .pause(). 
+
+volumeBtn.addEventListener('click', () => {
+	//Listens for a user interaction.
+
+  if (!bgMusic.paused) { //Conditional logic. Checks the current state to decide what to do next- this is basically the core concept of toggle interactions.
+    bgMusic.pause(); //Calls the built-in HTMLMediaElement method and Stops playback.
+    volumeIcon.src = './Illustrations/volumn-off-button.png'; //Swaps the image file through using the icon.src and defining the image change Visually communicates the new state to the user.
+  } else { //Defines the opposite condition (music is currently off).
+    bgMusic.play().catch(err => console.log(err));  //When the button is clicked and the music is currently off, this code turns the music on by calling bgMusic.play(). If the browser blocks the playback for any reason, the .catch() prevents the script from breaking and simply logs the error. After the music starts, it changes the icon image to the “volume on” version so the user can see that the state has switched from off to playing.
+    volumeIcon.src = './Illustrations/Volumn-button.png';
+  }
+
+});

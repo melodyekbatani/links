@@ -96,14 +96,18 @@ header {
 		filter: blur(0.05rem);
 		/* Learnt about filters from your suggestions in class https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/filter-function/blur but here's were I found the correct way to write it - number is blur with a radius of x in my case its very very small */
 	}
+	#volume-btn {
+		z-index: 100;
+		width: calc(var(--body-size) * 3);
+		/* relative to text size - I keep forgetting how to properly space the calc function - use claude to remember this calc(var(--body-size) * 3) - no spaces until you do calc and put a space between * and 3*/
+		height: calc(var(--body-size) * 3);
+	}
 
 	#modal {
 		z-index: 100;
 		width: calc(var(--body-size) * 3);
 		/* relative to text size - I keep forgetting how to properly space the calc function - use claude to remember this calc(var(--body-size) * 3) - no spaces until you do calc and put a space between * and 3*/
 		height: calc(var(--body-size) * 3);
-		margin-inline: calc(var(--padding-size) * 1.8);
-		margin-block: calc(var(--padding-size) * 0.5);
 	}
 }
 
@@ -218,7 +222,6 @@ main {
 	width: 100%;
 	display: flex; /* This puts the entier disc block into a wrapper that i can set to align on the edge of the screen */
 	justify-content: flex-end;/*right aligns*/
-	margin-inline-start: calc(var(--padding-size) * 3);
 	margin-block-start: calc(var(--padding-size) * -6);
 }
 
@@ -667,7 +670,7 @@ to { rotate: 360deg; }
 }
 #disc-container {
 	position: relative;
-	width: calc(var(--disc-size) + 10rem); 
+	width: calc(var(--disc-size) + 0rem); 
 	/* Adds the padding for the disc player background*/
 	height: calc(100dvh) + 10rem;
 }
