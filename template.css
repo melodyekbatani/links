@@ -6,6 +6,21 @@
 /* SMALL ATTRIBUTION: if we learnt it in class but I forgot remember */
 /* QUESTION: for Michael, Eric and code tutors */
 
+
+/* CODE MAINTANCE FOR CSS -  ITCSS and the principle of locality to keep my CSS organized Help from ChatGPT and this youtube video: https://www.youtube.com/watch?v=VjmWZFmBqNk. Was thinking how to make this better for the whole code. 
+
+
+
+
+For each block it should go
+Base styles
+selector
+layout
+box model
+typography
+visual */
+
+
 /*--------------STYLES------------.*/
 :root {
     overflow-x: hidden;
@@ -21,7 +36,9 @@
     --ring: rgb(246, 246, 246);
     --main:rgb(0, 0, 0);
     --border: rgb(206, 206, 206);
-
+    --white: white; 
+    --grey: grey; 
+    --black: black; 
    
     --disc-size: clamp(15rem, 80vw, 30rem);
     --block-size: clamp(5rem, 10vw, 8rem);

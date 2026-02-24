@@ -10,7 +10,6 @@
 /*--------------DESIGN SYSTEM------------*/
 :root {
 overflow-x: hidden;
-
 /* setting fonts variables */
 --body-font: 'Chillax', sans-serif;
 --body-font-style: normal;
@@ -29,6 +28,8 @@ overflow-x: hidden;
 --main: rgb(79, 79, 79);
 --border: rgb(206, 206, 206);
 --white: white; 
+--grey: grey; 
+--black: black; 
 
 /* setting disc and filmstrip variables */
 --disc-size: clamp(15rem, 80vw, 30rem);
@@ -80,11 +81,10 @@ padding-block: var(--padding-size);
 
 	h1 {
 	padding-block-start: var(--gap-size);
-	font-size: var(--heading-size);
 	margin-block: -1rem;
 	margin-inline: -0.25rem;
+	font-size: var(--heading-size);
 	color: var(--active);
-	align-items: left;
 	filter: blur(0.05rem); /* Learnt about filters from your suggestions in class https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/filter-function/blur but here's were I found the correct way to write it - number is blur with a radius of x in my case its very very small */
 	}
 
@@ -110,33 +110,35 @@ flex-direction: row;
 
 dialog {
 /* From class - Style the `dialog` itself, which is `display: none;` to start. */
-background-image: url('Illustrations/web-modal.png');
-background-size: fill;
-background-position: center;
-background-repeat: no-repeat;
 
+position: fixed; /* In the viewport. */
+translate: -50% -50%; /* In the viewport. */
 width: clamp(20rem, 55vw, 70rem);
 height: auto;
 max-width: 100ch;
 
 padding: 0.5rem; /*Asked claud to help me make the text responsive to the image size, rem won't scale with the illustration as it resizes. I used % units here to keep it contained to the size of the frame. https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units */
-border-radius: 1.2rem; 
 inset-block-start: 50%;
 inset-inline-start: 50%;
-position: fixed; /* In the viewport. */
-translate: -50% -50%; /* In the viewport. */
-	
+border-radius: 1.2rem; 
+
+background-image: url('Illustrations/web-modal.png');
+background-size: fill;
+background-position: center;
+background-repeat: no-repeat;
+
 	#modal-text {
-		display: flex;
-		flex-direction: column;
-		background-color: var(--white);
-		padding: var(--gap-size);
-		border-radius: 0.7rem; /* Chareese taught me this trick to make the borders look proper - outside border is more curved then inner border */
-		box-shadow: 0.3rem /* Writing it like this so I can understand the values better - using box shadow because I want to add a border radius. horizontal offset — pushes shadow right */
-		0.3rem /* vertical offset — pushes shadow down */
-		0.6rem /* blur radius — how soft the shadow is */
-		0.125rem /* spread radius — how much it expands before blurring */
-		grey; /* color — grey at 50% opacity */
+	display: flex;
+	flex-direction: column;
+	padding: var(--gap-size);
+	background-color: var(--white);
+	border-radius: 0.7rem; /* Chareese taught me this trick to make the borders look proper - outside border is more curved then inner border */
+	box-shadow: 0.3rem /* Writing it like this so I can understand the values better - using box shadow because I want to add a border radius. horizontal offset — pushes shadow right */
+	0.3rem /* vertical offset — pushes shadow down */
+	0.6rem /* blur radius — how soft the shadow is */
+	0.125rem /* spread radius — how much it expands before blurring */
+	var(--grey); /* color — grey at 50% opacity */
+		
 	}
 	h3 {
 		margin-block: 0.5rem;
@@ -634,7 +636,6 @@ main {
 		}
 
 		#block-link {
-			align-items: left;
 			padding: 0; 
 			text-align: left;
 			font-size: calc(var(--body-size) * 0.75);
