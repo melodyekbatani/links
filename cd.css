@@ -96,7 +96,8 @@ header {
 		filter: blur(0.05rem);
 		/* Learnt about filters from your suggestions in class https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/filter-function/blur but here's were I found the correct way to write it - number is blur with a radius of x in my case its very very small */
 	}
-	#volume-btn {
+}
+#volume-btn {
 		z-index: 100;
 		width: calc(var(--body-size) * 3);
 		/* relative to text size - I keep forgetting how to properly space the calc function - use claude to remember this calc(var(--body-size) * 3) - no spaces until you do calc and put a space between * and 3*/
@@ -109,7 +110,6 @@ header {
 		/* relative to text size - I keep forgetting how to properly space the calc function - use claude to remember this calc(var(--body-size) * 3) - no spaces until you do calc and put a space between * and 3*/
 		height: calc(var(--body-size) * 3);
 	}
-}
 
 body:has(dialog[open]) {
 	overflow: hidden;
@@ -213,7 +213,7 @@ main {
 	display: flex;
 	flex-direction: column;
 	flex: 1; /*I learNt this on Claude and watched this video to understand it better https://www.youtube.com/watch?v=_tlxwc9ssH4&t=784s. Telling the flex to take up all the avalible space, body is a flex column with header, main, and the film strip,  flex: 1 on main is saying "give me all the leftover height that header doesn't use.*/
-	justify-content: flex-start;
+	justify-content: flex-start
 }
 
 /* using flex here (defaults to row) as the main horizonal axis for the disc and moving it to the right side of the mobile frame*/
@@ -221,8 +221,7 @@ main {
 	position: relative;
 	width: 100%;
 	display: flex; /* This puts the entier disc block into a wrapper that i can set to align on the edge of the screen */
-	justify-content: flex-end;/*right aligns*/
-	margin-block-start: calc(var(--padding-size) * -6);
+	justify-content: center;/*right aligns*/
 }
 
 /*--------------DISC------------*/
@@ -383,7 +382,7 @@ to { rotate: 360deg; }
 	text-align: center;
 	justify-content: center;
 	align-items: center;
-	padding-block-start: var(--padding-size);
+	padding-block: var(--padding-size);
 
 	#block-title {
 		max-width: 25ch;
@@ -577,9 +576,12 @@ to { rotate: 360deg; }
 
 
 
+
 /*-------------- RESPONSIVE DESIGN ------------*/
 /*The disc is super temperament*/
-@media (width > 500px) {}
+@media (width > 350px) {
+	
+}
 
 @media (width > 700px) {
 	:root {}
@@ -597,8 +599,7 @@ to { rotate: 360deg; }
 	#disc-wrapper {
 		justify-content: center;
 		margin-inline-end: 0;
-		margin-block-start: clamp(calc(var(--disc-size) * -0.9), calc(var(--disc-size) * -0.75 + 3vw), calc(var(--disc-size) * -0.6));
-		/* using the logic from the clamp() on disc size, it's used here to scale the fixed margin fluidly. Syntax via MDN: developer.mozilla.org/en-US/docs/Web/CSS/clamp, help intergrating the logic/variable assisted by Claude.By writing each value relative to --disc-size, the bleed stays proportional to the disc as it grows (on ipad and up). The three values are: calc(var(--disc-size) * -0.8) for max bleed, calc(var(--disc-size) * -0.7 + 2vw) for preferred value that shifts with viewport width, and calc(var(--disc-size) * -0.6) the min bleed.  */
+		margin-block-start: -5rem;
 		--disc-size: clamp(25rem, 45vw, 70rem);
 	}
 
@@ -633,7 +634,17 @@ to { rotate: 360deg; }
 		
 		
 	}
-	
+	#volume-btn {
+		width: calc(var(--body-size) * 1.5);
+		/* relative to text size - 1.5rem is okay for desktop*/
+		height: calc(var(--body-size) * 1.5);
+	}
+
+	#modal {
+		width: calc(var(--body-size) * 1.5);
+		/* relative to text size - 1.5rem is okay for desktop*/
+		height: calc(var(--body-size) * 1.5);
+	}
 
 	.controls {
 		padding: var(--padding-size);
@@ -641,7 +652,7 @@ to { rotate: 360deg; }
 
 	.controls button {
 		width: calc(var(--body-size) * 1.5);
-		/* relative to text size - 1.5rem is okay for desktope*/
+		/* relative to text size - 1.5rem is okay for desktop*/
 		height: calc(var(--body-size) * 1.5);
 	}
 
