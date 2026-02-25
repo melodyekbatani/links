@@ -255,7 +255,6 @@ to { rotate: 360deg; }
 #disc-player {
 	width: calc(var(--disc-size) + 2rem); /* Places the disc ring image with the padding above for the disc player background using calc here because I want it relative to to disc size*/
 	height: calc(var(--disc-size) + 2rem);
-	border-radius: 50%;
 	display: flex; /* /Creates a flex container so child elements can be aligned easily — learned in class flexbox layout */
 	align-items: center; /* Claud suggested using this specific command - vertical alignment on the disc container - align-items  only valid for items inside a flex/grid */
 	justify-content: center; /* Claud suggested using this specific line - horizontal alignment on the disc container - only valid for items inside a flex/grid*/
@@ -263,6 +262,7 @@ to { rotate: 360deg; }
 	background-image: url("Illustrations/Disc-ring.png"); /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-image setting background image, learnt this in class needed clarification on the synthx but this just selects a background image from file folder. */
 	background-size: cover; /* This is like object-fit for backgrounds */
 	border: 0.125rem double var(--ring);
+	border-radius: 50%;
 }
 
 #disc {
@@ -302,6 +302,7 @@ to { rotate: 360deg; }
 	object-fit: cover; /* ensures cover style on the blocks themselves */
 }
 
+/* MUSIC IFRAMES FROM YOUTUBE/SPOTIFY/SOUNDCLOUD */
 #disc-image iframe {
 	position: absolute;
 	width: 100%;
@@ -312,18 +313,18 @@ to { rotate: 360deg; }
 	 backface-visibility: hidden;
 }
 
-#disc-image:has(iframe)::before, /* Used Claude to help me figure out how to select this and put the background below the iframe/embeds for the music player */
-#disc-image:has(embed)::before { /* creates a pseudo-element before the content */
+#disc-image:has(iframe)::before { /* Used Claude to help me figure out how to select this and put the background below the iframe/embeds for the music player */
+/* creates a pseudo-element before the content */
 	content: ''; /*  creates an empty pseudo-element (required for ::before) */
 	position: absolute; /* positions it over the disc */
 	width: 100%;
 	height: 100%;
 	background-image: url('Illustrations/songs-embeds.png');
-	background-size: 145%;
+	background-size: 150%;
 	background-position: center;
 	border-radius: 50%;
 	z-index: 100; /* layers it above the disc content but below the actual embed (which has z-index: 10)*/
-	will-change: opacity; /* Learnt this from Claude - This tells the browser: "Hey, this element's transform is going to change, so prepare for it." basically prepares the browser to understand that this will change and to fade in and out opacity, was helping with the glitching animation and optimizes background rendering - there are 3 common values for will change - transform, opacity and auto (browser decideds - default)*/
+	will-change: opacity; /* Learnt this from Claude - This tells the browser: "Hey, this element's transform is going to change, so prepare for it." basically prepares the browser to understand that this will change and to fade in and out opacity, was helping with the glitching animation and optimizes background rendering - there are 3 common values for will change - transform, opacity and auto (browser decideds - default) PLEASE NOTE - This makes the whole website loading slower use with caution*/
 }
 
 #disc-image iframe {
@@ -334,6 +335,26 @@ to { rotate: 360deg; }
 }
 
 
+/* PDF EMBEDS  */
+/* PDF wrapper with background */
+/* PDF EMBEDS */
+#disc-image.is-pdf {
+    background-image: url('Illustrations/Bookmarks.png');
+    background-size: 150%;
+    background-position: center;
+    width: var(--disc-size);
+    height: var(--disc-size);
+    border-radius: 50%;
+}
+
+#disc-image.is-pdf img {
+    mix-blend-mode: multiply;
+    opacity: 0.85;
+	z-index: 10;
+}
+
+
+/* TEXT BLOCKS */
 #disc-image:has(.text) {
 	display: flex; /* using flex here to organize content */
 	flex-direction: column; /* vertical */

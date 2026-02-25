@@ -28,6 +28,7 @@ let placeChannelInfo = (channelData) => {
 let displayOnDisc = (blockData, blockLi) => {  // Used Claude to help me figure out the below lines, but confirmed with a code tutor who explained it more deeply to me. This is setting the variable for the block data clicked from the film strip to show on the disc. blockData = the actual Are.na API data (type, title, image URL, etc. blockLi = the HTML <li> element the user clicked in the filmstrip - using both because I need the data AND the visual element to show. 
 
 let discImage = document.querySelector('#disc-image') // this targets the disc-image div inside my disc player is the image element in the disc player where the content will be displayed. The querySelector returns the first match - selecting content from the document. 
+discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image every time any block is clicked, this ensures the Bookmarks background and blend mode only show on Link blocks, and gets removed when the user switches to any other block type. learnt this using Claude to troubleshoot.
 
 	// IMAGE BLOCKS - PHOTOS, GIFS
 	if (blockData.type == 'Image') {
@@ -60,10 +61,14 @@ let discImage = document.querySelector('#disc-image') // this targets the disc-i
 		title.innerHTML=blockData.title // taking the title from the are.na data - innerHTML replaces what was in the #block-title before
 		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link (explained above)
 		link.href = blockData.source.url // Setting where the link goes - different then above since these are linking out and not to the are.na channel - no optional chaning here ? because the links always have an external url - not are.na 
-		link.innerHTML = 'View Link' // Setting what goes into the linked here - 'view link' shows up on the site - wanted to clarify if the user is going to are.na or going elsewhere. 
-		if (img) { // checking if an image was set 
-		discImage.innerHTML = `<img src="${img.src}">` // Creating a NEW <img> tag and inserting it into the disc if there is a image
-		} 
+		link.innerHTML = 'Read Bookmark' // Setting what goes into the linked here - 'view link' shows up on the site - wanted to clarify if the user is going to are.na or going elsewhere. 
+		discImage.classList.add('is-pdf') // Adding the is-pdf class to #disc-image when a Link block is clicked. This gives CSS a hook to apply the Bookmarks background and blend mode styling. Learned classList.add() from troubleshooting with claude
+		if (img) {
+		discImage.innerHTML = `<img src="${img.src}" alt="disc" >` // Creating a NEW <img> tag and inserting it into the disc if there is a image if there's an image, show it, future - could add a fallback icon for files without previews. If the link block has a thumbnail image, grab it from the filmstrip <li> and display it on the disc using a template literal to build the img tag. img.src pulls the already-loaded image source so we don't need to re-fetch from the API.
+		}
+		else {
+		discImage.innerHTML = `<div class="pdf-placeholder"></div>` // If there's no thumbnail, insert an empty div so the disc has content to fill its height.his lets the CSS background-image on .is-pdf show through. Learned this pattern with Claude — an empty element still takes up space, which is necessary for background images to render on a flex container.
+		}
 	}
 
 	// TEXT BLOCKS - This was copied over from the image section above - please refer to the main attributions there, since the code is very similar (but i'll add a few additional attributions here as well) - unlike img blocks, there is no img to extract for this. 
@@ -88,12 +93,11 @@ let discImage = document.querySelector('#disc-image') // this targets the disc-i
 		title.innerHTML=blockData.title  // display file name
 		let link = document.querySelector('#block-link') // setting the block link
 		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`
-		link.innerHTML = 'View on Are.na' //  setting the block link - the ? mark basically says If blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na block
-
+		link.innerHTML = 'View on Are.na' //  setting the block link - the ? mark basically says If blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na block.
 		if (img) {
 		discImage.innerHTML = `<img src="${img.src}" alt="disc" >` // if there's an image, show it, future - could add a fallback icon for files without previews
-		}
 	}
+
 
 	// EMBED - Youtube, soundcloud etc. 
 	else if (blockData.type == 'Embed') { 
@@ -115,7 +119,7 @@ let discImage = document.querySelector('#disc-image') // this targets the disc-i
 	blockLi.classList.add('active') // Add 'active' to the block that was just clicked to show it's active. 
 }
 
-
+}
 	
 // Then our big function for specific-block-type rendering:
 let renderBlock = (blockData, i) => {
