@@ -226,11 +226,11 @@ main {
 
 /* using flex here (defaults to row) as the main horizonal axis for the disc and moving it to the right side of the mobile frame*/
 #disc-wrapper {
-	position: relative;
-	width: 100%;
 	display: flex; /* This puts the entier disc block into a wrapper that i can set to align on the edge of the screen */
 	flex: 1;
-	justify-content: center;/*right aligns*/
+	position: relative;
+	width: 100%;
+	justify-content: center; /*right aligns*/
 	align-items: center;
 	overflow: visible;
 
@@ -250,8 +250,10 @@ to { rotate: 360deg; }
 	position: relative;
 	width: calc(var(--disc-size) + 2rem);  /* Adds the padding for the disc player background*/
 	height: calc(var(--disc-size) + 2rem); 
-	flex-shrink: 0;  /* Item will NOT shrink, it keeps its size even if container overflows.*/
+
+
 	display: flex; 
+	flex-shrink: 0;  /* Item will NOT shrink, it keeps its size even if container overflows.*/
 	justify-content: center; 
 	align-items: center;
 }
@@ -259,10 +261,12 @@ to { rotate: 360deg; }
 #disc-player {
 	width: calc(var(--disc-size) + 2rem); /* Places the disc ring image with the padding above for the disc player background using calc here because I want it relative to to disc size*/
 	height: calc(var(--disc-size) + 2rem);
+	position: relative; /* relative to parent*/
+	
 	display: flex; /* /Creates a flex container so child elements can be aligned easily — learned in class flexbox layout */
 	align-items: center; /* Claud suggested using this specific command - vertical alignment on the disc container - align-items  only valid for items inside a flex/grid */
 	justify-content: center; /* Claud suggested using this specific line - horizontal alignment on the disc container - only valid for items inside a flex/grid*/
-	position: relative; /* relative to parent*/
+	
 	background-image: url("Illustrations/Disc-ring.png"); /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-image setting background image, learnt this in class needed clarification on the synthx but this just selects a background image from file folder. */
 	background-size: cover; /* This is like object-fit for backgrounds */
 	border: 0.125rem double var(--ring);
@@ -272,15 +276,18 @@ to { rotate: 360deg; }
 #disc {
 	width: var(--disc-size);
 	height: var(--disc-size);
-	border-radius: 50%;
 	overflow: hidden;
 	position: relative; /* remove the right/top/transform positioning */
+
 	animation: spin 8s linear infinite;
+	transform-origin: center center; /* Claud suggested using this to get the spin to orignate from the beginning. This line allows the animation to start in the center point, kind of thought of this like an anchor point in after effect - rotates around its exact center point, making the spin smooth and stable without wobble. */
+	
+	border: 0.125rem double var(--ring); /* css border styles - refresher from MDN */
+	border-radius: 50%;
 	background-image: url("Illustrations/Disc.png");
 	background-size: 110%; /* Similar to object fit but with the background size, https://www.w3schools.com/css/css3_background_size.asp I had some space between the edge and disc image - you can use either auto/contain/cover or percentages/relative units here */
 	background-position: center; /* I learnt this using claude since it wasn't 100% in the center. This sets the background to perfectly center */
-	transform-origin: center center; /* Claud suggested using this to get the spin to orignate from the beginning. This line allows the animation to start in the center point, kind of thought of this like an anchor point in after effect - rotates around its exact center point, making the spin smooth and stable without wobble. */
-	border: 0.125rem double var(--ring); /* css border styles - refresher from MDN */
+
 }
 
 

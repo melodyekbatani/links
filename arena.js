@@ -1,13 +1,10 @@
 let channelSlug = 'r-b-music' // The “slug” is just the end of the URL.
 let myUsername = 'melody-ekbatani' // For linking to your profile.
 
-
-
 // First, let’s lay out some *functions*, starting with our basic metadata:
 
 // NOTES ON THIS - I wanted to hide this information coming in from the are.na channel and manually update it on my site, I did this myself through experiementation but confirmed with the code tutor who said it should be fine. Mainly did this because I wanted to customize the title/change description and hide most of the other stuff listed here.
-
-let placeChannelInfo = (channelData) => {
+//let placeChannelInfo = (channelData) => {
 	// Target some elements in your HTML:
 	// let channelTitle = document.querySelector('#channel-title')
 	// let channelDescription = document.querySelector('#channel-description')
@@ -19,8 +16,7 @@ let placeChannelInfo = (channelData) => {
 	// channelDescription.innerHTML = channelData.description.html 
 	// channelCount.innerHTML = channelData.counts.blocks
 	// channelLink.href = `https://www.are.na/channel/${channelSlug}`
-}
-
+//}
 
 // DISC PLAYER INTERACTION - Making the filmstrip blocks display on into the disc player by taking the user clicking on content and displaying it on my disc player. I used copilot/claude/mdn and code tutor to confirm and explain how to do this and to understand how to pass data between elements and handle different block types.
 
@@ -47,7 +43,7 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 		link.innerHTML = 'View on Are.na<span class="arrow">↗</span>' // Learnt this from code tutor - setting the block link - the ? mark basically says if blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na, since my image blocks dont have other links besides are.na
 		
 		if (img) {
-		discImage.innerHTML = `<img src="${img.src}">`
+			discImage.innerHTML = `<img src="${img.src}">`
 		}
 		//discImage.innerHTML - replaces everything inside the disc-image (like the background) and places the new content. Backticks define create a template literal https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals. allowing for a string to be created. Creating a new image tag as a string - then ${img.src} pulls the image source from json. 
 	} 
@@ -63,11 +59,12 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 		link.href = blockData.source.url // Setting where the link goes - different then above since these are linking out and not to the are.na channel - no optional chaning here ? because the links always have an external url - not are.na 
 		link.innerHTML = 'Read Bookmark<span class="arrow">↗</span>' // Setting what goes into the linked here - 'view link' shows up on the site - wanted to clarify if the user is going to are.na or going elsewhere. 
 		discImage.classList.add('is-pdf') // Adding the is-pdf class to #disc-image when a Link block is clicked. This gives CSS a hook to apply the Bookmarks background and blend mode styling. Learned classList.add() from troubleshooting with claude
+
 		if (img) {
-		discImage.innerHTML = `<img src="${img.src}" alt="disc" >` // Creating a NEW <img> tag and inserting it into the disc if there is a image if there's an image, show it, future - could add a fallback icon for files without previews. If the link block has a thumbnail image, grab it from the filmstrip <li> and display it on the disc using a template literal to build the img tag. img.src pulls the already-loaded image source so we don't need to re-fetch from the API.
+			discImage.innerHTML = `<img src="${img.src}" alt="disc" >` // Creating a NEW <img> tag and inserting it into the disc if there is a image if there's an image, show it, future - could add a fallback icon for files without previews. If the link block has a thumbnail image, grab it from the filmstrip <li> and display it on the disc using a template literal to build the img tag. img.src pulls the already-loaded image source so we don't need to re-fetch from the API.
 		}
 		else {
-		discImage.innerHTML = `<div class="pdf-placeholder"></div>` // If there's no thumbnail, insert an empty div so the disc has content to fill its height.his lets the CSS background-image on .is-pdf show through. Learned this pattern with Claude — an empty element still takes up space, which is necessary for background images to render on a flex container.
+			discImage.innerHTML = `<div class="pdf-placeholder"></div>` // If there's no thumbnail, insert an empty div so the disc has content to fill its height.his lets the CSS background-image on .is-pdf show through. Learned this pattern with Claude — an empty element still takes up space, which is necessary for background images to render on a flex container.
 		}
 	}
 
@@ -95,8 +92,8 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`
 		link.innerHTML = 'View on Are.na<span class="arrow">↗</span>' //  setting the block link - the ? mark basically says If blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na block.
 		if (img) {
-		discImage.innerHTML = `<img src="${img.src}" alt="disc" >` // if there's an image, show it, future - could add a fallback icon for files without previews
-	}
+			discImage.innerHTML = `<img src="${img.src}" alt="disc" >` // if there's an image, show it, future - could add a fallback icon for files without previews
+		}
 	}
 
 	// EMBED - Youtube, soundcloud etc. 
@@ -111,16 +108,16 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 		link.innerHTML = 'Listen' // Text to display
 		
 		link.addEventListener('click', (e) => { // Used claude to help me with this, I wanted to create the cd vinyl effect as a pop up for only my embed blocks, so that when a user clicks a link, instead of navigating away, it opens a modal popup and loads media content into it. This links to the script file line 91. This line Attaches a click event listener to link. When the link is clicked, the arrow function (e) => runs, where e is the event object.
-		e.preventDefault() //Stops the link's default behavior (which would normally navigate to a new page or URL). This keeps everything on the current page. E is the event object — it's automatically passed into the function when the click happens and contains information about that click, like where the mouse was, what element was clicked, etc.
-		document.querySelector('#listen-modal-title').innerHTML = blockData.title // Finds the element with the id listen-modal-title and sets its content to blockData.title — so the modal displays the title of whatever was clicked.
-		document.querySelector('#listen-embed').innerHTML = blockData.embed.html //Finds the element with id listen-embed and injects the embed HTML (like a Spotify or SoundCloud player) from blockData.embed.html into it.
-		document.querySelector('#listen-dialog').showModal() //Finds the <dialog> element with id listen-dialog and calls .showModal() on it, which opens it as a modal overlay on the page.
-		})
+			e.preventDefault() //Stops the link's default behavior (which would normally navigate to a new page or URL). This keeps everything on the current page. E is the event object — it's automatically passed into the function when the click happens and contains information about that click, like where the mouse was, what element was clicked, etc.
+			document.querySelector('#listen-modal-title').innerHTML = blockData.title // Finds the element with the id listen-modal-title and sets its content to blockData.title — so the modal displays the title of whatever was clicked.
+			document.querySelector('#listen-embed').innerHTML = blockData.embed.html //Finds the element with id listen-embed and injects the embed HTML (like a Spotify or SoundCloud player) from blockData.embed.html into it.
+			document.querySelector('#listen-dialog').showModal() //Finds the <dialog> element with id listen-dialog and calls .showModal() on it, which opens it as a modal overlay on the page.
+			})
 		}
 
 	// ACTIVE STATE - SELECTING FILM STRIP ITEM
 	document.querySelectorAll('#channel-blocks li').forEach(li => {
-	li.classList.remove('active') // Clears any previous selection so only one block is highlighted at a time, learned this pattern from my code tutor. 
+		li.classList.remove('active') // Clears any previous selection so only one block is highlighted at a time, learned this pattern from my code tutor. 
 	})
 
 	blockLi.classList.add('active') // Add 'active' to the block that was just clicked to show it's active. 
@@ -161,9 +158,9 @@ let renderBlock = (blockData, i) => {
 	
 		let blockLi = channelBlocks.lastElementChild //Getting the <li> we just created and added to the filmstrip, lastElementChild gives us the most recently appended child, this is the NEW block we're setting up, not an old one
 		blockLi.addEventListener('click', () => { //addEventListener attaches a click handler to this specific <li> - refrenced MDN to review this. FYI Arrow function () => {} runs when the block is clicked
-		currentIndex = i // THIS IS IMPORTANT FOR THE BUTTON ANIMATION - Remembers the position of the last block clicked. Starts at -1 meaning nothing clicked yet. Updates to that block's number when clicked — so the 5th block = 4 (counting starts at 0). next/back then just add or subtract 1 from this. gives the index (i) number of each item as a parameter (basically counts what number each block is). I'm adding it in currentIndex when a block is clicked so that the back/next buttons // in script.js know where we are in the list and can do currentIndex + 1 or - 1 for the forward and back icon. // Learnt about foreach's parameter from Claude but used MDN and some YouTube videos (https://www.youtube.com/watch?v=e2qbolkHKt4) to https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach 
-		displayOnDisc(blockData, blockLi) // works through event type and callback function
-	})
+			currentIndex = i // THIS IS IMPORTANT FOR THE BUTTON ANIMATION - Remembers the position of the last block clicked. Starts at -1 meaning nothing clicked yet. Updates to that block's number when clicked — so the 5th block = 4 (counting starts at 0). next/back then just add or subtract 1 from this. gives the index (i) number of each item as a parameter (basically counts what number each block is). I'm adding it in currentIndex when a block is clicked so that the back/next buttons // in script.js know where we are in the list and can do currentIndex + 1 or - 1 for the forward and back icon. // Learnt about foreach's parameter from Claude but used MDN and some YouTube videos (https://www.youtube.com/watch?v=e2qbolkHKt4) to https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach 
+			displayOnDisc(blockData, blockLi) // works through event type and callback function
+		})
 		
 
 		// More on template literals:
@@ -188,29 +185,29 @@ let renderBlock = (blockData, i) => {
 	 // ATTRIBUTION - SAME AS ABOVE FOR MAKING FILMSTRIP BLOCKS CLICKABLE FOR LINKS
 	let blockLi = channelBlocks.lastElementChild
 	blockLi.addEventListener('click', () => {
-	currentIndex = i // Explained above 
-	displayOnDisc(blockData, blockLi)
-	})
+		currentIndex = i // Explained above 
+		displayOnDisc(blockData, blockLi)
+		})
 	}
 
 	// Text!
 	else if (blockData.type == 'Text') {
 		 let textItem =
-        `
-        <li>
+ 		`
+		<li>
 			<div class="text">
-            <h3>${blockData.title || 'Untitled'}</h3>
-            <p>${blockData.content.html}</p>
+			<h3>${blockData.title || 'Untitled'}</h3>
+			<p>${blockData.content.html}</p>
 			</div>
-        </li>
-        `
-    channelBlocks.insertAdjacentHTML('beforeend', textItem)
+		</li>
+		`
+	channelBlocks.insertAdjacentHTML('beforeend', textItem)
 	
 	
 	let blockLi = channelBlocks.lastElementChild
 	blockLi.addEventListener('click', () => {
-	currentIndex = i // Explained above 
-   	displayOnDisc(blockData, blockLi)
+		currentIndex = i // Explained above 
+		displayOnDisc(blockData, blockLi)
 	})
 	}
 
@@ -225,7 +222,6 @@ let renderBlock = (blockData, i) => {
 			let videoItem =
 				`
 				<li>
-				
 				<div class="embedded-video">
 					<video controls src="${ blockData.attachment.url }"></video>
 				</div>
@@ -236,53 +232,52 @@ let renderBlock = (blockData, i) => {
 
 			let blockLi = channelBlocks.lastElementChild
 			blockLi.addEventListener('click', () => {
-			currentIndex = i // Explained above 
-			displayOnDisc(blockData, blockLi)
-})
+				currentIndex = i // Explained above 
+				displayOnDisc(blockData, blockLi)
+				})
 			// More on `video`, like the `autoplay` attribute:
 			// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video
 		}
 
 		// Uploaded PDFs! Checks if the content type string contains 'pdf' (e.g. 'application/pdf'). This block only runs if the uploaded file is a PDF.
 		else if (contentType.includes('pdf')) {
-			 let pdfItem = //Declares a variable called pdfItem that will store the HTML string.
-        `
-        <li>
-		<div class="embedded">
-    	<embed src="${blockData.attachment.url}" type="application/pdf" width="100%" height="600px">
-		</div>
-    	<p><a href="${blockData.attachment.url}" download>Download PDF↗</a></p>
-        </li>
-        `
+			let pdfItem = //Declares a variable called pdfItem that will store the HTML string.
+			`
+				<li>
+				<div class="embedded">
+				<embed src="${blockData.attachment.url}" type="application/pdf" width="100%" height="600px">
+				</div>
+				<p><a href="${blockData.attachment.url}" download>Download PDF↗</a></p>
+				</li>
+			`
 		//Needed help understanding this more deeply, the block above opens a list item — assumes this PDF is being rendered inside a <ul> or <ol> somewhere.A wrapper div with the class "embedded", likely used for styling the embedded content. The <embed> tag actually renders the PDF inline in the browser. src pulls the file URL from blockData.attachment.url, type tells the browser it's a PDF, and width/height control its display size. Creates a download link. The href points to the same PDF URL, and the download attribute tells the browser to download the file instead of navigating to it. The ↗ is just a visual arrow icon.
 
-    channelBlocks.insertAdjacentHTML('beforeend', pdfItem)
+			channelBlocks.insertAdjacentHTML('beforeend', pdfItem)
 
-	let blockLi = channelBlocks.lastElementChild
-	blockLi.addEventListener('click', () => {
-	currentIndex = i // Explained above 
-	displayOnDisc(blockData, blockLi)
-			})
-
-		}
+			let blockLi = channelBlocks.lastElementChild
+			blockLi.addEventListener('click', () => {
+				currentIndex = i // Explained above 
+				displayOnDisc(blockData, blockLi)
+				})
+			}
 
 		// Uploaded audio!
 		else if (contentType.includes('audio')) {
 			// …still up to you, but here’s an `audio` element:
 			let audioItem =
 				`
-				<li>
-					<audio controls src="${ blockData.attachment.url }"></audio>
-				</li>
+					<li>
+						<audio controls src="${ blockData.attachment.url }"></audio>
+					</li>
 				`
  			// ATTRIBUTION - SAME AS ABOVE FOR MAKING FILMSTRIP BLOCKS CLICKABLE FOR LINKS
 			channelBlocks.insertAdjacentHTML('beforeend', audioItem)
 
 			let blockLi = channelBlocks.lastElementChild
 			blockLi.addEventListener('click', () => {
-			currentIndex = i // Explained above 
-			displayOnDisc(blockData, blockLi)
-})
+				currentIndex = i // Explained above 
+				displayOnDisc(blockData, blockLi)
+			})
 			// More on`audio`:
 			// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio
 		}
@@ -306,8 +301,8 @@ let renderBlock = (blockData, i) => {
 
 			let blockLi = channelBlocks.lastElementChild
 			blockLi.addEventListener('click', () => {
-			currentIndex = i // Explained above 
-			displayOnDisc(blockData, blockLi)
+				currentIndex = i // Explained above 
+				displayOnDisc(blockData, blockLi)
 			})
 
 			// More on `iframe`:
@@ -318,19 +313,19 @@ let renderBlock = (blockData, i) => {
 		else if (embedType.includes('rich')) { // Audio embeds from Spotify/Soundcloud weren't displaying. Code tutor helped me debug using console.log to inspect the API data We reviewed using the console.log to figure out which piece of data is needed to show the right file type, first trying to embed the url. I learnt that these programs have specific ways they want developpers to embed songs/materials and found the embed.html worked for this. Also generally reviewed how to find things in the consol and target specific areas of the channel block source. Soundcloud, spotify and apple music uses rich embed types - providing pre-built embed elements. 
 
 			let linkedAudioItem =
-			`
-			<li>
-					${ blockData.embed.html }
-			</li>
-			`
+				`
+				<li>
+						${ blockData.embed.html }
+				</li>
+				`
 			// ATTRIBUTION - SAME AS ABOVE FOR MAKING FILMSTRIP BLOCKS CLICKABLE FOR LINKS
 			channelBlocks.insertAdjacentHTML('beforeend', linkedAudioItem)
 
 			let blockLi = channelBlocks.lastElementChild
 			blockLi.addEventListener('click', () => {
-			currentIndex = i // Explained above 
-			displayOnDisc(blockData, blockLi)
-		})
+				currentIndex = i // Explained above 
+				displayOnDisc(blockData, blockLi)
+			})
 		}
 	}
 }
