@@ -73,8 +73,8 @@ a {
 	/* This is new - wanted to adjust the underline https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-underline-offset - you can set the underline offset (to better accomodate for the y in playlist)*/
 }
 .arrow {
-    font-size: 0.7rem;
-	font-weight: 800;
+    font-size: 1.2rem;
+	font-weight: 200;
 	font-variant-emoji: text;
 	font-family: monospace, serif, sans-serif; /* Adding this as a backup as it mentioned setting the font family to monospace as it seems to help remove the emojies on iphone and default to emoticons https://stackoverflow.com/questions/32915485/how-to-prevent-unicode-characters-from-rendering-as-emoji-in-html-from-javascrip#:~:text=is%20completely%20broken.-,%E4%B8%80%E4%BA%8C%E4%B8%89,5%2C%202017%20at%201:49 )*/
 }
