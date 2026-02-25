@@ -137,10 +137,12 @@ dialog {
 	width: clamp(20rem, 55vw, 70rem);
 	height: auto;
 	max-width: 100ch;
+
 	padding:calc(var(--gap-size) * 1.5); /* useful resource: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units */
 	inset-block-start: 50%; /*The inset-inline-start CSS property defines the logical inline start inset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-inline-start */
 	inset-inline-start: 50%;
 	border-radius: 1.2rem; 
+
 	background-image: url('Illustrations/web-modal.png');
 	background-size: fill;
 	background-position: center;
@@ -150,6 +152,7 @@ dialog {
 		display: flex;
 		flex-direction: column;
 		padding: var(--gap-size);
+
 		background-color: var(--white);
 		border-radius: 0.7rem;
 		/* Chareese taught me this trick to make the borders look better - outside border is more curved then inner border */
@@ -297,6 +300,7 @@ to { rotate: 360deg; }
 	display: flex; /* ensures centering works */
 	width: var(--disc-size);
 	height: var(--disc-size);
+
 	justify-content: center; /* aligns horizontally (main axis - assuming this matches the flex direction) */
 	align-items: center; /* aligns vertically - more attributions on this above */
 	border-radius: 50%; /* making the content disc shaped - border-radius 50% just means fully rounded */
@@ -319,9 +323,10 @@ to { rotate: 360deg; }
 	width: 100%;
 	height: 100%;
 	z-index: 10; /* a bit of overkill but make sure all iframes sit ontop of the disk */
+	
 	transform: translateY(0%) scale(200%) translateX(0%); /* learnt how to write this synthx using claude: first translateY, then scale, then translateX - the order here is important */
-	 will-change: transform;
-	 backface-visibility: hidden;
+	will-change: transform;
+	backface-visibility: hidden;
 }
 
 #disc-image:has(iframe)::before { /* Used Claude to help me figure out how to select this and put the background below the iframe/embeds for the music player */
@@ -330,6 +335,7 @@ to { rotate: 360deg; }
 	position: absolute; /* positions it over the disc */
 	width: 100%;
 	height: 100%;
+
 	background-image: url('Illustrations/songs-embeds.png');
 	background-size: 150%;
 	background-position: center;
@@ -350,17 +356,18 @@ to { rotate: 360deg; }
 /* PDF wrapper with background */ 
 /* PDF EMBEDS */
 #disc-image.is-pdf {
-    background-image: url('Illustrations/Bookmarks.png');
-    background-size: 150%;
-    background-position: center;
-    width: var(--disc-size);
-    height: var(--disc-size);
-    border-radius: 50%;
+	width: var(--disc-size);
+	height: var(--disc-size);
+	border-radius: 50%;
+
+	background-image: url('Illustrations/Bookmarks.png');
+	background-size: 150%;
+	background-position: center;	
 }
 
 #disc-image.is-pdf img {
-    mix-blend-mode: multiply;
-    opacity: 0.85;
+	mix-blend-mode: multiply;
+	opacity: 0.85;
 	z-index: 10;
 }
 
@@ -388,6 +395,7 @@ to { rotate: 360deg; }
 		text-overflow: ellipsis; /* Displays ... at the point where text is clipped. Only works when paired with overflow:hidden and white-space:nowrap.I think Lucy originally showed me this but also had to find the right synthx on MDN. */
 		text-wrap: balance; /* Learnt this in class but using it here, used mdn to refresh my knowledge of it. https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap I think balance works on most browser types  */
 		width: 20ch; /* talked about this in class but also referenced Mdn and Claud for this - it restricts the number of characters - you can use a percentage, rem, or percent for width*/
+		
 		white-space: nowrap; /* learnt this through Claude means don't wrap to more then 1 line */
 		overflow: hidden;  /* nessessary to hide the overflow */
 		padding-block-end: 8rem; /* from old clamp thing I tried learning to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
@@ -403,6 +411,7 @@ to { rotate: 360deg; }
 		/* Limits text to 2 lines then truncates with ellipsis. Requires display:-webkit-box and -webkit-box-orient:vertical to work, Standard for doing this sort of thing. ChatGPT + MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/line-clamp  */
 		text-wrap: balance; /* more info on this above */
 		-webkit-box-orient: vertical; /* Required along with line clamp tells the webkit box to flow children vertically so line counting works. MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/box-orient */
+	
 		overflow: hidden;
 		text-overflow: ellipsis; /* more info on this above */
 		color:var(--white);
@@ -410,8 +419,7 @@ to { rotate: 360deg; }
 }
 #disc-hole {
 	position: absolute; /* Positioning the disc hole absolute so it stablizizes in the center of the discplate - kind of thinking about building this part as if it was a physical object*/
-	background-image: url("Illustrations/disc-hole.png");
-	background-size: cover;
+
 	/* Similar to object fit but with the background size, https://www.w3schools.com/css/css3_background_size.asp this makes it fit the disc size perfectly as a cover rather than cropping it */
 	width: 33%;
 	/* sets to 1/3 of the disc size */
@@ -425,6 +433,9 @@ to { rotate: 360deg; }
 	transform: translate(-50%, -50%);
 	/* Asked Claude to help make this in the center of my circle - kept forgetting the synthx. moves - vertically then horizontally */
 	/* FYI align-items: center; - you keep doing this! this ONLY APPLIES to FLEX/GRID...same with justify-content */
+	
+	background-image: url("Illustrations/disc-hole.png");
+	background-size: cover;
 }
 /*--------------LISTEN MODAL------------*/
 #listen-dialog {
@@ -435,10 +446,12 @@ to { rotate: 360deg; }
 	width: clamp(20rem, 40vw, 40rem);
 	height: auto;
 	overflow: hidden;
+
 	box-shadow: 0.3rem /* Writing it like this so I can understand the values better - using box shadow because I want to add a border radius. horizontal offset — pushes shadow right */
 	0.3rem /* vertical offset — pushes shadow down */
 	0.6rem /* blur radius — how soft the shadow is */
 	0.125rem /* spread radius — how much it expands before blurring */
+
 	var(--grey); /* color of box shadow — grey at 50% opacity */
 	padding:calc(var(--gap-size) * 1.5); /* useful resource: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units */
 	border-radius: 1.2rem; 
@@ -479,6 +492,7 @@ to { rotate: 360deg; }
 	/* find relative units for this!!! sits exactly on top of the film strip */
 	left: 0; /* No relative units for this - I think! This controls the inherited positioning - touch the left and right side  */
 	right: 0;
+	
 	display: flex;
 	flex-direction: column-reverse; /*reverses the direction of my html*/
 	width: 100%;
@@ -548,6 +562,7 @@ to { rotate: 360deg; }
 	overflow-x: auto;
 	/* we learnt this in class but this allows you to scroll horizontally. I was confused about this so I looked it up on mdn. https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow-x Unlike scroll, user agents display scroll bars only if the content is overflowing and hide scroll bars by default*/
 	overflow-y: hidden;
+	
 	left: 0;
 	/* Resets to position 0*/
 	right: 0;
@@ -843,9 +858,7 @@ to { rotate: 360deg; }
 #disc-image:has(.text) {
 	h3 {
 		padding-block-end: 16rem;
-		font-size: 1.5rem; /* learning to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
-	}
-	p {
+		font-size: 1.5rem; 
 		font-size: 1.1rem;
 	}
 }
@@ -863,7 +876,7 @@ to { rotate: 360deg; }
 #disc-image:has(.text) {
 	h3 {
 		padding-block-end: 27rem;
-		font-size: 2rem; /* learning to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
+		font-size: 2rem; 
 	}
 	p {
 		font-size: 1.5rem;
