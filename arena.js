@@ -44,7 +44,7 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 		title.innerHTML=blockData.title 
 		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link
 		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`
-		link.innerHTML = 'View on Are.na↗' // Learnt this from code tutor - setting the block link - the ? mark basically says if blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na, since my image blocks dont have other links besides are.na
+		link.innerHTML = 'View on Are.na<span class="arrow">↗</span>' // Learnt this from code tutor - setting the block link - the ? mark basically says if blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na, since my image blocks dont have other links besides are.na
 		
 		if (img) {
 		discImage.innerHTML = `<img src="${img.src}">`
@@ -61,7 +61,7 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 		title.innerHTML=blockData.title // taking the title from the are.na data - innerHTML replaces what was in the #block-title before
 		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link (explained above)
 		link.href = blockData.source.url // Setting where the link goes - different then above since these are linking out and not to the are.na channel - no optional chaning here ? because the links always have an external url - not are.na 
-		link.innerHTML = 'Read Bookmark↗' // Setting what goes into the linked here - 'view link' shows up on the site - wanted to clarify if the user is going to are.na or going elsewhere. 
+		link.innerHTML = 'Read Bookmark<span class="arrow">↗</span>' // Setting what goes into the linked here - 'view link' shows up on the site - wanted to clarify if the user is going to are.na or going elsewhere. 
 		discImage.classList.add('is-pdf') // Adding the is-pdf class to #disc-image when a Link block is clicked. This gives CSS a hook to apply the Bookmarks background and blend mode styling. Learned classList.add() from troubleshooting with claude
 		if (img) {
 		discImage.innerHTML = `<img src="${img.src}" alt="disc" >` // Creating a NEW <img> tag and inserting it into the disc if there is a image if there's an image, show it, future - could add a fallback icon for files without previews. If the link block has a thumbnail image, grab it from the filmstrip <li> and display it on the disc using a template literal to build the img tag. img.src pulls the already-loaded image source so we don't need to re-fetch from the API.
@@ -79,8 +79,8 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 		let title = document.querySelector('#block-title') // Learnt this from code tutor - setting the block title
 		title.innerHTML=blockData.title 
 		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link
-		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`
-		link.innerHTML = 'View on Are.na↗' // the ? mark basically says If blockData.source is undefined then returns undefined, link if there's no other link other then are.na it gets directed to the are.na block
+		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`// the ? mark basically says If blockData.source is undefined then returns undefined, link if there's no other link other then are.na it gets directed to the are.na block
+		link.innerHTML = 'View on Are.na<span class="arrow">↗</span>' // asked claude how to add a span selector so I'm able to customize the arrow and make it smaller, I learnt that more about how HTML and JS elements can be used together or referenced.  
 	}
 
 	// ATTACHMENTS - SIMILAR TO LINKS
@@ -93,7 +93,7 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 		title.innerHTML=blockData.title  // display file name
 		let link = document.querySelector('#block-link') // setting the block link
 		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`
-		link.innerHTML = 'View on Are.na↗' //  setting the block link - the ? mark basically says If blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na block.
+		link.innerHTML = 'View on Are.na<span class="arrow">↗</span>' //  setting the block link - the ? mark basically says If blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na block.
 		if (img) {
 		discImage.innerHTML = `<img src="${img.src}" alt="disc" >` // if there's an image, show it, future - could add a fallback icon for files without previews
 	}

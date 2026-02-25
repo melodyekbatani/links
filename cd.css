@@ -72,6 +72,11 @@ a {
 	text-underline-offset: 0.15rem;
 	/* This is new - wanted to adjust the underline https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-underline-offset - you can set the underline offset (to better accomodate for the y in playlist)*/
 }
+.arrow {
+    font-size: 0.7rem;
+	font-weight: 800;
+	font-variant-emoji: text;
+}
 
 p {
 	color: var(--main);
