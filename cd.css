@@ -41,7 +41,9 @@
 	--border-radius: 10%;
 	--button-size: clamp(2.75rem, 70vw, 3rem);
 }
-
+.no-emoji-style {
+  font-variant-emoji: text;
+}
 /*--------------BASE------------*/
 html,
 body {
@@ -414,6 +416,17 @@ to { rotate: 360deg; }
 	transform: translate(-50%, -50%);
 	/* Asked Claude to help make this in the center of my circle - kept forgetting the synthx. moves - vertically then horizontally */
 	/* FYI align-items: center; - you keep doing this! this ONLY APPLIES to FLEX/GRID...same with justify-content */
+}
+/*--------------LISTEN MODAL------------*/
+#listen-dialog {
+    background-image: url('Illustrations/jewel-case.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    width: clamp(20rem, 55vw, 40rem);
+    height: auto;
 }
 
 
