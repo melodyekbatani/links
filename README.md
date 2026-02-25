@@ -12,7 +12,7 @@ https://www.are.na/trenton-soto-ortkizxpaha/r-b-music
 HTML, CSS, Vanilla JavaScript, Are.na API
 
 ### Overview
-The collection traces defining moments in R&B through album cover art and artist references, exploring themes of identity, intimacy, and visual culture, and reflecting on what it means to make R&B music today as a genre shaped by human stories and emotion. Instead of scrolling through references, the project frames the content as a CD player where the disc frame is the primary viewing surface, and the filmstrip is the central navigation. 
+The collection traces defining moments in R&B through album cover art and artist references, exploring themes of identity, intimacy, and visual culture, and reflecting on what it means to make R&B music today as a genre shaped by human stories and emotion. Instead of scrolling through references, the project frames the content as a CD player, with the disc frame as the primary viewing surface and the filmstrip as the central navigation. 
 
 ### Approach to Responsive Design
 I approached this design system with considerations rooted in typography, scale, spacing, and color, so the interface stays proportional across screen sizes. The disc, controls, and filmstrip are all sized using clamp() and calc(), allowing the experience to shift fluidly from mobile to desktop while maintaining the physical logic of a player. Different media types from Are.na are rendered inside a single consistent frame. CSS determines how each block type appears, while JavaScript manages state tracking the active block, updating the title and link, and moving through the collection using back and next controls.
@@ -30,9 +30,9 @@ Navigation is driven by currentIndex, which remembers the last block you clicked
 All the different Are.na block types get translated into the same circular frame. Images become full-bleed, text is typeset to fit inside the disc, links and attachments get the bookmark treatment, and embeds keep their iframe so the media is playable using a modal. 
 
 ### Motion and Playback
-The disc's spin lives in CSS and uses JavaScript to turn it on and off depending on user preference. The Pause/Play button flips the animation state. Embed blocks open a separate listen modal that loads the player dynamically. When it closes, the embed gets wiped, so the audio doesn’t keep playing in the background. 
+The disc's spin is controlled by CSS and JavaScript, turning it on and off based on user preference. The Pause/Play button flips the animation state. Embed blocks open a separate listen modal that loads the player dynamically. When it closes, the embed gets wiped, so the audio doesn’t keep playing in the background. 
 
-## Filmstrip Interaction
+### Filmstrip Interaction
 The filmstrip is a fixed horizontal scroll that behaves like a track list. The active item scales and blurs, and custom thumbnails keep all the different media types visually consistent.
 
 ### Additional Tools and Resources
