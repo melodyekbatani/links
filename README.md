@@ -5,7 +5,7 @@ This project was created for Typography & Interaction in the Parsons MPS Communi
 https://melodyekbatani.github.io/links/
 
 ### Are.na
-Collection direction by Trenton Soto
+Direction by Trenton Soto
 https://www.are.na/trenton-soto-ortkizxpaha/r-b-music 
 
 ### Tech Stack
