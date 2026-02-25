@@ -43,22 +43,22 @@ document.querySelector('#pause-play').addEventListener('click', () => {
 // I wanted the back and next buttons to navigate through the filmstrip blocks. I worked on this with Claude to understand how to connect the buttons to the blocks, and used MDN to understand the specific methods being used. goToBlock is a reusable function that takes a position number and navigates to that block.
 
 	let goToBlock = (index) => { // I created this as a reusable function so both buttons can call the same logic, just with different numbers passed in.
-	let blocks = document.querySelectorAll('#channel-blocks li') // Grabs all filmstrip blocks - similar to whats in the are.na file template
+		let blocks = document.querySelectorAll('#channel-blocks li') // Grabs all filmstrip blocks - similar to whats in the are.na file template
 
 
-	// I wanted the navigation to loop around — so if you're on the last block and hit next, it goes back to the first, and if you're on the first and hit back it goes to the last. Wrap around at the ends so navigation loops.
-	// If we go before the first block, jump to the last. If we go past the last, jump to the first.
-	if (index < 0) index = blocks.length - 1
-	if (index >= blocks.length) index = 0
+		// I wanted the navigation to loop around — so if you're on the last block and hit next, it goes back to the first, and if you're on the first and hit back it goes to the last. Wrap around at the ends so navigation loops.
+		// If we go before the first block, jump to the last. If we go past the last, jump to the first.
+		if (index < 0) index = blocks.length - 1
+		if (index >= blocks.length) index = 0
 
-	blocks[index].click() // currentIndex lives in arena.js and gets updated by the click listener there. We just need to click the right block — it handles the rest. This clicks the target block, which triggers the click listener. I set up in arena.js — so it calls displayOnDisc and updates currentIndex automatically. I didn't know you could trigger a click in JS until I looked this up 
-	// MDN: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/click
+		blocks[index].click() // currentIndex lives in arena.js and gets updated by the click listener there. We just need to click the right block — it handles the rest. This clicks the target block, which triggers the click listener. I set up in arena.js — so it calls displayOnDisc and updates currentIndex automatically. I didn't know you could trigger a click in JS until I looked this up 
+		// MDN: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/click
 
 
-    blocks[index].scrollIntoView({ behavior: 'smooth', inline: 'center' })
-     // This scrolls the filmstrip so the active block is always visible in the center. // scrollIntoView is a built in browser method that automatically scrolls to whatever element is call on. Blocks[index] is the specific filmstrip block we just navigated to. The curly brackets pass in options to control how the scrolling behaves. behavior: 'smooth' means instead of jumping instantly it animates the scroll so it slides across. inline controls horizontal alignment — I used inline instead of block because block controls vertical alignment which isn't relevant for my horizontal filmstrip.center means it positions the active block in the middle of the visible filmstrip area rather than snapping to the left or right edge. So if you're on block 1 and hit next to go to block 8, the filmstrip smoothly slides across and lands with block 8 centered in view. // MDN: https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView. 
+		blocks[index].scrollIntoView({ behavior: 'smooth', inline: 'center' })
+		// This scrolls the filmstrip so the active block is always visible in the center. // scrollIntoView is a built in browser method that automatically scrolls to whatever element is call on. Blocks[index] is the specific filmstrip block we just navigated to. The curly brackets pass in options to control how the scrolling behaves. behavior: 'smooth' means instead of jumping instantly it animates the scroll so it slides across. inline controls horizontal alignment — I used inline instead of block because block controls vertical alignment which isn't relevant for my horizontal filmstrip.center means it positions the active block in the middle of the visible filmstrip area rather than snapping to the left or right edge. So if you're on block 1 and hit next to go to block 8, the filmstrip smoothly slides across and lands with block 8 centered in view. // MDN: https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView. 
 
-}
+	}
 
 document.querySelector('#next').addEventListener('click', () => {
 	goToBlock(currentIndex + 1) // Used claude to help me figure this out. This is listening for a click on the next button - when its clicked it calls the goToBlock function I made above and passes in currentIndex + 1. currentIndex is the position number of the last block that was clicked (set in arena.js), so by adding 1 I'm just telling it to go one block forward. goToBlock then handles everything else like the wrapping and scrolling. the back button does the exact same thing but subtracts 1 instead to go backwards - so if I'm on block 4 (the 5th block) it calls goToBlock(3) and navigates to block 3 (the 4th block). MDN on addEventListener: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
@@ -78,13 +78,14 @@ const volumeIcon = document.querySelector('#volume-icon'); //This targers the au
 volumeBtn.addEventListener('click', () => {
 	//Listens for a user interaction.
 
-  if (!bgMusic.paused) { //Conditional logic. Checks the current state to decide what to do next- this is basically the core concept of toggle interactions.
-    bgMusic.pause(); //Calls the built-in HTMLMediaElement method and Stops playback.
-    volumeIcon.src = './Illustrations/volumn-off-button.png'; //Swaps the image file through using the icon.src and defining the image change Visually communicates the new state to the user.
-  } else { //Defines the opposite condition (music is currently off).
-    bgMusic.play().catch(err => console.log(err));  //When the button is clicked and the music is currently off, this code turns the music on by calling bgMusic.play(). If the browser blocks the playback for any reason, the .catch() prevents the script from breaking and simply logs the error. After the music starts, it changes the icon image to the “volume on” version so the user can see that the state has switched from off to playing.
-    volumeIcon.src = './Illustrations/Volumn-button.png'; //image file 
-  }
+	if (!bgMusic.paused) { //Conditional logic. Checks the current state to decide what to do next- this is basically the core concept of toggle interactions.
+		bgMusic.pause(); //Calls the built-in HTMLMediaElement method and Stops playback.
+		volumeIcon.src = './Illustrations/volumn-off-button.png'; //Swaps the image file through using the icon.src and defining the image change Visually communicates the new state to the user.
+	}
+	else { //Defines the opposite condition (music is currently off).
+		bgMusic.play().catch(err => console.log(err));  //When the button is clicked and the music is currently off, this code turns the music on by calling bgMusic.play(). If the browser blocks the playback for any reason, the .catch() prevents the script from breaking and simply logs the error. After the music starts, it changes the icon image to the “volume on” version so the user can see that the state has switched from off to playing.
+		volumeIcon.src = './Illustrations/Volumn-button.png'; //image file 
+	}
 });
   // This event listener watches for a click on the close button of the songs/listen module. When triggered, it closes the <dialog> element that contains the module and clears the injected content inside #listen-embed so the previously loaded player or song does not persist when the module is reopened. I learned the logic for programmatically closing a dialog and resetting dynamically inserted content from Claude, and adapted it to match my ID structure and the way my module loads embeds. I learned that closing a UI container does not reset its internal state, and that removing the innerHTML is a simple way to fully clean up an embedded component. I also reinforced how event listeners connect user actions to interface state changes, and this helped me understand dialogs and modules as reusable, stateful systems rather than static layouts. */
 
