@@ -28,8 +28,9 @@
 	--main: rgb(79, 79, 79);
 	--border: rgb(206, 206, 206);
 	--white: white;
-	--grey: grey;
+	--grey: rgb(45, 45, 45);
 	--black: black;
+
 
 	/* setting disc and filmstrip variables */
 	--disc-size: clamp(14rem, min(70vw, 48vh), 26rem);
@@ -41,9 +42,7 @@
 	--border-radius: 10%;
 	--button-size: clamp(2.75rem, 70vw, 3rem);
 }
-.no-emoji-style {
-  font-variant-emoji: text;
-}
+
 /*--------------BASE------------*/
 html,
 body {
@@ -127,18 +126,15 @@ body:has(dialog[open]) {
 
 dialog {
 /* From class - Style the `dialog` itself, which is `display: none;` to start. */
-
 	position: fixed; /* In the viewport. */
 	translate: -50% -50%; /* In the viewport. */
 	width: clamp(20rem, 55vw, 70rem);
 	height: auto;
 	max-width: 100ch;
-
-	padding:var(--gap-size); /* useful resource: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units */
+	padding:calc(var(--gap-size) * 1.5); /* useful resource: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units */
 	inset-block-start: 50%; /*The inset-inline-start CSS property defines the logical inline start inset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-inline-start */
 	inset-inline-start: 50%;
 	border-radius: 1.2rem; 
-
 	background-image: url('Illustrations/web-modal.png');
 	background-size: fill;
 	background-position: center;
@@ -150,7 +146,7 @@ dialog {
 		padding: var(--gap-size);
 		background-color: var(--white);
 		border-radius: 0.7rem;
-		/* Chareese taught me this trick to make the borders look proper - outside border is more curved then inner border */
+		/* Chareese taught me this trick to make the borders look better - outside border is more curved then inner border */
 		box-shadow: 0.3rem /* Writing it like this so I can understand the values better - using box shadow because I want to add a border radius. horizontal offset — pushes shadow right */
 		0.3rem /* vertical offset — pushes shadow down */
 		0.6rem /* blur radius — how soft the shadow is */
@@ -419,16 +415,49 @@ to { rotate: 360deg; }
 }
 /*--------------LISTEN MODAL------------*/
 #listen-dialog {
-    background-image: url('Illustrations/jewel-case.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    border: none;
-    width: clamp(20rem, 55vw, 40rem);
-    height: auto;
+	position: fixed;
+	inset-block-start: 50%;
+	inset-inline-start: 50%;
+	translate: -50% -50%;
+	width: clamp(20rem, 40vw, 40rem);
+	height: auto;
+	overflow: hidden;
+	box-shadow: 0.3rem /* Writing it like this so I can understand the values better - using box shadow because I want to add a border radius. horizontal offset — pushes shadow right */
+	0.3rem /* vertical offset — pushes shadow down */
+	0.6rem /* blur radius — how soft the shadow is */
+	0.125rem /* spread radius — how much it expands before blurring */
+	var(--grey); /* color of box shadow — grey at 50% opacity */
+	padding:calc(var(--gap-size) * 1.5); /* useful resource: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units */
+	border-radius: 1.2rem; 
+	background-image: url('Illustrations/web-modal.png');
+
+.dialog-header { /* button spacing and placement  */
+	display: flex; 
+	justify-content: flex-end;
+	padding: 0.3rem;
 }
 
+#listen-modal-title {
+	display: none; /* Used Claude to search how to do this, turns the display off on the title since you can see it below */
+}
+
+#listen-embed {
+	width: 100%;
+	aspect-ratio: 16/9; /* Used claude to figure out the synthx here -  many ways to format this synthx you can use this link as a reference https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/aspect-ratio#syntax since this is standard video size, 16/9 means width of 16 and height of 9*/
+	overflow: hidden;
+}
+
+#listen-embed iframe {
+	width: 100%;
+	height: 100%;
+	border-radius: 0.7rem; /* Thought about the logic of a smalled inner border inside outer border */
+}
+
+#close-listen-modal { /* Sets button size */
+	width: var(--button-size);
+	height: var(--button-size);
+}
+}
 
 /*--------------MIDDLE NAVIGATION------------*/
 #middle-nav {
@@ -602,9 +631,7 @@ to { rotate: 360deg; }
 			visibility: hidden;
 		}
 	}
-
 }
-
 #channel-blocks li {
 	/* similar to a hover - attribution above, here's a reference https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/transform-function/scale*/
 	scale: 1;
@@ -624,7 +651,7 @@ to { rotate: 360deg; }
 }
 
 #channel-blocks li img {
-	box-sizing: border-box;  /*really trying to get the scaling down*/
+	box-sizing: border-box;  /*this includes border in box sizing - really trying to get the scaling down*/
 	aspect-ratio: 1;
 	width: 100%;
 	height: 100%;
@@ -645,10 +672,7 @@ to { rotate: 360deg; }
 
 
 /*-------------- RESPONSIVE DESIGN ------------*/
-/*The disc is super temperament*/
-@media (width > 350px) {
-	
-}
+
 
 @media (width > 420px) {
 	:root {
@@ -714,9 +738,8 @@ to { rotate: 360deg; }
 			font-size: calc(var(--body-size) * 0.75);
 			text-decoration: none;
 		}
-		
-		
 	}
+
 	#volume-btn {
 		width: calc(var(--body-size) * 1.5);
 		/* relative to text size - 1.5rem is okay for desktop*/
@@ -751,7 +774,6 @@ to { rotate: 360deg; }
 
 
 	#disc-image:has(.text) {
-
 	h3 {
 		padding-block-end: 9rem;
 		font-size: 1.5rem; /* learning to intergrate this more throughout my design more attributions above I feel like the one I wrote below is hard to understand but works for very specific disc stuff*/
@@ -759,9 +781,9 @@ to { rotate: 360deg; }
 	p {
 		font-size: 1.1rem;
 	}
+}
+}
 
-}
-}
 @media (width > 800px) {
 	#disc-image:has(.text) {
 	h3 {
