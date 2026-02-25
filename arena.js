@@ -44,7 +44,7 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 		title.innerHTML=blockData.title 
 		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link
 		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`
-		link.innerHTML = 'View on Are.na' // Learnt this from code tutor - setting the block link - the ? mark basically says if blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na, since my image blocks dont have other links besides are.na
+		link.innerHTML = 'View on Are.na↗' // Learnt this from code tutor - setting the block link - the ? mark basically says if blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na, since my image blocks dont have other links besides are.na
 		
 		if (img) {
 		discImage.innerHTML = `<img src="${img.src}">`
@@ -61,7 +61,7 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 		title.innerHTML=blockData.title // taking the title from the are.na data - innerHTML replaces what was in the #block-title before
 		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link (explained above)
 		link.href = blockData.source.url // Setting where the link goes - different then above since these are linking out and not to the are.na channel - no optional chaning here ? because the links always have an external url - not are.na 
-		link.innerHTML = 'Read Bookmark' // Setting what goes into the linked here - 'view link' shows up on the site - wanted to clarify if the user is going to are.na or going elsewhere. 
+		link.innerHTML = 'Read Bookmark↗' // Setting what goes into the linked here - 'view link' shows up on the site - wanted to clarify if the user is going to are.na or going elsewhere. 
 		discImage.classList.add('is-pdf') // Adding the is-pdf class to #disc-image when a Link block is clicked. This gives CSS a hook to apply the Bookmarks background and blend mode styling. Learned classList.add() from troubleshooting with claude
 		if (img) {
 		discImage.innerHTML = `<img src="${img.src}" alt="disc" >` // Creating a NEW <img> tag and inserting it into the disc if there is a image if there's an image, show it, future - could add a fallback icon for files without previews. If the link block has a thumbnail image, grab it from the filmstrip <li> and display it on the disc using a template literal to build the img tag. img.src pulls the already-loaded image source so we don't need to re-fetch from the API.
@@ -80,7 +80,7 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 		title.innerHTML=blockData.title 
 		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link
 		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`
-		link.innerHTML = 'View on Are.na' // the ? mark basically says If blockData.source is undefined then returns undefined, link if there's no other link other then are.na it gets directed to the are.na block
+		link.innerHTML = 'View on Are.na↗' // the ? mark basically says If blockData.source is undefined then returns undefined, link if there's no other link other then are.na it gets directed to the are.na block
 	}
 
 	// ATTACHMENTS - SIMILAR TO LINKS
@@ -93,11 +93,11 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 		title.innerHTML=blockData.title  // display file name
 		let link = document.querySelector('#block-link') // setting the block link
 		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`
-		link.innerHTML = 'View on Are.na' //  setting the block link - the ? mark basically says If blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na block.
+		link.innerHTML = 'View on Are.na↗' //  setting the block link - the ? mark basically says If blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na block.
 		if (img) {
 		discImage.innerHTML = `<img src="${img.src}" alt="disc" >` // if there's an image, show it, future - could add a fallback icon for files without previews
 	}
-
+	}
 
 	// EMBED - Youtube, soundcloud etc. 
 	else if (blockData.type == 'Embed') { 
@@ -109,7 +109,14 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 		let link = document.querySelector('#block-link') // setting the link
 		link.href = blockData.source.url  // Takes user off my site and are.na into thrid party site
 		link.innerHTML = 'Listen' // Text to display
-	}
+		
+		link.addEventListener('click', (e) => { // Used claude to help me with this, I wanted to create the cd vinyl effect as a pop up for only my embed blocks, so that when a user clicks a link, instead of navigating away, it opens a modal popup and loads media content into it. This links to the script file line 91. This line Attaches a click event listener to link. When the link is clicked, the arrow function (e) => runs, where e is the event object.
+		e.preventDefault() //Stops the link's default behavior (which would normally navigate to a new page or URL). This keeps everything on the current page. E is the event object — it's automatically passed into the function when the click happens and contains information about that click, like where the mouse was, what element was clicked, etc.
+		document.querySelector('#listen-modal-title').innerHTML = blockData.title // Finds the element with the id listen-modal-title and sets its content to blockData.title — so the modal displays the title of whatever was clicked.
+		document.querySelector('#listen-embed').innerHTML = blockData.embed.html //Finds the element with id listen-embed and injects the embed HTML (like a Spotify or SoundCloud player) from blockData.embed.html into it.
+		document.querySelector('#listen-dialog').showModal() //Finds the <dialog> element with id listen-dialog and calls .showModal() on it, which opens it as a modal overlay on the page.
+		})
+		}
 
 	// ACTIVE STATE - SELECTING FILM STRIP ITEM
 	document.querySelectorAll('#channel-blocks li').forEach(li => {
@@ -119,7 +126,7 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 	blockLi.classList.add('active') // Add 'active' to the block that was just clicked to show it's active. 
 }
 
-}
+
 	
 // Then our big function for specific-block-type rendering:
 let renderBlock = (blockData, i) => {
@@ -236,9 +243,9 @@ let renderBlock = (blockData, i) => {
 			// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video
 		}
 
-		// Uploaded PDFs! I still need to add ATTRIBUTIONS HERE!!
+		// Uploaded PDFs! Checks if the content type string contains 'pdf' (e.g. 'application/pdf'). This block only runs if the uploaded file is a PDF.
 		else if (contentType.includes('pdf')) {
-			 let pdfItem =
+			 let pdfItem = //Declares a variable called pdfItem that will store the HTML string.
         `
         <li>
 		<div class="embedded">
@@ -247,6 +254,7 @@ let renderBlock = (blockData, i) => {
     	<p><a href="${blockData.attachment.url}" download>Download PDF↗</a></p>
         </li>
         `
+		//Needed help understanding this more deeply, the block above opens a list item — assumes this PDF is being rendered inside a <ul> or <ol> somewhere.A wrapper div with the class "embedded", likely used for styling the embedded content. The <embed> tag actually renders the PDF inline in the browser. src pulls the file URL from blockData.attachment.url, type tells the browser it's a PDF, and width/height control its display size. Creates a download link. The href points to the same PDF URL, and the download attribute tells the browser to download the file instead of navigating to it. The ↗ is just a visual arrow icon.
 
     channelBlocks.insertAdjacentHTML('beforeend', pdfItem)
 

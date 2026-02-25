@@ -83,7 +83,13 @@ volumeBtn.addEventListener('click', () => {
     volumeIcon.src = './Illustrations/volumn-off-button.png'; //Swaps the image file through using the icon.src and defining the image change Visually communicates the new state to the user.
   } else { //Defines the opposite condition (music is currently off).
     bgMusic.play().catch(err => console.log(err));  //When the button is clicked and the music is currently off, this code turns the music on by calling bgMusic.play(). If the browser blocks the playback for any reason, the .catch() prevents the script from breaking and simply logs the error. After the music starts, it changes the icon image to the “volume on” version so the user can see that the state has switched from off to playing.
-    volumeIcon.src = './Illustrations/Volumn-button.png';
+    volumeIcon.src = './Illustrations/Volumn-button.png'; //image file 
   }
-
 });
+  // This event listener watches for a click on the close button of the songs/listen module. When triggered, it closes the <dialog> element that contains the module and clears the injected content inside #listen-embed so the previously loaded player or song does not persist when the module is reopened. I learned the logic for programmatically closing a dialog and resetting dynamically inserted content from Claude, and adapted it to match my ID structure and the way my module loads embeds. I learned that closing a UI container does not reset its internal state, and that removing the innerHTML is a simple way to fully clean up an embedded component. I also reinforced how event listeners connect user actions to interface state changes, and this helped me understand dialogs and modules as reusable, stateful systems rather than static layouts. */
+
+document.querySelector('#close-listen-modal').addEventListener('click', () => { // finds the element in the HTML with the ID "close-listen-modal" (the close button) listens for a click on that button. The arrow function runs the code below when the click happens
+	document.querySelector('#listen-dialog').close() // selects the <dialog> element that contains the module and closes it
+	document.querySelector('#listen-embed').innerHTML = '' // selects the embed container and removes all its content, which resets the player and stops the audio
+})
+

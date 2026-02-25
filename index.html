@@ -21,8 +21,8 @@
 <body>
 	<header>
 		<ul class="menu">
-			<li class="item1"><a href="https://www.are.na/trenton-soto-ortkizxpaha/r-b-music">Are.na</a></li>
-			<li class="item3"><a href="https://music.apple.com/ca/playlist/r-b/pl.u-r2yB1aXCRAaKqpl">Playlist</a></li>
+			<li class="item1"><a href="https://www.are.na/trenton-soto-ortkizxpaha/r-b-music">Are.na↗</a></li>
+			<li class="item3"><a href="https://music.apple.com/ca/playlist/r-b/pl.u-r2yB1aXCRAaKqpl">Playlist↗</a></li>
 		</ul>
 		<h1>R&B</h1>
 
@@ -47,6 +47,16 @@
 	<article class="block-info">
 	<h2 id="block-title"> Our collection </h2> <!--My code tutor helped me figure this out - this is the id that we reference in the JS file for pulling the titles/links - basically this works as a hook for the js-->
 	<a id="block-link" href="placeholder">Pick a track!</a>
+	<!-- I used Claude to help me figure out this section this is a similar to above from the class website adding a listen dialog on the embed blocks--->
+		<dialog id="listen-dialog">
+			<article id="listen-modal-text"> <!-- same format as above--->
+				<div class="dialog-header">
+					<h3 id="listen-modal-title"></h3>
+					<button id="close-listen-modal"><img src="./Illustrations/Close-modal.png" alt="closing button"></button>
+				</div>
+				<div id="listen-embed"></div>
+			</article>
+		</dialog>
 	</article>
 
 
@@ -54,9 +64,9 @@
 		<button id="volume-btn">
 		<img id="volume-icon" src="./Illustrations/Volumn-button.png"></button> <!--------------- https://www.youtube.com/watch?v=APjb5Er03UE used this video and Claude to help me understand this better. Here I'm creating a nav id for the header class, then adding the buttons inside it using the background image source. Then here's were I used Claude, to figure out how to do the aurdio tag and add the source.----------------------->
 		<audio id="bg-music" src="./Music/mix.mp3"></audio> <!--------------- This mix is something I found on youtube with alot of songs from our playlist ----------------------->
-		<button id="back"><img src="./Illustrations/back.png" alt="A description of the image"></button>
-		<button id="pause-play"><img src="./Illustrations/play-pause.png" alt="A description of the image"></button>
-		<button id="next"><img src="./Illustrations/forward.png" alt="A description of the image"></button>
+		<button id="back"><img src="./Illustrations/back.png" alt="back"></button>
+		<button id="pause-play"><img src="./Illustrations/play-pause.png" alt="pause-play"></button>
+		<button id="next"><img src="./Illustrations/forward.png" alt="next"></button>
 
 		<button id="modal"><img src="./Illustrations/info.png"></button> <!--------------- css below from class website----------------------->
 		<dialog id="dialog">
