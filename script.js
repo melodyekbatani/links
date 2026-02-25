@@ -61,7 +61,7 @@ document.querySelector('#pause-play').addEventListener('click', () => {
 }
 
 document.querySelector('#next').addEventListener('click', () => {
-	goToBlock(currentIndex + 1) // Used claude to help me figure this outThis is listening for a click on the next button - when its clicked it calls the goToBlock function I made above and passes in currentIndex + 1. currentIndex is the position number of the last block that was clicked (set in arena.js), so by adding 1 I'm just telling it to go one block forward. goToBlock then handles everything else like the wrapping and scrolling. the back button does the exact same thing but subtracts 1 instead to go backwards - so if I'm on block 4 (the 5th block) it calls goToBlock(3) and navigates to block 3 (the 4th block). MDN on addEventListener: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+	goToBlock(currentIndex + 1) // Used claude to help me figure this out. This is listening for a click on the next button - when its clicked it calls the goToBlock function I made above and passes in currentIndex + 1. currentIndex is the position number of the last block that was clicked (set in arena.js), so by adding 1 I'm just telling it to go one block forward. goToBlock then handles everything else like the wrapping and scrolling. the back button does the exact same thing but subtracts 1 instead to go backwards - so if I'm on block 4 (the 5th block) it calls goToBlock(3) and navigates to block 3 (the 4th block). MDN on addEventListener: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
 })
 
 
