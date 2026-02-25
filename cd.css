@@ -736,7 +736,6 @@ to { rotate: 360deg; }
 		}
 	}
 
-
 	#middle-nav {
 		flex-direction: row;
 		
@@ -787,7 +786,6 @@ to { rotate: 360deg; }
 		align-items: center;
 		padding: 0;
 		padding-inline: var(--padding-size);
-	}
 
 	.controls button {
 		width: calc(var(--body-size) * 1.5);
@@ -799,8 +797,8 @@ to { rotate: 360deg; }
 		width: calc(var(--body-size) * 2);
 		height: calc(var(--body-size) * 2);
 	}
-
-
+	}
+	
 	#disc-image:has(.text) {
 	h3 {
 		padding-block-end: 9rem;
