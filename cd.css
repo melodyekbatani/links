@@ -34,7 +34,7 @@
 
 	/* setting disc and filmstrip variables */
 	--disc-size: clamp(14rem, min(70vw, 48vh), 26rem);
-	/* The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the disc to be resposively scaled - we also covered this in class but i needed a refresher on the synthex https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp. Increasing the middle value, it hits the maximum sooner and grows faster as you drag the viewport wider. disc with stay between min and max - will always choose between 70vw → 70% of viewport width and 48vh → 48% of viewport height based on whichever is smaller*/
+	/* The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value. it goes rem unit - vw - rem. this allows the disc to be resposively scaled - we also covered this in class but i needed a refresher on the synthex https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp. Increasing the middle value, it hits the maximum sooner and grows faster as you drag the viewport wider. disc with stay between min and max - will always choose between 70vw - 70% of viewport width and 48vh - 48% of viewport height based on whichever is smaller*/
 	--block-size: clamp(5.5rem, 10vw, 8rem);
 	/* I experimented with the values here - and thought the logic was max width is the smaller then the preferred value. but this just means that the clamp works faster and stops at 12rem*/
 	--gap-size: 0.25rem;
@@ -53,9 +53,9 @@ body {
 	flex-direction: column;
 	/* if you dont add a direction - default is row */
 	overflow: hidden;
+	font-variant-emoji: text;
+	/* My arrow was showing up as an emoji on iphone - learnt this from binding project https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variant-emoji */
 }
-
-
 h1,
 h2,
 h3 {
