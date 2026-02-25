@@ -4,7 +4,7 @@ let myUsername = 'melody-ekbatani' // For linking to your profile.
 // First, let’s lay out some *functions*, starting with our basic metadata:
 
 // NOTES ON THIS - I wanted to hide this information coming in from the are.na channel and manually update it on my site, I did this myself through experiementation but confirmed with the code tutor who said it should be fine. Mainly did this because I wanted to customize the title/change description and hide most of the other stuff listed here.
-//let placeChannelInfo = (channelData) => {
+let placeChannelInfo = (channelData) => {
 	// Target some elements in your HTML:
 	// let channelTitle = document.querySelector('#channel-title')
 	// let channelDescription = document.querySelector('#channel-description')
@@ -16,7 +16,7 @@ let myUsername = 'melody-ekbatani' // For linking to your profile.
 	// channelDescription.innerHTML = channelData.description.html 
 	// channelCount.innerHTML = channelData.counts.blocks
 	// channelLink.href = `https://www.are.na/channel/${channelSlug}`
-//}
+}
 
 // DISC PLAYER INTERACTION - Making the filmstrip blocks display on into the disc player by taking the user clicking on content and displaying it on my disc player. I used copilot/claude/mdn and code tutor to confirm and explain how to do this and to understand how to pass data between elements and handle different block types.
 
@@ -39,6 +39,8 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 
 		title.innerHTML=blockData.title 
 		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link
+		link.onclick = null
+
 		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`
 		link.innerHTML = 'View on Are.na<span class="arrow">↗</span>' // Learnt this from code tutor - setting the block link - the ? mark basically says if blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na, since my image blocks dont have other links besides are.na
 		
@@ -56,6 +58,8 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 
 		title.innerHTML=blockData.title // taking the title from the are.na data - innerHTML replaces what was in the #block-title before
 		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link (explained above)
+		link.onclick = null //onclick is a property, not a list. A property can only hold one value at a time, so assigning a new function to it automatically overwrites whatever was there before. Setting it to null just clears it entirely — like erasing a whiteboard.So by putting link.onclick = null at the top of displayOnDisc, every single time any block is clicked you're wiping the slate clean first. Then only the code relevant to that block type runs and sets things up fresh.
+
 		link.href = blockData.source.url // Setting where the link goes - different then above since these are linking out and not to the are.na channel - no optional chaning here ? because the links always have an external url - not are.na 
 		link.innerHTML = 'Read Bookmark<span class="arrow">↗</span>' // Setting what goes into the linked here - 'view link' shows up on the site - wanted to clarify if the user is going to are.na or going elsewhere. 
 		discImage.classList.add('is-pdf') // Adding the is-pdf class to #disc-image when a Link block is clicked. This gives CSS a hook to apply the Bookmarks background and blend mode styling. Learned classList.add() from troubleshooting with claude
@@ -76,6 +80,8 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 		let title = document.querySelector('#block-title') // Learnt this from code tutor - setting the block title
 		title.innerHTML=blockData.title 
 		let link = document.querySelector('#block-link') // Learnt this from code tutor - setting the block link
+		link.onclick = null
+		
 		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`// the ? mark basically says If blockData.source is undefined then returns undefined, link if there's no other link other then are.na it gets directed to the are.na block
 		link.innerHTML = 'View on Are.na<span class="arrow">↗</span>' // asked claude how to add a span selector so I'm able to customize the arrow and make it smaller, I learnt that more about how HTML and JS elements can be used together or referenced.  
 	}
@@ -89,6 +95,8 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 		let title = document.querySelector('#block-title') // setting the block title
 		title.innerHTML=blockData.title  // display file name
 		let link = document.querySelector('#block-link') // setting the block link
+		link.onclick = null
+		
 		link.href = blockData.source?.url || `https://www.are.na/block/${blockData.id}`
 		link.innerHTML = 'View on Are.na<span class="arrow">↗</span>' //  setting the block link - the ? mark basically says If blockData.source is undefined → returns undefined - link if there's no other link other then arena - telling it to direct to the are.na block.
 		if (img) {
@@ -98,7 +106,6 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 
 	// EMBED - Youtube, soundcloud etc. 
 	else if (blockData.type == 'Embed') { 
-	
 		discImage.innerHTML = blockLi.innerHTML // Embeds are iframes, Unlike images where I grab just the src. This preserves the iframe and its attributes so the embed stays functional
 
 		let title = document.querySelector('#block-title') // /Same as Link blocks - takes user off Are.na to the original hosting platform
@@ -107,12 +114,13 @@ discImage.classList.remove('is-pdf') // Clears the is-pdf class from #disc-image
 		link.href = blockData.source.url  // Takes user off my site and are.na into thrid party site
 		link.innerHTML = 'Listen' // Text to display
 		
-		link.addEventListener('click', (e) => { // Used claude to help me with this, I wanted to create the cd vinyl effect as a pop up for only my embed blocks, so that when a user clicks a link, instead of navigating away, it opens a modal popup and loads media content into it. This links to the script file line 91. This line Attaches a click event listener to link. When the link is clicked, the arrow function (e) => runs, where e is the event object.
-			e.preventDefault() //Stops the link's default behavior (which would normally navigate to a new page or URL). This keeps everything on the current page. E is the event object — it's automatically passed into the function when the click happens and contains information about that click, like where the mouse was, what element was clicked, etc.
+		
+		link.onclick = (e) => {// Used claude to help me with this, I wanted to create the cd vinyl effect as a pop up for only my embed blocks, so that when a user clicks a link, instead of navigating away, it opens a modal popup and loads media content into it. This links to the script file line 91. This line Attaches a click event listener to link. When the link is clicked, the arrow function (e) => runs, where e is the event object.
+			e.preventDefault(); //Stops the link's default behavior (which would normally navigate to a new page or URL). This keeps everything on the current page. E is the event object — it's automatically passed into the function when the click happens and contains information about that click, like where the mouse was, what element was clicked, etc.
 			document.querySelector('#listen-modal-title').innerHTML = blockData.title // Finds the element with the id listen-modal-title and sets its content to blockData.title — so the modal displays the title of whatever was clicked.
 			document.querySelector('#listen-embed').innerHTML = blockData.embed.html //Finds the element with id listen-embed and injects the embed HTML (like a Spotify or SoundCloud player) from blockData.embed.html into it.
 			document.querySelector('#listen-dialog').showModal() //Finds the <dialog> element with id listen-dialog and calls .showModal() on it, which opens it as a modal overlay on the page.
-			})
+			};
 		}
 
 	// ACTIVE STATE - SELECTING FILM STRIP ITEM
